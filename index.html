@@ -253,8 +253,8 @@
   </ul>
   <div class="nav-right">
     <div class="lang-toggle">
-      <button class="lang-btn active" id="btn-en" data-lang="en">EN</button>
-      <button class="lang-btn" id="btn-ko" data-lang="ko">한국어</button>
+      <button class="lang-btn active" id="btn-en" data-lang="en" onclick="applyLang('en')">EN</button>
+      <button class="lang-btn" id="btn-ko" data-lang="ko" onclick="applyLang('ko')">한국어</button>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -536,112 +536,120 @@
 
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
 <script>
-(function() {
-  var lang = 'en';
-
-  function applyLang(l) {
-    lang = l;
-    sessionStorage.setItem('ccf_lang', l);
-    document.body.classList.remove('ko');
-    if (l === 'ko') document.body.classList.add('ko');
-    var btnEn = document.getElementById('btn-en');
-    var btnKo = document.getElementById('btn-ko');
-    if (btnEn && btnKo) {
-      if (l === 'en') { btnEn.classList.add('active'); btnKo.classList.remove('active'); }
-      else { btnEn.classList.remove('active'); btnKo.classList.add('active'); }
-    }
-    var els = document.querySelectorAll('[data-en]');
-    for (var i = 0; i < els.length; i++) {
-      var el = els[i];
-      var v = el.getAttribute('data-' + l);
-      if (!v) continue;
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = v;
-      else el.innerHTML = v;
-    }
-    // Update all internal nav links to carry language
-    var links = document.querySelectorAll('nav a[href]');
-    for (var j = 0; j < links.length; j++) {
-      var href = links[j].getAttribute('href');
-      if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#')) continue;
-      // Remove existing lang param
-      href = href.replace(/[?&]lang=[a-z]+/, '');
-      // Add new lang param if Korean
-      if (l === 'ko') {
-        href = href + (href.indexOf('?') >= 0 ? '&' : '?') + 'lang=ko';
-      }
-      links[j].setAttribute('href', href);
-    }
-  }
-
-  window.setLang = applyLang;
-
-  window.handleContact = function(e) {
-    e.preventDefault();
-    alert(lang === 'ko'
-      ? '메시지 감사합니다! 곧 연락드리겠습니다.\n\nbillmajors@crossculture-community.com'
-      : 'Thank you! We will be in touch soon.\n\nbillmajors@crossculture-community.com');
-    e.target.reset();
-  };
-
-  window.handleNotify = function() {
-    var email = document.getElementById('notify-email');
-    if (!email || !email.value || email.value.indexOf('@') === -1) {
-      alert(lang === 'ko' ? '유효한 이메일 주소를 입력해 주세요.' : 'Please enter a valid email address.');
-      return;
-    }
-    alert(lang === 'ko' ? '감사합니다! 알려드리겠습니다.' : 'Thank you! We will notify you.');
-    email.value = '';
-  };
-
-  document.addEventListener('DOMContentLoaded', function() {
-    // Read language from URL param or sessionStorage
-    var params = new URLSearchParams(window.location.search);
-    var savedLang = params.get('lang') || sessionStorage.getItem('ccf_lang') || 'en';
-    applyLang(savedLang);
-
-    var btnEn = document.getElementById('btn-en');
-    var btnKo = document.getElementById('btn-ko');
-    if (btnEn) btnEn.addEventListener('click', function() { applyLang('en'); });
-    if (btnKo) btnKo.addEventListener('click', function() { applyLang('ko'); });
-
-    window.addEventListener('scroll', function() {
-      var nav = document.getElementById('main-nav') || document.querySelector('nav');
-      if (nav) nav.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none';
-    });
-
-    // Smooth scroll for anchor links
-    var anchors = document.querySelectorAll('a[href^="#"]');
-    for (var i = 0; i < anchors.length; i++) {
-      anchors[i].addEventListener('click', function(e) {
-        var href = this.getAttribute('href');
-        if (href === '#') return;
-        e.preventDefault();
-        var target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    }
-  });
-})();
-
+/* ── HAMBURGER MENU ── */
 function toggleMenu() {
   var menu = document.getElementById('mobile-menu');
-  var btn = document.getElementById('hamburger');
+  var btn  = document.getElementById('hamburger');
+  if (!menu || !btn) return;
   menu.classList.toggle('open');
   btn.classList.toggle('open');
 }
 function closeMenu() {
-  document.getElementById('mobile-menu').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
+  var menu = document.getElementById('mobile-menu');
+  var btn  = document.getElementById('hamburger');
+  if (menu) menu.classList.remove('open');
+  if (btn)  btn.classList.remove('open');
 }
 document.addEventListener('click', function(e) {
   var menu = document.getElementById('mobile-menu');
-  var btn = document.getElementById('hamburger');
+  var btn  = document.getElementById('hamburger');
   if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
     menu.classList.remove('open');
     btn.classList.remove('open');
   }
 });
+
+/* ── LANGUAGE TOGGLE ── */
+var _currentLang = 'en';
+
+function applyLang(l) {
+  _currentLang = l;
+  try { sessionStorage.setItem('ccf_lang', l); } catch(e) {}
+
+  /* body class for CSS font switch */
+  document.body.classList.remove('ko');
+  if (l === 'ko') document.body.classList.add('ko');
+
+  /* button active states */
+  var btnEn = document.getElementById('btn-en');
+  var btnKo = document.getElementById('btn-ko');
+  if (btnEn) btnEn.classList.toggle('active', l === 'en');
+  if (btnKo) btnKo.classList.toggle('active', l === 'ko');
+
+  /* swap all data-en / data-ko text nodes */
+  var els = document.querySelectorAll('[data-en]');
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    var val = el.getAttribute('data-' + l);
+    if (!val) continue;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else {
+      el.innerHTML = val;
+    }
+  }
+
+  /* re-render dynamic story / voice cards if present */
+  if (typeof renderStory  === 'function') renderStory();
+  if (typeof renderVoice  === 'function') renderVoice();
+}
+
+window.setLang = applyLang;
+
+window.handleContact = function(e) {
+  e.preventDefault();
+  alert(_currentLang === 'ko'
+    ? '메시지 감사합니다! 곧 연락드리겠습니다.\n\nbillmajors@crossculture-community.com'
+    : 'Thank you! We will be in touch soon.\n\nbillmajors@crossculture-community.com');
+  e.target.reset();
+};
+
+window.handleNotify = function() {
+  var email = document.getElementById('notify-email');
+  if (!email || !email.value || email.value.indexOf('@') === -1) {
+    alert(_currentLang === 'ko' ? '유효한 이메일 주소를 입력해 주세요.' : 'Please enter a valid email address.');
+    return;
+  }
+  alert(_currentLang === 'ko' ? '감사합니다! 알려드리겠습니다.' : 'Thank you! We will notify you.');
+  email.value = '';
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  /* restore saved language */
+  var saved = 'en';
+  try {
+    var params = new URLSearchParams(window.location.search);
+    saved = params.get('lang') || sessionStorage.getItem('ccf_lang') || 'en';
+  } catch(e) {}
+  applyLang(saved);
+
+  /* wire language buttons */
+  var btnEn = document.getElementById('btn-en');
+  var btnKo = document.getElementById('btn-ko');
+  if (btnEn) btnEn.addEventListener('click', function() { applyLang('en'); });
+  if (btnKo) btnKo.addEventListener('click', function() { applyLang('ko'); });
+
+  /* nav shadow on scroll */
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('main-nav') || document.querySelector('nav');
+    if (nav) nav.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none';
+  });
+
+  /* smooth scroll for anchor links */
+  var anchors = document.querySelectorAll('a[href^="#"]');
+  for (var i = 0; i < anchors.length; i++) {
+    anchors[i].addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      var target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+});
+</script>
 
 /* ── VOICES FROM THE PAST ── */
 var VOICES_POOL = [
