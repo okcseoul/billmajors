@@ -371,6 +371,21 @@
         <div class="col-note" data-en="A different voice appears each visit." data-ko="방문할 때마다 다른 목소리가 표시됩니다.">A different voice appears each visit.</div>
       </div>
     </div>
+    <script>
+    // Inline trigger — runs after the card divs exist in DOM
+    // Polls until the render functions are available
+    (function() {
+      function tryRender() {
+        if (typeof refreshStory === 'function' && typeof refreshVoices === 'function') {
+          refreshStory();
+          refreshVoices();
+        } else {
+          setTimeout(tryRender, 50);
+        }
+      }
+      tryRender();
+    })();
+    </script>
     <div class="blog-sidebar">
       <div class="blog-coming">
         <h3 data-en="More Stories Coming" data-ko="더 많은 이야기가 옵니다">More Stories Coming</h3>
@@ -527,6 +542,9 @@
     document.title = l === 'ko'
       ? '빌 메이저스 — 선교사, 목사, 신학박사, 작가'
       : 'Bill Majors — Missionary, Pastor, D.Min., Author';
+    // Re-render story/voice cards after language change
+    if (typeof renderStory === 'function') renderStory();
+    if (typeof renderVoices === 'function') renderVoices();
   }
 
   window.setLang = applyLang;
@@ -575,6 +593,13 @@
 <script>
 /* STORIES & VOICES */
 var STORIES_POOL = [
+  { tag_en: "The Beginning · Age 13", tag_ko: "시작 · 13세",
+    title_en: "I Tried Not to Raise My Hand",
+    title_ko: "손을 들지 않으려 했습니다",
+    excerpt_en: "I was 13 years old at a youth camp when a missionary speaker asked three questions. \"How many want to be President?\" Hundreds of hands went up — including mine. \"How many want to be the richest businessman in the world?\" I raised mine even higher. Then came the third question. \"How many of you believe God wants you to be a missionary?\" I tried not to raise my hand. But I couldn\'t keep it down. Getting out of my chair to walk to that stage was harder than raising my hand. Seven or eight teenagers stood in a line while he prayed over us. I never looked back. 44 years later I\'m still in Seoul, Korea — still telling people about Jesus.",
+    excerpt_ko: "13살 때 청소년 캠프에서 한 선교사 강사가 세 가지 질문을 했습니다. \"대통령이 되고 싶은 사람?\" 수백 명의 손이 올라갔습니다 — 제 손도 포함해서. \"세계에서 가장 부유한 사업가가 되고 싶은 사람?\" 저는 더 높이 손을 들었습니다. 그리고 세 번째 질문이 왔습니다. \"하나님이 자신을 선교사로 부르신다고 믿는 사람?\" 손을 들지 않으려 했습니다. 하지만 내릴 수가 없었습니다. 의자에서 일어나 무대로 걷는 것은 손을 드는 것보다 더 어려웠습니다. 일곱 여덟 명의 십대들이 줄을 서서 기도를 받았습니다. 그 이후로 돌아본 적이 없습니다. 44년이 지난 지금도 서울에서 — 여전히 예수님을 전하고 있습니다.",
+    meta_en: "Bill Ray Majors · The moment that changed everything · \"Jesus Led Me All the Way\"",
+    meta_ko: "빌 레이 메이저스 · 모든 것을 바꾼 순간 · \"예수님이 항상 나를 이끄셨습니다\"" },
   { tag_en: "First Story · June 2, 1982", tag_ko: "첫 번째 이야기 · 1982년 6월 2일",
     title_en: "The Man Called Hama and the Suitcase at Gimpo Airport",
     title_ko: "김포공항 짐 위에 앉아서 — 하마라 불린 남자",
@@ -707,26 +732,9 @@ function refreshVoices() {
   renderVoices();
 }
 
-// Initialize on load
-// Multiple initialization approaches for reliability
-function initCards() {
-  if (document.getElementById('story-card') && document.getElementById('voices-grid')) {
-    refreshStory();
-    refreshVoices();
-  }
-}
-
-// Try immediately
-initCards();
-
-// Try on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', initCards);
-
-// Try on load
-window.addEventListener('load', initCards);
-
-// Final fallback after 500ms
-setTimeout(initCards, 500);
+// Initialize cards directly — called after all functions are defined
+refreshStory();
+refreshVoices();
 
 // Re-render on language change
 document.addEventListener('click', function(e) {
