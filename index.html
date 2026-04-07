@@ -29,7 +29,7 @@
   .nav-ccf { background: var(--earth-dark) !important; color: var(--cream) !important; padding: 10px 20px; border-radius: 2px; text-transform: none; }
   .nav-ccf:hover { background: var(--gold) !important; color: var(--ink) !important; }
   .nav-right { display: flex; align-items: center; gap: 16px; }
-  .lang-toggle { display: flex; align-items: center; gap: 4px; background: rgba(139,111,71,0.15); border-radius: 20px; padding: 4px; border: 1px solid rgba(139,111,71,0.25); position: relative; z-index: 101; }
+  .lang-toggle { display: flex; align-items: center; gap: 4px; background: rgba(139,111,71,0.15); border-radius: 20px; padding: 4px; border: 1px solid rgba(139,111,71,0.25); position: relative; z-index: 200; }
   .lang-btn { padding: 6px 14px; border-radius: 16px; border: none; background: transparent; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--charcoal-soft); font-family: inherit; -webkit-appearance: none; }
   .lang-btn.active { background: var(--earth-dark); color: var(--cream); }
   .lang-btn:hover { background: rgba(139,111,71,0.2); }
@@ -161,7 +161,7 @@
 
   /* MOBILE */
   @media (max-width: 900px) {
-    nav { padding: 14px 20px; }
+    nav { padding: 14px 20px; 
     html, body { overflow-x: hidden; max-width: 100vw; }
     nav ul { display: none; }
     .nav-ccf { display: none; }
@@ -187,30 +187,30 @@
     * { max-width: 100%; box-sizing: border-box; }
     img { max-width: 100%; height: auto; }
     footer { flex-direction: column; text-align: center; padding: 28px 20px; gap: 12px; }
-    #hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 100px 24px 40px; }
-    .hero-right { height: 400px; }
-    .hero-photo { width: 260px; height: 320px; }
-    #story .story-inner { grid-template-columns: 1fr; gap: 40px; }
-    #book { grid-template-columns: 1fr; gap: 40px; }
-    .blog-grid { grid-template-columns: 1fr; }
-    #ccf-banner { flex-direction: column; padding: 48px 24px; }
-    #contact { grid-template-columns: 1fr; gap: 40px; }
   }
   @media (max-width: 480px) {
     section { padding: 36px 16px !important; }
     nav { padding: 12px 16px; }
     .section-title { font-size: clamp(1.5rem, 7vw, 2.2rem) !important; }
     h1, h2 { word-wrap: break-word; overflow-wrap: break-word; }
+  } nav ul { display: none; }
+    section { padding: 60px 24px; }
+    #hero { grid-template-columns: 1fr; min-height: auto; } .hero-left { padding: 100px 24px 40px; } .hero-right { height: 400px; }
+    .hero-photo { width: 260px; height: 320px; }
+    #story .story-inner { grid-template-columns: 1fr; gap: 40px; }
+    #book { grid-template-columns: 1fr; gap: 40px; }
+    .blog-grid { grid-template-columns: 1fr; }
+    #ccf-banner { flex-direction: column; padding: 48px 24px; }
+    #contact { grid-template-columns: 1fr; gap: 40px; }
     footer { flex-direction: column; text-align: center; padding: 32px 24px; }
   }
 
-  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; position: relative; z-index: 102; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 22px; height: 2px; background: var(--earth-dark); border-radius: 2px; transition: all 0.3s; }
   .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .mobile-menu { display: none; position: fixed; top: 76px; left: 0; right: 0; background: rgba(253,250,245,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(139,111,71,0.12); z-index: 200; flex-direction: column; padding: 8px 0 16px; box-shadow: 0 8px 32px rgba(92,74,42,0.1); }
+  .mobile-menu { display: none; position: fixed; top: 76px; left: 0; right: 0; background: rgba(253,250,245,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(139,111,71,0.12); z-index: 99; flex-direction: column; padding: 8px 0 16px; box-shadow: 0 8px 32px rgba(92,74,42,0.1); }
   .mobile-menu.open { display: flex; }
   .mobile-menu a { padding: 14px 24px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--charcoal-soft); text-decoration: none; border-bottom: 1px solid rgba(139,111,71,0.08); transition: all 0.2s; }
   .mobile-menu a:hover { color: var(--gold); background: rgba(201,148,58,0.05); }
@@ -242,7 +242,7 @@
 <body>
 
 <nav id="main-nav">
-  <a href="#hero" class="nav-logo" style="display:flex;align-items:center;gap:10px;"><img src="/logo.png" alt="CrossCulture Community" style="height:36px;width:auto;opacity:0.85;"><span>Bill <span style="color:var(--gold);">Majors</span></span></a>
+  <a href="#hero" class="nav-logo" style="display:flex;align-items:center;gap:10px;"><img src="https://crossculture-ccf.pages.dev/logo.png" alt="CrossCulture Community" style="height:36px;width:auto;opacity:0.85;"><span>Bill <span style="color:var(--gold);">Majors</span></span></a>
   <ul>
     <li><a href="#story" data-en="My Journey" data-ko="나의 여정">My Journey</a></li>
     <li><a href="#book" data-en="The Book" data-ko="책">The Book</a></li>
@@ -253,8 +253,8 @@
   </ul>
   <div class="nav-right">
     <div class="lang-toggle">
-      <button class="lang-btn active" id="btn-en" data-lang="en" onclick="applyLang('en')">EN</button>
-      <button class="lang-btn" id="btn-ko" data-lang="ko" onclick="applyLang('ko')">한국어</button>
+      <button class="lang-btn active" id="btn-en" data-lang="en">EN</button>
+      <button class="lang-btn" id="btn-ko" data-lang="ko">한국어</button>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -525,7 +525,7 @@
 </section>
 
 <footer>
-  <div class="footer-logo" style="display:flex;align-items:center;gap:10px;"><img src="/logo.png" alt="CrossCulture Community" style="height:30px;width:auto;filter:brightness(0) invert(1);opacity:0.8;"><span>Bill <span style="color:var(--gold);">Majors</span></span></div>
+  <div class="footer-logo" style="display:flex;align-items:center;gap:10px;"><img src="https://crossculture-ccf.pages.dev/logo.png" alt="CrossCulture Community" style="height:30px;width:auto;filter:brightness(0) invert(1);opacity:0.8;"><span>Bill <span style="color:var(--gold);">Majors</span></span></div>
   <div data-en="Missionary · Pastor · D.Min. · Author · Honorary Citizen of Seoul · Seoul, Korea since 1982" data-ko="선교사 · 목사 · 신학박사 · 작가 · 서울 명예시민 · 1982년부터 서울, 한국">Missionary · Pastor · D.Min. · Author · Honorary Citizen of Seoul · Seoul, Korea since 1982</div>
   <div style="display:flex;align-items:center;gap:20px;">
     <a href="https://www.youtube.com/@BillRMajors" target="_blank" style="color:rgba(247,243,236,0.5);text-decoration:none;font-size:0.8rem;" onmouseover="this.style.color='#E8C87A'" onmouseout="this.style.color='rgba(247,243,236,0.5)'">▶️ YouTube</a>
@@ -535,130 +535,121 @@
 </footer>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function() {
+  var lang = 'en';
 
-<script>
-/* ── HAMBURGER MENU ── */
+  function applyLang(l) {
+    lang = l;
+    sessionStorage.setItem('ccf_lang', l);
+    document.body.classList.remove('ko');
+    if (l === 'ko') document.body.classList.add('ko');
+    var btnEn = document.getElementById('btn-en');
+    var btnKo = document.getElementById('btn-ko');
+    if (btnEn && btnKo) {
+      if (l === 'en') { btnEn.classList.add('active'); btnKo.classList.remove('active'); }
+      else { btnEn.classList.remove('active'); btnKo.classList.add('active'); }
+    }
+    var els = document.querySelectorAll('[data-en]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      var v = el.getAttribute('data-' + l);
+      if (!v) continue;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = v;
+      else el.innerHTML = v;
+    }
+    // Update all internal nav links to carry language
+    var links = document.querySelectorAll('nav a[href]');
+    for (var j = 0; j < links.length; j++) {
+      var href = links[j].getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#')) continue;
+      // Remove existing lang param
+      href = href.replace(/[?&]lang=[a-z]+/, '');
+      // Add new lang param if Korean
+      if (l === 'ko') {
+        href = href + (href.indexOf('?') >= 0 ? '&' : '?') + 'lang=ko';
+      }
+      links[j].setAttribute('href', href);
+    }
+  }
+
+  window.setLang = applyLang;
+
+  window.handleContact = function(e) {
+    e.preventDefault();
+    alert(lang === 'ko'
+      ? '메시지 감사합니다! 곧 연락드리겠습니다.\n\nbillmajors@crossculture-community.com'
+      : 'Thank you! We will be in touch soon.\n\nbillmajors@crossculture-community.com');
+    e.target.reset();
+  };
+
+  window.handleNotify = function() {
+    var email = document.getElementById('notify-email');
+    if (!email || !email.value || email.value.indexOf('@') === -1) {
+      alert(lang === 'ko' ? '유효한 이메일 주소를 입력해 주세요.' : 'Please enter a valid email address.');
+      return;
+    }
+    alert(lang === 'ko' ? '감사합니다! 알려드리겠습니다.' : 'Thank you! We will notify you.');
+    email.value = '';
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Read language from URL param or sessionStorage
+    var params = new URLSearchParams(window.location.search);
+    var savedLang = params.get('lang') || sessionStorage.getItem('ccf_lang') || 'en';
+    applyLang(savedLang);
+
+    var btnEn = document.getElementById('btn-en');
+    var btnKo = document.getElementById('btn-ko');
+    if (btnEn) btnEn.addEventListener('click', function() { applyLang('en'); });
+    if (btnKo) btnKo.addEventListener('click', function() { applyLang('ko'); });
+
+    window.addEventListener('scroll', function() {
+      var nav = document.getElementById('main-nav') || document.querySelector('nav');
+      if (nav) nav.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none';
+    });
+
+    // Smooth scroll for anchor links
+    var anchors = document.querySelectorAll('a[href^="#"]');
+    for (var i = 0; i < anchors.length; i++) {
+      anchors[i].addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  });
+})();
+
 function toggleMenu() {
   var menu = document.getElementById('mobile-menu');
-  var btn  = document.getElementById('hamburger');
-  if (!menu || !btn) return;
+  var btn = document.getElementById('hamburger');
   menu.classList.toggle('open');
   btn.classList.toggle('open');
 }
 function closeMenu() {
-  var menu = document.getElementById('mobile-menu');
-  var btn  = document.getElementById('hamburger');
-  if (menu) menu.classList.remove('open');
-  if (btn)  btn.classList.remove('open');
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
 }
 document.addEventListener('click', function(e) {
   var menu = document.getElementById('mobile-menu');
-  var btn  = document.getElementById('hamburger');
+  var btn = document.getElementById('hamburger');
   if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
     menu.classList.remove('open');
     btn.classList.remove('open');
   }
 });
 
-/* ── LANGUAGE TOGGLE ── */
-var _currentLang = 'en';
-
-function applyLang(l) {
-  _currentLang = l;
-  try { sessionStorage.setItem('ccf_lang', l); } catch(e) {}
-
-  /* body class for CSS font switch */
-  document.body.classList.remove('ko');
-  if (l === 'ko') document.body.classList.add('ko');
-
-  /* button active states */
-  var btnEn = document.getElementById('btn-en');
-  var btnKo = document.getElementById('btn-ko');
-  if (btnEn) btnEn.classList.toggle('active', l === 'en');
-  if (btnKo) btnKo.classList.toggle('active', l === 'ko');
-
-  /* swap all data-en / data-ko text nodes */
-  var els = document.querySelectorAll('[data-en]');
-  for (var i = 0; i < els.length; i++) {
-    var el = els[i];
-    var val = el.getAttribute('data-' + l);
-    if (!val) continue;
-    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-      el.placeholder = val;
-    } else {
-      el.innerHTML = val;
-    }
-  }
-
-  /* re-render dynamic story / voice cards if present */
-  if (typeof renderStory  === 'function') renderStory();
-  if (typeof renderVoice  === 'function') renderVoice();
-}
-
-window.setLang = applyLang;
-
-window.handleContact = function(e) {
-  e.preventDefault();
-  alert(_currentLang === 'ko'
-    ? '메시지 감사합니다! 곧 연락드리겠습니다.\n\nbillmajors@crossculture-community.com'
-    : 'Thank you! We will be in touch soon.\n\nbillmajors@crossculture-community.com');
-  e.target.reset();
-};
-
-window.handleNotify = function() {
-  var email = document.getElementById('notify-email');
-  if (!email || !email.value || email.value.indexOf('@') === -1) {
-    alert(_currentLang === 'ko' ? '유효한 이메일 주소를 입력해 주세요.' : 'Please enter a valid email address.');
-    return;
-  }
-  alert(_currentLang === 'ko' ? '감사합니다! 알려드리겠습니다.' : 'Thank you! We will notify you.');
-  email.value = '';
-};
-
-document.addEventListener('DOMContentLoaded', function() {
-  /* restore saved language */
-  var saved = 'en';
-  try {
-    var params = new URLSearchParams(window.location.search);
-    saved = params.get('lang') || sessionStorage.getItem('ccf_lang') || 'en';
-  } catch(e) {}
-  applyLang(saved);
-
-  /* wire language buttons */
-  var btnEn = document.getElementById('btn-en');
-  var btnKo = document.getElementById('btn-ko');
-  if (btnEn) btnEn.addEventListener('click', function() { applyLang('en'); });
-  if (btnKo) btnKo.addEventListener('click', function() { applyLang('ko'); });
-
-  /* nav shadow on scroll */
-  window.addEventListener('scroll', function() {
-    var nav = document.getElementById('main-nav') || document.querySelector('nav');
-    if (nav) nav.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none';
-  });
-
-  /* smooth scroll for anchor links */
-  var anchors = document.querySelectorAll('a[href^="#"]');
-  for (var i = 0; i < anchors.length; i++) {
-    anchors[i].addEventListener('click', function(e) {
-      var href = this.getAttribute('href');
-      if (href === '#') return;
-      e.preventDefault();
-      var target = document.querySelector(href);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-});
-</script>
-
 /* ── VOICES FROM THE PAST ── */
 var VOICES_POOL = [
   {
-    tag_en: "Letters from the Journey", tag_ko: "여정에서 온 편지들",
-    name_en: "Cassandra — Young Nak Church, 2007", name_ko: "카산드라 — 영락교회, 2007년",
-    quote_en: "I heard your sermon about Mary and Martha. Today, in my Lenten devotional, I was reminded of your sermon. As I journey I wonder if I have changed to be more like Mary and less like Martha.",
-    quote_ko: "마리아와 마르다에 대한 설교를 들었습니다. 오늘 사순절 묵상에서 그 설교가 떠올랐습니다. 여정을 걸으며 제가 마르다보다 마리아에 더 가까워졌는지 생각해 봅니다.",
-    meta_en: "18 years later — a sermon still speaking", meta_ko: "18년 후 — 여전히 말씀하는 설교"
+    tag_en: "A Letter · 18 Years Later", tag_ko: "18년 후의 편지",
+    name_en: "Cassandra — IWE Young Nak Church, 2007", name_ko: "카산드라 — 영락교회 IWE, 2007년",
+    quote_en: "When I lived in South Korea and attended your church, you once gave a sermon about Mary and Martha that resonated with me. Today, in my Lenten devotional, I was reminded of your sermon. As I journey I wonder if I have changed to be more like Mary and less like Martha. This email is less about that question and more about the gratitude of your ministry to me in 2007. Today He sent you to my heart and to my prayers — and I think sometimes we all need to hear that.",
+    quote_ko: "한국에서 살며 목사님 교회에 다닐 때, 마리아와 마르다에 관한 설교를 들었는데 그 말씀이 제 마음에 깊이 남았습니다. 오늘 사순절 묵상에서 그 설교가 다시 떠올랐습니다. 여정을 걸으며 제가 마르다보다 마리아에 더 가까워졌는지 생각해 봅니다. 이 이메일은 그 질문보다는 2007년 목사님의 사역에 대한 감사입니다. 오늘 하나님께서 목사님을 제 마음과 기도 속으로 보내셨습니다 — 때로는 우리 모두 그런 말을 들을 필요가 있다고 생각합니다.",
+    meta_en: "A sermon preached in 2007 — still speaking 18 years later", meta_ko: "2007년에 전해진 설교 — 18년이 지난 지금도 말씀하고 있습니다"
   },
   {
     tag_en: "A Moment in Time · 2004", tag_ko: "시간의 한 순간 · 2004년",
