@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Half Apple / 반쪽 사과 — Bill R. Majors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0D0D0B;
+    --cream: #F5F1EA;
+    --warm-white: #FDFAF5;
+    --gold: #C28615;
+    --gold-light: #E8C87A;
+    --navy: #0A3C8F;
+    --charcoal: #2C2C2A;
+    --charcoal-soft: #4A4A46;
+    --earth: #6B4F2A;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(194,134,21,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse at 10% 80%, rgba(10,60,143,0.12) 0%, transparent 50%);
+  }
+  .hero-left {
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-right {
+    padding: 80px 80px 80px 40px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.1s forwards;
+  }
+  .eyebrow::before { content: ""; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .hero-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.0;
+    color: var(--cream);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.25s forwards;
+  }
+  .hero-title-ko {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--gold-light);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.35s forwards;
+  }
+  .subtitle {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(245,241,234,0.65);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 420px;
+    border-left: 2px solid var(--gold);
+    padding-left: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.45s forwards;
+  }
+  .author {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,241,234,0.5);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.55s forwards;
+  }
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.65s forwards;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 18px 40px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+    width: fit-content;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-note {
+    font-size: 0.78rem;
+    color: rgba(245,241,234,0.4);
+    padding-left: 4px;
+  }
+
+  /* COVERS */
+  .covers-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+  .cover-img {
+    width: 100%;
+    border-radius: 3px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cover-img:hover {
+    transform: translateY(-6px) rotate(-1deg);
+    box-shadow: 0 36px 100px rgba(0,0,0,0.7);
+  }
+  .cover-img:last-child:hover { transform: translateY(-6px) rotate(1deg); }
+  .cover-label {
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,241,234,0.35);
+    margin-top: 8px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(245,241,234,0.08);
+    margin: 0;
+  }
+
+  /* ABOUT SECTION */
+  .about {
+    background: #111110;
+    padding: 100px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-text h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+  .about-text p {
+    font-size: 0.95rem;
+    color: rgba(245,241,234,0.65);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+  .about-text p strong { color: var(--gold-light); font-weight: 500; }
+  .about-ko {
+    background: rgba(194,134,21,0.06);
+    border: 1px solid rgba(194,134,21,0.15);
+    border-radius: 4px;
+    padding: 40px;
+  }
+  .about-ko h3 {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+  }
+  .about-ko p {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 0.9rem;
+    color: rgba(245,241,234,0.6);
+    line-height: 2;
+    margin-bottom: 16px;
+  }
+
+  /* GIVE SECTION */
+  .give {
+    background: var(--ink);
+    padding: 100px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .give::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(194,134,21,0.1) 0%, transparent 60%);
+  }
+  .give-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+  .give-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .give-label::before, .give-label::after { content: ""; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .give h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+  .give p {
+    font-size: 0.95rem;
+    color: rgba(245,241,234,0.6);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+  .give p.ko {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 0.88rem;
+    color: rgba(245,241,234,0.45);
+    margin-bottom: 48px;
+  }
+  .give-checks {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .give-check {
+    font-size: 0.82rem;
+    color: rgba(245,241,234,0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .give-check::before { content: "✓"; color: var(--gold); font-weight: 600; }
+  .btn-give {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 20px 56px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+    margin-bottom: 16px;
+  }
+  .btn-give:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(194,134,21,0.3); }
+  .give-fine {
+    font-size: 0.75rem;
+    color: rgba(245,241,234,0.3);
+    margin-top: 16px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080807;
+    padding: 40px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(245,241,234,0.3);
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid rgba(245,241,234,0.06);
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 100px 24px 48px; order: 2; }
+    .hero-right { padding: 60px 24px 0; order: 1; }
+    .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .give { padding: 60px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .hero-left { padding: 80px 20px 40px; }
+    .covers-wrap { gap: 12px; }
+    .give-checks { gap: 16px; flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Bill R. Majors · Seoul, Korea</div>
+    <h1 class="hero-title">The Half Apple</h1>
+    <div class="hero-title-ko">반쪽 사과</div>
+    <p class="subtitle">Finding a Father in God When Mine Walked Away<br><span style="font-family:'Noto Sans KR',sans-serif;font-style:normal;font-size:0.95rem;">아버지가 떠난 자리에서 하나님 아버지를 만나다</span></p>
+    <div class="author">Bill R. Majors · D.Min.</div>
+    <div class="cta-group">
+      <a href="https://www.zeffy.com/en-US/donation-form/the-half-apple" target="_blank" class="btn-primary">
+        Give $10 · Get the Ebook
+      </a>
+      <div class="btn-note">Available in English & Korean · Instant download after giving</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="covers-wrap">
+      <div>
+        <img src="The_Half_Apple_Ebook_Cover.jpg" alt="The Half Apple — English" class="cover-img">
+        <div class="cover-label">English</div>
+      </div>
+      <div>
+        <img src="The_Half_Apple_Cover.jpg" alt="반쪽 사과 — Korean" class="cover-img">
+        <div class="cover-label">한국어</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-text">
+    <h2>About This Book</h2>
+    <p>Every person carries a story of what a father was — or wasn't. <strong>The Half Apple</strong> is the story of a boy whose father walked away, and how he discovered that God was not absent, not distant, but present as a Father in ways no human father could be.</p>
+    <p>Written by Bill R. Majors — a missionary who has served in Seoul, Korea since 1982 — this short book has traveled quietly from person to person, finding its way into the hands of those who needed it most.</p>
+    <p>Your gift of <strong>$10 or more</strong> supports Bill's ongoing missionary work in Korea and Asia, and gives you instant access to the ebook in both English and Korean.</p>
+  </div>
+  <div class="about-ko">
+    <h3>이 책에 대하여</h3>
+    <p>모든 사람은 아버지가 어떤 존재였는지 — 혹은 어떤 존재가 아니었는지 — 에 대한 이야기를 품고 있습니다.</p>
+    <p><strong style="color:var(--gold-light);">반쪽 사과</strong>는 아버지에게 버림받은 한 소년이 하나님 안에서 아버지를 만나게 된 이야기입니다. 1982년부터 서울에서 사역해 온 선교사 빌 R. 메이저스 목사가 쓴 이 작은 책은, 가장 필요로 하는 사람들의 손에 조용히 전해져 왔습니다.</p>
+    <p>$10 이상 후원하시면 영문과 한국어 전자책을 즉시 다운로드하실 수 있으며, 한국과 아시아에서의 선교 사역을 함께 지원하게 됩니다.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- GIVE -->
+<section class="give">
+  <div class="give-inner">
+    <div class="give-label">Give & Download</div>
+    <h2>Ready to Read?</h2>
+    <p>A gift of $10 or more unlocks instant access to both the English and Korean editions of <em>The Half Apple</em>. Every dollar supports full-time missionary work in Seoul, Korea.</p>
+    <p class="ko">$10 이상 후원하시면 영문 및 한국어 전자책을 즉시 받아보실 수 있습니다.</p>
+    <div class="give-checks">
+      <span class="give-check">100% Secure</span>
+      <span class="give-check">Zero Platform Fees</span>
+      <span class="give-check">Instant Tax Receipt</span>
+      <span class="give-check">Instant Download</span>
+    </div>
+    <a href="https://www.zeffy.com/en-US/donation-form/the-half-apple" target="_blank" class="btn-give">
+      Give $10 · Get the Ebook →
+    </a>
+    <div class="give-fine">EIN: 84-2974290 · CrossCulture Community Foundation · Dallas, TX · 501(c)3 Tax-Exempt</div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Bill R. Majors · CrossCulture Community Foundation</div>
+  <div><a href="https://www.billmajors.com">billmajors.com</a> · <a href="https://www.crossculture-community.com">crossculture-community.com</a></div>
+</footer>
+
+</body>
+</html>

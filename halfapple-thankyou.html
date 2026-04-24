@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — Download The Half Apple</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0D0D0B;
+    --cream: #F5F1EA;
+    --gold: #C28615;
+    --gold-light: #E8C87A;
+    --navy: #0A3C8F;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(194,134,21,0.1) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(10,60,143,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .card {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .thank-icon {
+    font-size: 3rem;
+    margin-bottom: 24px;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
+  }
+
+  h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .subtitle {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(245,241,234,0.55);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.3s forwards;
+  }
+
+  .message {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(194,134,21,0.2);
+    border-radius: 4px;
+    padding: 32px 40px;
+    margin-bottom: 48px;
+    text-align: left;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.4s forwards;
+  }
+  .message p {
+    font-size: 0.95rem;
+    color: rgba(245,241,234,0.7);
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+  .message p:last-child { margin-bottom: 0; }
+  .message .sig {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(194,134,21,0.15);
+  }
+
+  .download-section {
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+
+  .download-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .download-label::before, .download-label::after {
+    content: ""; display: block; width: 24px; height: 1px; background: var(--gold);
+  }
+
+  .download-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .download-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(194,134,21,0.2);
+    border-radius: 4px;
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--cream);
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .download-card:hover {
+    background: rgba(194,134,21,0.1);
+    border-color: rgba(194,134,21,0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+  .download-card .dc-icon { font-size: 2rem; }
+  .download-card .dc-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .download-card .dc-title-ko {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    font-weight: 300;
+  }
+  .download-card .dc-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 10px 24px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    margin-top: 4px;
+    transition: background 0.2s;
+  }
+  .download-card:hover .dc-btn { background: var(--gold-light); }
+
+  .share-note {
+    font-size: 0.85rem;
+    color: rgba(245,241,234,0.4);
+    line-height: 1.7;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(245,241,234,0.06);
+  }
+  .share-note a { color: var(--gold); text-decoration: none; }
+  .share-note a:hover { text-decoration: underline; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 560px) {
+    .download-grid { grid-template-columns: 1fr; }
+    .message { padding: 24px; }
+    body { padding: 40px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="thank-icon">🙏</div>
+  <div class="eyebrow">Thank You · 감사합니다</div>
+  <h1>Your Gift Matters</h1>
+  <p class="subtitle">Your download is ready below.</p>
+
+  <div class="message">
+    <p>Dear Friend,</p>
+    <p><em>The Half Apple</em> began as one man's story of abandonment and grace — and it has found its way into the hands of people carrying similar wounds. Your support helps carry that story further, into Korea and across Asia.</p>
+    <p>If this book speaks to you, please share it. And if you would like to know more about the ministry, I would love to hear from you.</p>
+    <div class="sig">
+      Grateful for you,<br>
+      Bill R. Majors<br>
+      <a href="mailto:billmajors@crossculture-community.com" style="color:var(--gold);font-style:normal;font-size:0.85rem;font-family:'DM Sans',sans-serif;">billmajors@crossculture-community.com</a>
+    </div>
+  </div>
+
+  <div class="download-section">
+    <div class="download-label">Your Downloads</div>
+    <div class="download-grid">
+      <a href="The_Half_Apple_Ebook.pdf" download class="download-card">
+        <div class="dc-icon">📖</div>
+        <div class="dc-title">The Half Apple</div>
+        <div class="dc-title-ko">English Edition</div>
+        <div class="dc-btn">Download PDF</div>
+      </a>
+      <a href="The_Half_Apple_Korean_COMPLETE.pdf" download class="download-card">
+        <div class="dc-icon">📖</div>
+        <div class="dc-title">반쪽 사과</div>
+        <div class="dc-title-ko">한국어판</div>
+        <div class="dc-btn">다운로드 PDF</div>
+      </a>
+    </div>
+
+    <div class="share-note">
+      If this book touches your heart, share it with someone who needs it.<br>
+      Learn more about the ministry at <a href="https://www.crossculture-community.com">crossculture-community.com</a><br>
+      or visit <a href="https://www.billmajors.com">billmajors.com</a> for more stories from 40+ years in Korea.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
