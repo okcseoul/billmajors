@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photos from the Book — Bill R. Majors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0A3C8F;
+      --gold: #C28615;
+      --gold-light: #e0a832;
+      --cream: #FAF7F2;
+      --dark: #1a1a1a;
+      --mid: #555;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+
+    /* Header */
+    header {
+      background: var(--navy);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(194,134,21,0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(194,134,21,0.08) 0%, transparent 60%);
+    }
+
+    header .eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.1;
+      position: relative;
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    header p {
+      margin-top: 1rem;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .gold-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.5rem auto 0;
+      position: relative;
+    }
+
+    /* Back link */
+    .back-link {
+      display: block;
+      text-align: center;
+      padding: 0.8rem;
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .back-link:hover { color: var(--gold-light); }
+
+    /* Era dividers */
+    .era {
+      padding: 2.5rem 1.5rem 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .era-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .era-label span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .era-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+    }
+
+    /* Grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .photo-card {
+      background: #fff;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(10,60,143,0.07);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(10,60,143,0.14);
+    }
+
+    .photo-card .img-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #e8e4de;
+    }
+
+    .photo-card .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.4s;
+    }
+
+    .photo-card:hover .img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .photo-card .card-body {
+      padding: 0.9rem 1rem 1rem;
+      border-top: 2px solid var(--gold);
+    }
+
+    .photo-card .card-date {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .photo-card .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 0.35rem;
+    }
+
+    .photo-card .card-caption {
+      font-size: 0.8rem;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      font-size: 0.78rem;
+      color: #aaa;
+      letter-spacing: 0.05em;
+    }
+
+    footer a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    footer .album-note {
+      max-width: 400px;
+      margin: 0 auto 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .photo-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0 0.75rem; }
+      .era { padding: 2rem 0.75rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">The Half Apple — Visual Archive</p>
+  <h1>Photos from <em>the Journey</em></h1>
+  <p>Every photograph here is a chapter that words alone cannot tell. From Oklahoma red dirt to Seoul — these are the faces, places, and moments behind the book.</p>
+  <div class="gold-rule"></div>
+  <a href="https://billmajors.com" class="back-link">← billmajors.com</a>
+</header>
+
+<!-- ERA 1 -->
+<div class="era">
+  <div class="era-label"><span>The Beginning — Oklahoma</span></div>
+</div>
+
+<div class="photo-grid">
+
+  <a href="photos/parents-wedding.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/parents-wedding.jpg" alt="Robert and Mary Majors wedding" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">c. 1955 · Oklahoma</div>
+      <div class="card-title">The Beginning</div>
+      <div class="card-caption">Robert and Mary Majors on their wedding day — the marriage that started the story.</div>
+    </div>
+  </a>
+
+  <a href="photos/family-early.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/family-early.jpg" alt="Mary Majors and children" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Early 1960s · Oklahoma</div>
+      <div class="card-title">Mary and the Four</div>
+      <div class="card-caption">Mary with Cheryl, Robert (Bob), Billy, and Mitchell — the family she held together.</div>
+    </div>
+  </a>
+
+  <a href="photos/grandmother-sarah.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/grandmother-sarah.jpg" alt="Sarah Majors, Jetty and Clarence Maxwell" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">c. 1970s · Oklahoma</div>
+      <div class="card-title">The Grandparents</div>
+      <div class="card-caption">Sarah Majors (grandmother), Jetty and Clarence Maxwell — three people who showed what steady love looks like.</div>
+    </div>
+  </a>
+
+  <a href="photos/bill-in-tree.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/bill-in-tree.jpg" alt="Young Bill in a tree" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Early 1970s · Oklahoma</div>
+      <div class="card-title">A Boy in a Tree</div>
+      <div class="card-caption">Bill at the Hwarang Children's Home — still a boy at heart, even as a missionary.</div>
+    </div>
+  </a>
+
+  <a href="photos/joey-kim-college.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/joey-kim-college.jpg" alt="Bill and Joey Kim in college dorm" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Late 1970s · Oklahoma</div>
+      <div class="card-title">Joey Kim — College Roommate</div>
+      <div class="card-caption">Bill and Joey Kim (Joseph) in their dorm room. A friendship that would bridge two countries.</div>
+    </div>
+  </a>
+
+  <a href="photos/chattanooga-graduation.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/chattanooga-graduation.jpg" alt="Graduation photo at Chattanooga Choo Choo" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">1982 · Chattanooga, TN</div>
+      <div class="card-title">College Graduation</div>
+      <div class="card-caption">Millie Winget, Steve White, Mary Majors, and Bill — costumed at the Chattanooga Choo Choo after graduation.</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- ERA 2 -->
+<div class="era">
+  <div class="era-label"><span>The Calling — Going to Korea</span></div>
+</div>
+
+<div class="photo-grid">
+
+  <a href="photos/prayer-card.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/prayer-card.jpg" alt="Pray for Bill Majors prayer card" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">1982 · Bethany, Oklahoma</div>
+      <div class="card-title">Forty Years of Prayer</div>
+      <div class="card-caption">The missionary prayer card Millie Winget kept for forty years. Her daughter Tamara mailed it to Bill after Millie passed.</div>
+    </div>
+  </a>
+
+  <a href="photos/first-summer-korea.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/first-summer-korea.jpg" alt="Korean teachers ESL seminar August 1982" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">August 1982 · Korea</div>
+      <div class="card-title">First Summer in Korea</div>
+      <div class="card-caption">Bill teaching English as a Second Language to Korean middle and high school teachers — just weeks after arriving.</div>
+    </div>
+  </a>
+
+  <a href="photos/first-birthday-korea.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/first-birthday-korea.jpg" alt="Bill receiving birthday gift, November 1982" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">November 1982 · Korea</div>
+      <div class="card-title">First Birthday in Korea</div>
+      <div class="card-caption">A wrapped gift, applause, and a room full of new friends — five months after landing.</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- ERA 3 -->
+<div class="era">
+  <div class="era-label"><span>Roots in Korea — Ministry & Community</span></div>
+</div>
+
+<div class="photo-grid">
+
+  <a href="photos/hanbok-christmas.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/hanbok-christmas.jpg" alt="Bill wearing hanbok at Christmas 1985" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Christmas 1985 · Korea</div>
+      <div class="card-title">At Home in Two Worlds</div>
+      <div class="card-caption">Bill in a traditional Korean hanbok at Christmas — a boy from Oklahoma, fully at home.</div>
+    </div>
+  </a>
+
+  <a href="photos/rice-paddy.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/rice-paddy.jpg" alt="Bill and Korean woman planting rice" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Mid-1980s · Korea</div>
+      <div class="card-title">Planting Rice</div>
+      <div class="card-caption">Knee-deep in a rice paddy, learning Korea from the ground up. This is what belonging looks like.</div>
+    </div>
+  </a>
+
+  <a href="photos/general-family.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/general-family.jpg" alt="Bill with retired general's family" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Early 1980s · Korea</div>
+      <div class="card-title">The Family That Took Him In</div>
+      <div class="card-caption">The retired one-star general's family who housed Bill during language school — and never stopped being family.</div>
+    </div>
+  </a>
+
+  <a href="photos/prayer-campaign.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/prayer-campaign.jpg" alt="70 days of prayer campaign 1986" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Spring 1986 · Korea</div>
+      <div class="card-title">70 Days of Prayer</div>
+      <div class="card-caption">A church prayer campaign for property — Bill at the pulpit beside Rev. Chung and his wife.</div>
+    </div>
+  </a>
+
+  <a href="photos/translation-booth.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/translation-booth.jpg" alt="Bill in Korean translation booth" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">c. 1984 · Korea</div>
+      <div class="card-title">The Translation Booth</div>
+      <div class="card-caption">Korean/English simultaneous translator at the National Prayer Breakfast — a bridge between two languages.</div>
+    </div>
+  </a>
+
+  <a href="photos/youngnak-translation.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/youngnak-translation.jpg" alt="Translation room at Youngnak Church 1990" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">1990 · Seoul</div>
+      <div class="card-title">Youngnak Church</div>
+      <div class="card-caption">The translation room inside Youngnak Church — one of Korea's most historic sanctuaries.</div>
+    </div>
+  </a>
+
+  <a href="photos/sungshin-ceremony.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/sungshin-ceremony.jpg" alt="Ceremony at Sungshin Children's Home" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Late 1980s · Korea</div>
+      <div class="card-title">Sungshin Children's Home</div>
+      <div class="card-caption">A ceremony at the orphanage. Colonel Ray Shaw (second seat) and US Army officers as honored guests.</div>
+    </div>
+  </a>
+
+  <a href="photos/gwanghwamun.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/gwanghwamun.jpg" alt="Bill at Gyeongbokgung Palace Seoul" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Early 1990s · Seoul</div>
+      <div class="card-title">Gyeongbokgung Palace</div>
+      <div class="card-caption">Bill at the main gate of Gyeongbok Palace in downtown Seoul — the city he now calls home.</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- ERA 4 -->
+<div class="era">
+  <div class="era-label"><span>Love & Family</span></div>
+</div>
+
+<div class="photo-grid">
+
+  <a href="photos/ensemble-before.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/ensemble-before.jpg" alt="Singing ensemble before marriage" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Mid-1980s · Korea</div>
+      <div class="card-title">The Ensemble — Before</div>
+      <div class="card-caption">Three members of the singing ensemble before Jakyung joined. The season just before everything changed.</div>
+    </div>
+  </a>
+
+  <a href="photos/ensemble-after.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/ensemble-after.jpg" alt="Singing ensemble with Jakyung" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Mid-1980s · Korea</div>
+      <div class="card-title">The Ensemble — After</div>
+      <div class="card-caption">Four members now — Jakyung standing closest to Bill. She had entered the story.</div>
+    </div>
+  </a>
+
+  <a href="photos/oklahoma-visit.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/oklahoma-visit.jpg" alt="Bill and Jakyung in Bethany Oklahoma" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">c. 1987 · Bethany, Oklahoma</div>
+      <div class="card-title">Coming Home Together</div>
+      <div class="card-caption">Bill and Jakyung in the yard of Raymond and Mary's house in Bethany — the home he grew up in.</div>
+    </div>
+  </a>
+
+  <a href="photos/wedding-reception.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/wedding-reception.jpg" alt="Wedding reception Western Oaks Baptist Church 1987" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">November 1987 · Oklahoma City</div>
+      <div class="card-title">Wedding Reception</div>
+      <div class="card-caption">White tuxedo and golden hanbok at Western Oaks Baptist Church — two worlds becoming one.</div>
+    </div>
+  </a>
+
+  <a href="photos/honeymoon-beach.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/honeymoon-beach.jpg" alt="Bill and Jakyung at the ocean December 1987" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">December 1987 · Korea</div>
+      <div class="card-title">Newlyweds by the Sea</div>
+      <div class="card-caption">Bill and Jakyung at the ocean, one month after their wedding.</div>
+    </div>
+  </a>
+
+  <a href="photos/sarah-anna-garden.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/sarah-anna-garden.jpg" alt="Sarah and Anna in the garden" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Early 1990s · Korea</div>
+      <div class="card-title">Sarah and Anna</div>
+      <div class="card-caption">Anna wants her sister's ice cream cone. Sarah is savoring every last lick. Some things are universal.</div>
+    </div>
+  </a>
+
+  <a href="photos/two-sarahs.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/two-sarahs.jpg" alt="Grandmother Sarah Majors with baby Sarah" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Early 1990s · Oklahoma</div>
+      <div class="card-title">The Two Sarahs</div>
+      <div class="card-caption">Grandmother Sarah Majors holds her namesake. Bill holds Anna. Jakyung beside him. A name passed across generations.</div>
+    </div>
+  </a>
+
+  <a href="photos/family-portrait.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/family-portrait.jpg" alt="Majors family studio portrait" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Mid-1990s · Korea</div>
+      <div class="card-title">The Majors Family</div>
+      <div class="card-caption">Bill, Jakyung, Sarah, and Anna — the family God built from a calling and a love story.</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- ERA 5 -->
+<div class="era">
+  <div class="era-label"><span>Milestones</span></div>
+</div>
+
+<div class="photo-grid">
+
+  <a href="photos/dmin-graduation.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/dmin-graduation.jpg" alt="D.Min graduation Dallas Theological Seminary 1995" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">1995 · Dallas, Texas</div>
+      <div class="card-title">D.Min. — Dallas Theological Seminary</div>
+      <div class="card-caption">Bill in doctoral robes with Mary, Bob and his children, Jakyung, Sarah, and Anna. A calling confirmed by a degree.</div>
+    </div>
+  </a>
+
+  <a href="photos/cbmc-japan.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/cbmc-japan.jpg" alt="CBMC conference Japan with baby Sarah 1990" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Summer 1990 · Japan</div>
+      <div class="card-title">CBMC Japan Conference</div>
+      <div class="card-caption">Bill holding infant Sarah at a Christian Business Men's Committee conference. The President of CBMC-Korea and President of Myung Ji University beside him.</div>
+    </div>
+  </a>
+
+  <a href="photos/mothers-last-visit.html" class="photo-card">
+    <div class="img-wrap">
+      <img src="images/mothers-last-visit.jpg" alt="Mary's last visit to Korea" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-date">Mid-2000s · Korea</div>
+      <div class="card-title">Mary's Last Visit to Korea</div>
+      <div class="card-caption">Bill, Jakyung, Sarah, Anna, and Mary — the mother who never stopped believing, seeing the life her son built.</div>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <p class="album-note">"This album will grow. As the journey continues, so do the photographs."</p>
+  <p><a href="https://billmajors.com">billmajors.com</a> &nbsp;·&nbsp; Photos from <em>The Half Apple</em> by Bill R. Majors</p>
+</footer>
+
+</body>
+</html>
