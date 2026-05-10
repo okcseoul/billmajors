@@ -378,7 +378,7 @@
       </div>
       <div class="story-col">
         <div class="story-col-header">
-          <div class="section-label" data-en="Voices from the Past (3)" data-ko="과거의 목소리들 (3)">Voices from the Past (3)</div>
+          <div class="section-label" data-en="Voices from the Past (4)" data-ko="과거의 목소리들 (4)">Voices from the Past (4)</div>
           <button class="col-refresh-btn" onclick="refreshVoices()" data-en="&#8635; Another Voice" data-ko="&#8635; 다른 목소리">&#8635; Another Voice</button>
         </div>
         <div id="voices-grid" class="featured-card">
@@ -390,21 +390,7 @@
         <div class="col-note" data-en="A different voice appears each visit." data-ko="방문할 때마다 새로운 목소리를 만납니다.">A different voice appears each visit.</div>
       </div>
     </div>
-    <script>
-    // Inline trigger — runs after the card divs exist in DOM
-    // Polls until the render functions are available
-    (function() {
-      function tryRender() {
-        if (typeof refreshStory === 'function' && typeof refreshVoices === 'function') {
-          refreshStory();
-          refreshVoices();
-        } else {
-          setTimeout(tryRender, 50);
-        }
-      }
-      tryRender();
-    })();
-    </script>
+
     <div class="blog-sidebar">
       <div class="blog-coming">
         <h3 data-en="More Stories Coming" data-ko="이야기는 계속 이어집니다">More Stories Coming</h3>
@@ -736,11 +722,11 @@ var VOICES_POOL = [
     quote_ko: "할렐루야, 목사님. 평안하시길 바랍니다. 2021년부터 2022년까지 연세대학교에 재학하는 동안 목사님께서 베풀어 주신 영적 지도와 돌봄에 진심으로 감사드립니다. 저는 탄자니아 출신으로, 고향에서 멀리 떠나 있던 저에게 목사님의 지지와 기도, 그리고 가르침은 특별한 의미가 있었으며, 한국에 있는 동안 제 믿음을 진정으로 강하게 해주었습니다. 목사님의 헌신과 친절함에 깊이 감사드립니다. 하나님께서 목사님을 더욱 풍성히 축복하시고 더 많은 생명을 온전히 써주시길 기도합니다.",
     meta_en: "A Tanzanian scholar, far from home — faith strengthened through a community in Seoul", meta_ko: "멀리 고향을 떠나온 탄자니아 학자 — 서울의 공동체를 통해 굳건해진 믿음" },
 
-  { tag_en: "A Wedding in Seoul · 1999", tag_ko: "서울에서의 결혼식 · 1999년",
-    name_en: "Jennifer Tatters Bennett — San Antonio, Texas", name_ko: "제니퍼 태터스 베넷 — 텍사스 주 샌안토니오",
-    quote_en: "Pastor Bill was my pastor when I lived in Seoul Korea. He was the officiant of Dennis\u2019s and my wedding in Deoksugung Palace 27 years ago this month. Looking forward to his book that sounds like a beautiful life story of God\u2019s love from an autobiographical beginning.",
-    quote_ko: "빌 목사님은 제가 서울에 살 때 저의 목사님이셨습니다. 이달로 27년 전, 덕수궁 궁에서 저와 데니스의 결혼식을 주례해 주신 분이세요. 목사님의 책이 자서전적 시작에서 펼쳐나는 하나님의 사랑 이야기처럼 들린다니, 정말 기대됩니다.",
-    meta_en: "A couple wed at Deoksugung Palace — their pastor then, their encourager still", meta_ko: "덕수궁 궁에서 혼식을 올렸던 연인 — 그때의 목사님, 지금도 힘이 되는 분" },
+  { tag_en: "A Letter from a College Roommate · 2025", tag_ko: "대학 룸메이트로부터의 편지 · 2025년",
+    name_en: "Jeff — College Roommate, Oral Roberts University, 1980–1982", name_ko: "제프 — 대학 룸메이트, 오랄 로버츠 대학교, 1980–1982년",
+    quote_en: "Hi Bill. Read your book. Amazing!!!! I never truly knew or understood all you went through. So many hard times and uncertain futures. You endured it all with grace. You always had a child-like faith in God and a courage that enabled you to set out on a life with no assurance of what was to come. You are very brave. My need for control makes it hard to step out as you did. You always were genuine and real. I noticed that about you. You were never fake, always who you truly were. When I first met you (1980), to me you were confident, outgoing, and you looked just like a movie star — James Garner from the Rockford Files. I wondered why you reached out to me, because people like you never really found me valuable or worth knowing. I was amazed with your kindness. When we met years after college, you were the same Bill — honest, real, focused on God. Korea was one of the best tours as a chaplain in the Army for me. Being with you and your friends in Korea was a great blessing. I'm glad you wrote your book. I pray it will help Christians to trust God by faith as you did, and step out even without knowing the future. \"Trust God, do your best, and abandon the outcome.\" I'll remember that quote.",
+    quote_ko: "안녕하세요, 빌. 책을 읽었습니다. 정말 놀라웠어요!!!! 당신이 겪어온 모든 것을 제대로 알지도 이해하지도 못했었네요. 너무나 많은 힘든 시간들과 불확실한 미래들. 당신은 그 모든 것을 은혜롭게 견뎌냈습니다. 당신은 항상 어린아이 같은 믿음과 용기를 가지고 있었고, 앞날을 전혀 알 수 없는 삶을 향해 기꺼이 나아갔습니다. 당신은 정말 용감합니다. 저는 통제에 대한 욕구 때문에 당신처럼 발을 내딛기가 어렵습니다. 당신은 항상 진실하고 진정성이 있었어요. 그게 눈에 띄었습니다. 절대 가식이 없었고, 언제나 있는 그대로의 자신이었습니다. 1980년에 처음 만났을 때, 당신은 자신감 넘치고 외향적이었으며 꼭 영화배우 같았어요 — 록포드 파일의 제임스 가너처럼. 왜 나한테 먼저 다가왔는지 의아했습니다. 당신 같은 사람들은 보통 저를 가치 있게 여기지 않거든요. 당신의 친절함에 감동받았습니다. 대학 졸업 후 다시 만났을 때도 당신은 똑같은 빌이었어요 — 정직하고, 진실하고, 하나님께 집중된. 한국은 군 채플린으로서 제게 최고의 근무지 중 하나였습니다. 당신과 당신의 친구들과 함께한 시간은 큰 축복이었습니다. 책을 써줘서 기뻐요. 당신이 그랬듯 이 책이 많은 그리스도인들이 믿음으로 하나님을 신뢰하고, 미래를 모르면서도 발을 내딛도록 돕기를 기도합니다. \"하나님을 신뢰하고, 최선을 다하고, 결과는 내려놓으라.\" 이 말은 꼭 기억할게요.",
+    meta_en: "College roommate, Oral Roberts University · U.S. Army Chaplain in Korea · Reader of The Half Apple", meta_ko: "오랄 로버츠 대학교 룸메이트 · 주한미군 채플린 · 《반쪽 사과》 독자" },
 
   { tag_en: "A Letter from a Co-Founder · 2017", tag_ko: "공동 창립자로부터의 편지 · 2017년",
     name_en: "Chaplain Jim King — US Army Korea, 2002–2006", name_ko: "짐 킹 채플린 — 주한미군, 2002–2006년",
@@ -794,9 +780,12 @@ function refreshVoices() {
   renderVoices();
 }
 
-// Initialize cards directly — called after all functions are defined
-refreshStory();
-refreshVoices();
+// Initialize cards safely after DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() { refreshStory(); refreshVoices(); });
+} else {
+  refreshStory(); refreshVoices();
+}
 
 // Re-render on language change
 document.addEventListener('click', function(e) {
