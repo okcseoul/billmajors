@@ -29,6 +29,63 @@
     overflow-x: hidden;
   }
 
+  /* ===== LANGUAGE TOGGLE ===== */
+  [data-ko] { display: none; }
+  body.ko [data-en] { display: none; }
+  body.ko [data-ko] { display: inline; }
+  body.ko [data-ko].block { display: block; }
+  /* keep inline-flex / flex elements behaving when toggled */
+  body.ko .give-check[data-ko] { display: flex; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    background: rgba(13,13,11,0.82);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,241,234,0.06);
+  }
+  .nav-logo {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(245,241,234,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .lang-toggle { display: flex; border: 1px solid rgba(245,241,234,0.2); border-radius: 2px; overflow: hidden; }
+  .lang-btn {
+    background: transparent;
+    border: none;
+    color: rgba(245,241,234,0.6);
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-btn.active { background: var(--gold); color: var(--ink); }
+
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -37,6 +94,7 @@
     align-items: center;
     position: relative;
     overflow: hidden;
+    padding-top: 60px;
   }
   .hero::before {
     content: "";
@@ -83,7 +141,7 @@
     opacity: 0;
     animation: fadeUp 0.8s ease 0.25s forwards;
   }
-  .hero-title-ko {
+  .hero-title-sub {
     font-family: "Noto Sans KR", sans-serif;
     font-size: clamp(1.8rem, 3.5vw, 3rem);
     font-weight: 300;
@@ -92,6 +150,7 @@
     opacity: 0;
     animation: fadeUp 0.8s ease 0.35s forwards;
   }
+  body.ko .hero-title-sub { font-family: "Cormorant Garamond", serif; font-style: italic; }
   .subtitle {
     font-family: "Cormorant Garamond", serif;
     font-size: 1.15rem;
@@ -105,6 +164,7 @@
     opacity: 0;
     animation: fadeUp 0.8s ease 0.45s forwards;
   }
+  body.ko .subtitle { font-family: "Noto Sans KR", sans-serif; font-style: normal; font-size: 1rem; }
   .author {
     font-size: 0.85rem;
     font-weight: 500;
@@ -198,6 +258,7 @@
     line-height: 1.15;
     margin-bottom: 24px;
   }
+  body.ko .about-text h2, body.ko .about-text p { font-family: "Noto Sans KR", sans-serif; }
   .about-text p {
     font-size: 0.95rem;
     color: rgba(245,241,234,0.65);
@@ -205,24 +266,24 @@
     margin-bottom: 20px;
   }
   .about-text p strong { color: var(--gold-light); font-weight: 500; }
-  .about-ko {
+  .about-cover {
     background: rgba(194,134,21,0.06);
     border: 1px solid rgba(194,134,21,0.15);
     border-radius: 4px;
     padding: 40px;
   }
-  .about-ko h3 {
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 1.4rem;
-    font-weight: 400;
+  .about-cover h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--gold-light);
     margin-bottom: 20px;
   }
-  .about-ko p {
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 0.9rem;
+  body.ko .about-cover h3, body.ko .about-cover p { font-family: "Noto Sans KR", sans-serif; }
+  .about-cover p {
+    font-size: 0.92rem;
     color: rgba(245,241,234,0.6);
-    line-height: 2;
+    line-height: 1.95;
     margin-bottom: 16px;
   }
 
@@ -240,7 +301,7 @@
     inset: 0;
     background: radial-gradient(ellipse at 50% 100%, rgba(194,134,21,0.1) 0%, transparent 60%);
   }
-  .give-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+  .give-inner { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; }
   .give-label {
     font-size: 0.72rem;
     font-weight: 500;
@@ -262,32 +323,147 @@
     margin-bottom: 20px;
     line-height: 1.1;
   }
-  .give p {
+  body.ko .give h2 { font-family: "Noto Sans KR", sans-serif; }
+  .give-lead {
     font-size: 0.95rem;
     color: rgba(245,241,234,0.6);
     line-height: 1.85;
-    margin-bottom: 16px;
-  }
-  .give p.ko {
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 0.88rem;
-    color: rgba(245,241,234,0.45);
     margin-bottom: 48px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
   }
+  body.ko .give-lead { font-family: "Noto Sans KR", sans-serif; font-size: 0.9rem; }
+
+  /* TWO GIVING PATHS */
+  .give-paths {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+  .give-card {
+    background: rgba(245,241,234,0.03);
+    border: 1px solid rgba(245,241,234,0.1);
+    border-radius: 6px;
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+  }
+  .give-card-tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .give-card h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  body.ko .give-card h3 { font-family: "Noto Sans KR", sans-serif; font-size: 1.4rem; }
+  .give-card p {
+    font-size: 0.9rem;
+    color: rgba(245,241,234,0.6);
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  body.ko .give-card p { font-family: "Noto Sans KR", sans-serif; font-size: 0.86rem; }
+  .bank-box {
+    background: rgba(10,60,143,0.12);
+    border: 1px solid rgba(194,134,21,0.2);
+    border-radius: 4px;
+    padding: 20px 22px;
+    margin-bottom: 22px;
+  }
+  .bank-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(245,241,234,0.06);
+  }
+  .bank-row:last-child { border-bottom: none; }
+  .bank-key {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(245,241,234,0.45);
+    white-space: nowrap;
+  }
+  body.ko .bank-key { font-family: "Noto Sans KR", sans-serif; text-transform: none; letter-spacing: 0; }
+  .bank-val {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    word-break: keep-all;
+    line-height: 1.4;
+  }
+  .bank-tax {
+    font-size: 0.72rem;
+    color: rgba(245,241,234,0.4);
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(245,241,234,0.06);
+    text-align: left;
+  }
+  body.ko .bank-tax { font-family: "Noto Sans KR", sans-serif; }
+  .message-step {
+    margin-top: auto;
+  }
+  .message-label {
+    font-size: 0.78rem;
+    color: rgba(245,241,234,0.55);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  body.ko .message-label { font-family: "Noto Sans KR", sans-serif; }
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(245,241,234,0.04);
+    border: 1px solid rgba(245,241,234,0.1);
+    border-radius: 3px;
+    padding: 11px 16px;
+    font-size: 0.85rem;
+    color: var(--cream);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--gold); background: rgba(194,134,21,0.08); }
+  .contact-link span.ico { color: var(--gold); font-size: 0.78rem; letter-spacing: 0.08em; min-width: 64px; text-transform: uppercase; font-weight: 500; }
+  .contact-link span.val { color: rgba(245,241,234,0.8); }
+
   .give-checks {
     display: flex;
-    justify-content: center;
-    gap: 32px;
-    margin-bottom: 48px;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-bottom: 24px;
     flex-wrap: wrap;
   }
   .give-check {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     color: rgba(245,241,234,0.5);
     display: flex;
     align-items: center;
     gap: 6px;
   }
+  body.ko .give-check { font-family: "Noto Sans KR", sans-serif; }
   .give-check::before { content: "✓"; color: var(--gold); font-weight: 600; }
   .btn-give {
     display: inline-flex;
@@ -296,22 +472,23 @@
     gap: 10px;
     background: var(--gold);
     color: var(--ink);
-    padding: 20px 56px;
-    font-size: 0.9rem;
+    padding: 16px 40px;
+    font-size: 0.85rem;
     font-weight: 500;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
     border-radius: 2px;
     transition: all 0.25s;
-    margin-bottom: 16px;
+    margin-top: auto;
   }
   .btn-give:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(194,134,21,0.3); }
   .give-fine {
-    font-size: 0.75rem;
-    color: rgba(245,241,234,0.3);
-    margin-top: 16px;
+    font-size: 0.74rem;
+    color: rgba(245,241,234,0.32);
+    margin-top: 24px;
   }
+  body.ko .give-fine { font-family: "Noto Sans KR", sans-serif; }
 
   /* FOOTER */
   footer {
@@ -335,35 +512,67 @@
   }
 
   @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 100px 24px 48px; order: 2; }
-    .hero-right { padding: 60px 24px 0; order: 1; }
+    .hero-right { padding: 100px 24px 0; order: 1; }
     .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
     .give { padding: 60px 24px; }
+    .give-paths { grid-template-columns: 1fr; gap: 20px; }
     footer { padding: 32px 24px; flex-direction: column; text-align: center; }
   }
   @media (max-width: 480px) {
-    .hero-left { padding: 80px 20px 40px; }
+    .hero-left { padding: 90px 20px 40px; }
     .covers-wrap { gap: 12px; }
-    .give-checks { gap: 16px; flex-direction: column; align-items: center; }
+    .bank-row { flex-direction: column; gap: 2px; }
+    .bank-val { text-align: left; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Bill <span>Majors</span></a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html#book" data-en="The Book" data-ko="책">The Book</a>
+      <a href="index.html" data-en="Home" data-ko="홈">Home</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">ENG</button>
+      <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+    </div>
+  </div>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <div class="eyebrow">Bill R. Majors · Seoul, Korea</div>
-    <h1 class="hero-title">The Half Apple</h1>
-    <div class="hero-title-ko">반쪽 사과</div>
-    <p class="subtitle">Finding a Father in God When Mine Walked Away<br><span style="font-family:'Noto Sans KR',sans-serif;font-style:normal;font-size:0.95rem;">아버지가 떠난 자리에서 하나님 아버지를 만나다</span></p>
+    <h1 class="hero-title">
+      <span data-en="The Half Apple">The Half Apple</span>
+      <span data-ko="반쪽 사과">반쪽 사과</span>
+    </h1>
+    <div class="hero-title-sub">
+      <span data-en="반쪽 사과">반쪽 사과</span>
+      <span data-ko="The Half Apple">The Half Apple</span>
+    </div>
+    <p class="subtitle">
+      <span data-en="Finding a Father in God When Mine Walked Away">Finding a Father in God When Mine Walked Away</span>
+      <span data-ko="아버지가 떠난 자리에서 하나님 아버지를 만나다">아버지가 떠난 자리에서 하나님 아버지를 만나다</span>
+    </p>
     <div class="author">Bill R. Majors · D.Min.</div>
     <div class="cta-group">
-      <a href="https://www.zeffy.com/en-US/donation-form/the-half-apple" target="_blank" class="btn-primary">
-        Give $10 · Get the Ebook
+      <a href="#give" class="btn-primary">
+        <span data-en="Get the Ebook">Get the Ebook</span>
+        <span data-ko="전자책 받기">전자책 받기</span>
       </a>
-      <div class="btn-note">Available in English & Korean · Check your email after giving — your download link will be there. </div>
+      <div class="btn-note">
+        <span data-en="Available in English &amp; Korean · Give in Korea or the USA">Available in English &amp; Korean · Give in Korea or the USA</span>
+        <span data-ko="영문 및 한국어 · 한국 또는 미국에서 후원 가능">영문 및 한국어 · 한국 또는 미국에서 후원 가능</span>
+      </div>
     </div>
   </div>
   <div class="hero-right">
@@ -385,38 +594,145 @@
 <!-- ABOUT -->
 <section class="about">
   <div class="about-text">
-    <h2>About This Book</h2>
-    <p>Every person carries a story of what a father was — or wasn't. <strong>The Half Apple</strong> is the story of a boy whose father walked away, and how he discovered that God was not absent, not distant, but present as a Father in ways no human father could be.</p>
-    <p>Written by Bill R. Majors — a missionary who has served in Seoul, Korea since 1982 — this short book has traveled quietly from person to person, finding its way into the hands of those who needed it most.</p>
-    <p>Your gift of <strong>$10 or more</strong> supports Bill's ongoing missionary work in Korea and Asia, and gives you instant access to the ebook in both English and Korean.</p>
+    <h2>
+      <span data-en="About This Book">About This Book</span>
+      <span data-ko="이 책에 대하여">이 책에 대하여</span>
+    </h2>
+    <p>
+      <span data-en="Every person carries a story of what a father was — or wasn't. <strong>The Half Apple</strong> is the story of a boy whose father walked away, and how he discovered that God was not absent, not distant, but present as a Father in ways no human father could be.">Every person carries a story of what a father was — or wasn't. <strong>The Half Apple</strong> is the story of a boy whose father walked away, and how he discovered that God was not absent, not distant, but present as a Father in ways no human father could be.</span>
+      <span data-ko="모든 사람은 아버지가 어떤 존재였는지 — 혹은 어떤 존재가 아니었는지 — 에 대한 이야기를 품고 있습니다. <strong>반쪽 사과</strong>는 아버지에게 버림받은 한 소년이, 하나님은 부재하거나 멀리 계신 분이 아니라 그 어떤 인간 아버지도 될 수 없는 방식으로 아버지가 되어 주신다는 것을 발견하게 된 이야기입니다.">모든 사람은 아버지가 어떤 존재였는지 — 혹은 어떤 존재가 아니었는지 — 에 대한 이야기를 품고 있습니다. <strong>반쪽 사과</strong>는 아버지에게 버림받은 한 소년이, 하나님은 부재하거나 멀리 계신 분이 아니라 그 어떤 인간 아버지도 될 수 없는 방식으로 아버지가 되어 주신다는 것을 발견하게 된 이야기입니다.</span>
+    </p>
+    <p>
+      <span data-en="Written by Bill R. Majors — a missionary who has served in Seoul, Korea since 1982 — this short book has traveled quietly from person to person, finding its way into the hands of those who needed it most.">Written by Bill R. Majors — a missionary who has served in Seoul, Korea since 1982 — this short book has traveled quietly from person to person, finding its way into the hands of those who needed it most.</span>
+      <span data-ko="1982년부터 서울에서 사역해 온 선교사 빌 R. 메이저스 목사가 쓴 이 작은 책은, 가장 필요로 하는 사람들의 손에 조용히 한 사람에서 또 한 사람에게로 전해져 왔습니다.">1982년부터 서울에서 사역해 온 선교사 빌 R. 메이저스 목사가 쓴 이 작은 책은, 가장 필요로 하는 사람들의 손에 조용히 한 사람에서 또 한 사람에게로 전해져 왔습니다.</span>
+    </p>
+    <p>
+      <span data-en="Your gift supports Bill's ongoing missionary work in Korea and Asia, and brings you the ebook in both English and Korean.">Your gift supports Bill's ongoing missionary work in Korea and Asia, and brings you the ebook in both English and Korean.</span>
+      <span data-ko="여러분의 후원은 한국과 아시아에서 이어지는 빌 목사의 선교 사역을 함께 지원하며, 영문과 한국어 전자책을 받아보실 수 있게 합니다.">여러분의 후원은 한국과 아시아에서 이어지는 빌 목사의 선교 사역을 함께 지원하며, 영문과 한국어 전자책을 받아보실 수 있게 합니다.</span>
+    </p>
   </div>
-  <div class="about-ko">
-    <h3>이 책에 대하여</h3>
-    <p>모든 사람은 아버지가 어떤 존재였는지 — 혹은 어떤 존재가 아니었는지 — 에 대한 이야기를 품고 있습니다.</p>
-    <p><strong style="color:var(--gold-light);">반쪽 사과</strong>는 아버지에게 버림받은 한 소년이 하나님 안에서 아버지를 만나게 된 이야기입니다. 1982년부터 서울에서 사역해 온 선교사 빌 R. 메이저스 목사가 쓴 이 작은 책은, 가장 필요로 하는 사람들의 손에 조용히 전해져 왔습니다.</p>
-    <p>$10 이상 후원하시면 이메일로 다운로드 링크를 보내드립니다. 이메일을 확인해 주세요. 한국과 아시아에서의 선교 사역을 함께 지원하게 됩니다.</p>
+  <div class="about-cover">
+    <h3>
+      <span data-en="Two Editions · One Story">Two Editions · One Story</span>
+      <span data-ko="두 가지 판본 · 하나의 이야기">두 가지 판본 · 하나의 이야기</span>
+    </h3>
+    <p>
+      <span data-en="<em>The Half Apple</em> is available as an ebook in both English and Korean. Whichever language you read in, the story is the same — a search for a father, and the finding of One.">The Half Apple is available as an ebook in both English and Korean. Whichever language you read in, the story is the same — a search for a father, and the finding of One.</span>
+      <span data-ko="<em>반쪽 사과</em>는 영문과 한국어 전자책으로 모두 제공됩니다. 어느 언어로 읽으시든 이야기는 하나입니다 — 아버지를 찾는 여정, 그리고 한 분을 만나는 이야기입니다.">반쪽 사과는 영문과 한국어 전자책으로 모두 제공됩니다. 어느 언어로 읽으시든 이야기는 하나입니다 — 아버지를 찾는 여정, 그리고 한 분을 만나는 이야기입니다.</span>
+    </p>
+    <p>
+      <span data-en="When you give, simply let Bill know which edition you'd like, and he'll send it to you.">When you give, simply let Bill know which edition you'd like, and he'll send it to you.</span>
+      <span data-ko="후원하실 때 원하시는 판본을 빌 목사에게 알려주시면 보내드립니다.">후원하실 때 원하시는 판본을 빌 목사에게 알려주시면 보내드립니다.</span>
+    </p>
   </div>
 </section>
 
 <hr class="divider">
 
 <!-- GIVE -->
-<section class="give">
+<section class="give" id="give">
   <div class="give-inner">
-    <div class="give-label">Give & Download</div>
-    <h2>Ready to Read?</h2>
-    <p>A gift of $10 or more unlocks instant access to both the English and Korean editions of <em>The Half Apple</em>. Every dollar supports full-time missionary work in Seoul, Korea.</p>
-    <p class="ko">$10 이상 후원하시면 영문 및 한국어 전자책을 즉시 받아보실 수 있습니다.</p>
-    <div class="give-checks">
-      <span class="give-check">100% Secure</span>
-      <span class="give-check">Zero Platform Fees</span>
-      <span class="give-check">Instant Tax Receipt</span>
-      <span class="give-check">Instant Download</span>
+    <div class="give-label">
+      <span data-en="Give &amp; Receive the Ebook">Give &amp; Receive the Ebook</span>
+      <span data-ko="후원하고 전자책 받기">후원하고 전자책 받기</span>
     </div>
-    <a href="https://www.zeffy.com/en-US/donation-form/the-half-apple" target="_blank" class="btn-give">
-      Give $10 · Get the Ebook →
-    </a>
-    <div class="give-fine">EIN: 84-2974290 · CrossCulture Community Foundation · Dallas, TX · 501(c)3 Tax-Exempt</div>
+    <h2>
+      <span data-en="Ready to Read?">Ready to Read?</span>
+      <span data-ko="읽으실 준비가 되셨나요?">읽으실 준비가 되셨나요?</span>
+    </h2>
+    <p class="give-lead">
+      <span data-en="Choose the path that fits you. Give in Korea by bank transfer, or in the USA by card. Either way, your gift supports full-time missionary work in Seoul — and brings you <em>The Half Apple</em> in English or Korean.">Choose the path that fits you. Give in Korea by bank transfer, or in the USA by card. Either way, your gift supports full-time missionary work in Seoul — and brings you The Half Apple in English or Korean.</span>
+      <span data-ko="여러분께 맞는 방법을 선택하세요. 한국에서는 계좌 이체로, 미국에서는 카드로 후원하실 수 있습니다. 어느 쪽이든 여러분의 후원은 서울에서의 전임 선교 사역을 지원하며, 영문 또는 한국어 <em>반쪽 사과</em>를 받아보실 수 있게 합니다.">여러분께 맞는 방법을 선택하세요. 한국에서는 계좌 이체로, 미국에서는 카드로 후원하실 수 있습니다. 어느 쪽이든 여러분의 후원은 서울에서의 전임 선교 사역을 지원하며, 영문 또는 한국어 반쪽 사과를 받아보실 수 있게 합니다.</span>
+    </p>
+
+    <div class="give-paths">
+      <!-- KOREA -->
+      <div class="give-card">
+        <div class="give-card-tag">
+          <span data-en="In Korea · Give in Won">In Korea · Give in Won</span>
+          <span data-ko="한국에서 · 원화 후원">한국에서 · 원화 후원</span>
+        </div>
+        <h3>
+          <span data-en="Bank Transfer">계좌 이체로 후원</span>
+          <span data-ko="계좌 이체로 후원">계좌 이체로 후원</span>
+        </h3>
+        <p>
+          <span data-en="Send your gift to the CrossCulture Community account, then message Bill to receive the ebook in English or Korean.">Send your gift to the CrossCulture Community account, then message Bill to receive the ebook in English or Korean.</span>
+          <span data-ko="크로스컬처 커뮤니티 계좌로 후원하신 뒤, 빌 목사에게 메시지를 보내 영문 또는 한국어 전자책을 받으세요.">크로스컬처 커뮤니티 계좌로 후원하신 뒤, 빌 목사에게 메시지를 보내 영문 또는 한국어 전자책을 받으세요.</span>
+        </p>
+        <div class="bank-box">
+          <div class="bank-row">
+            <span class="bank-key"><span data-en="Bank">Bank</span><span data-ko="은행">은행</span></span>
+            <span class="bank-val"><span data-en="Shinhan Bank · 신한은행">Shinhan Bank · 신한은행</span><span data-ko="신한은행 · Shinhan Bank">신한은행 · Shinhan Bank</span></span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-key"><span data-en="Account">Account</span><span data-ko="계좌번호">계좌번호</span></span>
+            <span class="bank-val">100-038-836672</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-key"><span data-en="Holder">Holder</span><span data-ko="예금주">예금주</span></span>
+            <span class="bank-val"><span data-en="CrossCulture Community · 크로스컬처 커뮤니티">CrossCulture Community · 크로스컬처 커뮤니티</span><span data-ko="크로스컬처 커뮤니티 · CrossCulture Community">크로스컬처 커뮤니티 · CrossCulture Community</span></span>
+          </div>
+          <div class="bank-tax">
+            <span data-en="Korean organizational tax number / 고유번호 602-80-07169">Korean organizational tax number / 고유번호 602-80-07169</span>
+            <span data-ko="고유번호 602-80-07169">고유번호 602-80-07169</span>
+          </div>
+        </div>
+        <div class="message-step">
+          <div class="message-label">
+            <span data-en="Step 2 — Message Bill with your name and which edition (English or Korean) you'd like:">Step 2 — Message Bill with your name and which edition (English or Korean) you'd like:</span>
+            <span data-ko="2단계 — 성함과 원하시는 판본(영문 또는 한국어)을 빌 목사에게 알려주세요:">2단계 — 성함과 원하시는 판본(영문 또는 한국어)을 빌 목사에게 알려주세요:</span>
+          </div>
+          <div class="contact-methods">
+            <a href="mailto:billmajors@gmail.com" class="contact-link">
+              <span class="ico"><span data-en="Email">Email</span><span data-ko="이메일">이메일</span></span>
+              <span class="val">billmajors@gmail.com</span>
+            </a>
+            <a href="sms:+821036135896" class="contact-link">
+              <span class="ico"><span data-en="Text">Text</span><span data-ko="문자">문자</span></span>
+              <span class="val">010-3613-5896</span>
+            </a>
+            <a href="https://open.kakao.com/" target="_blank" rel="noopener" class="contact-link">
+              <span class="ico">KakaoTalk</span>
+              <span class="val">
+                <span data-en="ID: Okcseoul">ID: Okcseoul</span>
+                <span data-ko="ID: Okcseoul">ID: Okcseoul</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- USA -->
+      <div class="give-card">
+        <div class="give-card-tag">
+          <span data-en="In the USA · Give in Dollars">In the USA · Give in Dollars</span>
+          <span data-ko="미국에서 · 달러 후원">미국에서 · 달러 후원</span>
+        </div>
+        <h3>
+          <span data-en="Card · Instant Download">Card · Instant Download</span>
+          <span data-ko="카드 · 즉시 다운로드">카드 · 즉시 다운로드</span>
+        </h3>
+        <p>
+          <span data-en="Give securely online to CrossCulture Community Foundation, a 501(c)(3) nonprofit. You can download either English or Korean edition of the ebook instantly.">Give securely online to CrossCulture Community Foundation, a 501(c)(3) nonprofit. You can download either English or Korean edition of the ebook instantly.</span>
+          <span data-ko="501(c)(3) 비영리단체인 크로스컬처 커뮤니티 파운데이션에 온라인으로 안전하게 후원하세요. 영문 또는 한국어 전자책을 즉시 다운로드하실 수 있습니다.">501(c)(3) 비영리단체인 크로스컬처 커뮤니티 파운데이션에 온라인으로 안전하게 후원하세요. 영문 또는 한국어 전자책을 즉시 다운로드하실 수 있습니다.</span>
+        </p>
+        <div class="give-checks">
+          <span class="give-check"><span data-en="100% Secure">100% Secure</span><span data-ko="100% 안전">100% 안전</span></span>
+          <span class="give-check"><span data-en="Tax Receipt">Tax Receipt</span><span data-ko="세금 영수증">세금 영수증</span></span>
+          <span class="give-check"><span data-en="Instant Download">Instant Download</span><span data-ko="즉시 다운로드">즉시 다운로드</span></span>
+        </div>
+        <a href="https://www.zeffy.com/en-US/donation-form/the-half-apple" target="_blank" rel="noopener" class="btn-give">
+          <span data-en="Give &amp; Download →">Give &amp; Download →</span>
+          <span data-ko="후원하고 다운로드 →">후원하고 다운로드 →</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="give-fine">
+      <span data-en="USA: EIN 84-2974290 · CrossCulture Community Foundation · Dallas, TX · 501(c)(3) Tax-Exempt &nbsp;·&nbsp; Korea: CrossCulture Community · 고유번호 602-80-07169">USA: EIN 84-2974290 · CrossCulture Community Foundation · Dallas, TX · 501(c)(3) Tax-Exempt &nbsp;·&nbsp; Korea: CrossCulture Community · 고유번호 602-80-07169</span>
+      <span data-ko="미국: EIN 84-2974290 · 크로스컬처 커뮤니티 파운데이션 · 댈러스, TX · 501(c)(3) 면세단체 &nbsp;·&nbsp; 한국: 크로스컬처 커뮤니티 · 고유번호 602-80-07169">미국: EIN 84-2974290 · 크로스컬처 커뮤니티 파운데이션 · 댈러스, TX · 501(c)(3) 면세단체 &nbsp;·&nbsp; 한국: 크로스컬처 커뮤니티 · 고유번호 602-80-07169</span>
+    </div>
   </div>
 </section>
 
@@ -424,6 +740,14 @@
   <div>© 2026 Bill R. Majors · CrossCulture Community Foundation</div>
   <div><a href="https://www.billmajors.com">billmajors.com</a> · <a href="https://www.crossculture-community.com">crossculture-community.com</a></div>
 </footer>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('ko', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  }
+</script>
 
 </body>
 </html>
