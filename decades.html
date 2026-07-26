@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>The Same Years — Bill Majors</title>
+<meta name="description" content="A life and a nation on the same calendar — Bill Majors and Korea, 1960 to today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0D0D0B;
+    --cream: #F5F1EA;
+    --warm-white: #FDFAF5;
+    --gold: #C28615;
+    --gold-light: #E8C87A;
+    --navy: #0A3C8F;
+    --charcoal: #2C2C2A;
+    --charcoal-soft: #4A4A46;
+  }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--charcoal); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+  body.ko { font-family: 'Noto Sans KR', sans-serif; }
+
+  [data-ko] { display: none; }
+  body.ko [data-en] { display: none; }
+  body.ko [data-ko] { display: inline; }
+  body.ko [data-ko].block { display: block; }
+
+  /* ===== NAV ===== */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; background: rgba(253,250,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(194,134,21,0.15); gap: 16px; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--navy); text-decoration: none; white-space: nowrap; }
+  .nav-logo span { color: var(--gold); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .nav-links { display: flex; gap: 22px; }
+  .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--charcoal-soft); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+  .nav-links a:hover { color: var(--gold); }
+  .lang-toggle { display: flex; align-items: center; gap: 4px; background: rgba(194,134,21,0.12); border-radius: 20px; padding: 4px; border: 1px solid rgba(194,134,21,0.25); }
+  .lang-btn { padding: 6px 13px; border-radius: 16px; border: none; background: transparent; font-size: 0.78rem; font-weight: 500; cursor: pointer; color: var(--charcoal-soft); font-family: inherit; -webkit-appearance: none; transition: all 0.2s; }
+  .lang-btn.active { background: var(--gold); color: var(--ink); }
+
+  /* ===== HERO ===== */
+  .hero { padding: 160px 80px 70px; background: var(--cream); border-bottom: 1px solid rgba(194,134,21,0.18); }
+  .hero-inner { max-width: 900px; }
+  .eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
+  .eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 600; line-height: 1.08; color: var(--navy); margin-bottom: 24px; }
+  body.ko .hero-title { font-family: 'Noto Sans KR', sans-serif; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.3; }
+  .hero-lede { font-size: 1.05rem; font-weight: 300; color: var(--charcoal-soft); line-height: 1.85; max-width: 620px; border-left: 3px solid var(--gold-light); padding-left: 22px; margin-bottom: 28px; }
+  .hero-note { font-size: 0.9rem; color: var(--charcoal-soft); line-height: 1.8; max-width: 620px; opacity: 0.85; }
+
+  /* ===== DECADE NAV ===== */
+  .decade-nav { position: sticky; top: 62px; z-index: 90; background: rgba(253,250,245,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(194,134,21,0.15); padding: 14px 80px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .decade-nav a { font-size: 0.76rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--charcoal-soft); text-decoration: none; border: 1px solid rgba(194,134,21,0.3); padding: 7px 15px; border-radius: 2px; transition: all 0.2s; white-space: nowrap; }
+  .decade-nav a:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+  /* ===== DECADE SECTION ===== */
+  .decade { padding: 72px 80px 20px; }
+  .decade:nth-of-type(even) { background: var(--cream); }
+  .decade-head { max-width: 900px; margin-bottom: 44px; }
+  .decade-age { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 600; color: var(--navy); line-height: 1; margin-bottom: 6px; }
+  body.ko .decade-age { font-family: 'Noto Sans KR', sans-serif; font-size: clamp(1.6rem, 3vw, 2.3rem); }
+  .decade-years { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+  .decade-intro { font-size: 0.97rem; color: var(--charcoal-soft); line-height: 1.85; max-width: 700px; }
+
+  /* ===== DUAL SPINE ===== */
+  .spine { max-width: 1080px; }
+  .spine-head { display: grid; grid-template-columns: 1fr 74px 1fr; padding-bottom: 12px; }
+  .spine-head .lbl { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); opacity: 0.8; }
+  .spine-head .lbl.left { text-align: right; padding-right: 20px; }
+  .spine-head .lbl.right { padding-left: 20px; }
+
+  .row { display: grid; grid-template-columns: 1fr 74px 1fr; border-top: 1px solid rgba(194,134,21,0.2); }
+  .cell { padding: 20px 0; }
+  .cell.left { text-align: right; padding-right: 20px; }
+  .cell.right { padding-left: 20px; }
+  .cell h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; font-weight: 600; color: var(--navy); line-height: 1.35; margin-bottom: 5px; }
+  body.ko .cell h4 { font-family: 'Noto Sans KR', sans-serif; font-size: 0.95rem; }
+  .cell p { font-size: 0.87rem; color: var(--charcoal-soft); line-height: 1.7; }
+  .cell.left h4 { color: var(--charcoal); }
+  .vid { margin-top: 12px; max-width: 250px; }
+  .cell.right .vid { margin-right: auto; }
+  .cell.left .vid { margin-left: auto; }
+  .vid iframe { display: block; width: 100%; height: 141px; border: 0; border-radius: 3px; }
+  .vid-cap { font-size: 0.74rem; color: var(--charcoal-soft); opacity: 0.7; margin-top: 6px; font-style: italic; line-height: 1.5; }
+  body.ko .vid-cap { font-style: normal; }
+  .year { display: flex; align-items: flex-start; justify-content: center; padding-top: 20px; }
+  .year span { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--gold); background: var(--warm-white); padding: 2px 0; letter-spacing: 0.02em; }
+  .decade:nth-of-type(even) .year span { background: var(--cream); }
+  .row.converge .cell h4 { color: var(--navy); }
+  .row.converge { background: rgba(194,134,21,0.05); }
+
+  .pull { max-width: 1080px; margin: 34px 0 8px; padding: 26px 30px; background: var(--navy); border-radius: 3px; }
+  .pull p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic; color: var(--cream); line-height: 1.6; }
+  body.ko .pull p { font-family: 'Noto Sans KR', sans-serif; font-style: normal; font-size: 1rem; }
+  .pull .attrib { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-top: 12px; }
+
+  .booklink { max-width: 1080px; margin: 30px 0 10px; padding: 22px 28px; border: 1px solid rgba(194,134,21,0.35); border-radius: 3px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .booklink p { font-size: 0.9rem; color: var(--charcoal-soft); line-height: 1.7; max-width: 620px; }
+  .btn-gold { display: inline-block; background: var(--navy); color: var(--cream); padding: 13px 28px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.25s; white-space: nowrap; }
+  .btn-gold:hover { background: var(--gold); color: var(--ink); }
+
+  /* ===== CLOSING ===== */
+  .closing { padding: 90px 80px; background: var(--ink); color: var(--cream); }
+  .closing-inner { max-width: 780px; }
+  .closing .eyebrow { color: var(--gold-light); }
+  .closing .eyebrow::before { background: var(--gold-light); }
+  .closing h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3.4vw, 2.8rem); font-weight: 600; color: var(--cream); line-height: 1.2; margin-bottom: 22px; }
+  body.ko .closing h2 { font-family: 'Noto Sans KR', sans-serif; font-size: clamp(1.4rem, 2.8vw, 2rem); }
+  .closing p { font-size: 0.98rem; color: rgba(245,241,234,0.72); line-height: 1.9; margin-bottom: 18px; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--ink); color: rgba(245,241,234,0.5); padding: 34px 80px; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; flex-wrap: wrap; gap: 12px; border-top: 1px solid rgba(245,241,234,0.1); }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 12px 16px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 24px 50px; }
+    .decade-nav { padding: 12px 16px; top: 56px; gap: 7px; }
+    .decade-nav a { padding: 6px 11px; font-size: 0.7rem; }
+    .decade { padding: 48px 24px 16px; }
+    .spine-head { display: none; }
+    .row { grid-template-columns: 1fr; border-top: none; padding: 18px 0; border-bottom: 1px solid rgba(194,134,21,0.2); }
+    .cell.left, .cell.right { text-align: left; padding: 0; }
+    .cell { padding: 0; }
+    .cell.left { padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px dashed rgba(194,134,21,0.3); }
+    .cell.left::before { content: 'KOREA'; display: block; font-size: 0.62rem; letter-spacing: 0.18em; color: var(--gold); margin-bottom: 6px; }
+    body.ko .cell.left::before { content: '대한민국'; }
+    .cell.right::before { content: 'BILL'; display: block; font-size: 0.62rem; letter-spacing: 0.18em; color: var(--gold); margin-bottom: 6px; }
+    body.ko .cell.right::before { content: '빌'; }
+    .cell.left:empty, .cell.right:empty { display: none; }
+    .year { justify-content: flex-start; padding: 0 0 10px; }
+    .vid { max-width: 100%; }
+    .vid iframe { height: 190px; }
+    .closing { padding: 60px 24px; }
+    footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+    .booklink { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Bill <span>Majors</span></a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-en="Home">Home</a><a href="index.html" data-ko="홈">홈</a>
+      <a href="halfapple.html" data-en="The Half Apple">The Half Apple</a><a href="halfapple.html" data-ko="반쪽 사과">반쪽 사과</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">ENG</button>
+      <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span data-en="A Life Surrendered · Bill R. Majors · Seoul, Korea">A Life Surrendered · Bill R. Majors · Seoul, Korea</span><span data-ko="부르심에 응답한 삶 · 빌 R. 메이저스 · 서울">부르심에 응답한 삶 · 빌 R. 메이저스 · 서울</span></div>
+    <h1 class="hero-title">
+      <span data-en="The Same Years">The Same Years</span>
+      <span data-ko="같은 세월">같은 세월</span>
+    </h1>
+    <p class="hero-lede">
+      <span data-en="I was born in Oklahoma in 1960 and arrived at Gimpo on June 1, 1982, at twenty-one years old, in Gwangju the next day. I have been here for most of my life since. This page runs two tracks side by side — what Korea was doing, and what I was doing — from the year I was born to this one.">I was born in Oklahoma in 1960 and arrived at Gimpo on June 1, 1982, at twenty-one years old, in Gwangju the next day. I have been here for most of my life since. This page runs two tracks side by side — what Korea was doing, and what I was doing — from the year I was born to this one.</span>
+      <span data-ko="저는 1960년 오클라호마에서 태어났고, 1982년 6월 1일 스물한 살에 김포공항에 도착해 이튿날 광주로 갔습니다. 그 이후 제 삶의 대부분을 이곳에서 보냈습니다. 이 페이지는 태어난 해부터 오늘까지 두 개의 흐름을 나란히 놓습니다 — 대한민국이 지나온 길, 그리고 제가 지나온 길." class="block">저는 1960년 오클라호마에서 태어났고, 1982년 6월 1일 스물한 살에 김포공항에 도착해 이튿날 광주로 갔습니다. 그 이후 제 삶의 대부분을 이곳에서 보냈습니다. 이 페이지는 태어난 해부터 오늘까지 두 개의 흐름을 나란히 놓습니다 — 대한민국이 지나온 길, 그리고 제가 지나온 길.</span>
+    </p>
+    <p class="hero-note">
+      <span data-en="From a small town in Oklahoma to the streets of Seoul — a life shaped entirely by God's calling and grace, lived out inside a country that was remaking itself the whole time. The left column comes from the public record, much of it from the National Museum of Korean Contemporary History in Seoul. The right column is mine. Where a year appears between them, the two tracks touched.">From a small town in Oklahoma to the streets of Seoul — a life shaped entirely by God's calling and grace, lived out inside a country that was remaking itself the whole time. The left column comes from the public record, much of it from the National Museum of Korean Contemporary History in Seoul. The right column is mine. Where a year appears between them, the two tracks touched.</span>
+      <span data-ko="오클라호마의 작은 마을에서 서울의 거리까지 — 하나님의 부르심과 은혜로 빚어진 삶, 그리고 그 시간 내내 스스로를 다시 만들어 가던 한 나라. 왼쪽 열은 공적 기록에서, 대부분 서울 대한민국역사박물관의 전시에서 가져왔습니다. 오른쪽 열은 저의 이야기입니다. 두 열 사이에 연도가 표시된 곳은 두 흐름이 맞닿은 지점입니다." class="block">오클라호마의 작은 마을에서 서울의 거리까지 — 하나님의 부르심과 은혜로 빚어진 삶, 그리고 그 시간 내내 스스로를 다시 만들어 가던 한 나라. 왼쪽 열은 공적 기록에서, 대부분 서울 대한민국역사박물관의 전시에서 가져왔습니다. 오른쪽 열은 저의 이야기입니다. 두 열 사이에 연도가 표시된 곳은 두 흐름이 맞닿은 지점입니다.</span>
+    </p>
+  </div>
+</section>
+
+<!-- DECADE NAV -->
+<div class="decade-nav">
+  <a href="#d00"><span data-en="Before Korea · 1960–79">Before Korea · 1960–79</span><span data-ko="한국에 오기 전 · 1960–79">한국에 오기 전 · 1960–79</span></a>
+  <a href="#d20"><span data-en="20s · 1980–89">20s · 1980–89</span><span data-ko="20대 · 1980–89">20대 · 1980–89</span></a>
+  <a href="#d30"><span data-en="30s · 1990–99">30s · 1990–99</span><span data-ko="30대 · 1990–99">30대 · 1990–99</span></a>
+  <a href="#d40"><span data-en="40s · 2000–09">40s · 2000–09</span><span data-ko="40대 · 2000–09">40대 · 2000–09</span></a>
+  <a href="#d50"><span data-en="50s · 2010–19">50s · 2010–19</span><span data-ko="50대 · 2010–19">50대 · 2010–19</span></a>
+  <a href="#d60"><span data-en="60s · 2020–">60s · 2020–</span><span data-ko="60대 · 2020–">60대 · 2020–</span></a>
+</div>
+
+<!-- ===== BEFORE KOREA ===== -->
+<section class="decade" id="d00">
+  <div class="decade-head">
+    <div class="decade-age"><span data-en="Before Korea">Before Korea</span><span data-ko="한국에 오기 전">한국에 오기 전</span></div>
+    <div class="decade-years">1960 &ndash; 1979</div>
+    <p class="decade-intro">
+      <span data-en="I was born in Oklahoma in the year Korea threw out its first president. For nineteen years the two tracks on this page had nothing to do with each other — except that a boy in Oklahoma kept saying he was going to be a missionary, and a country on the other side of the world was becoming the place he meant.">I was born in Oklahoma in the year Korea threw out its first president. For nineteen years the two tracks on this page had nothing to do with each other — except that a boy in Oklahoma kept saying he was going to be a missionary, and a country on the other side of the world was becoming the place he meant.</span>
+      <span data-ko="저는 대한민국이 초대 대통령을 몰아낸 해에 오클라호마에서 태어났습니다. 19년 동안 이 페이지의 두 흐름은 서로 아무 상관이 없었습니다 — 다만 오클라호마의 한 소년이 선교사가 되겠다고 계속 말했고, 지구 반대편의 한 나라가 그가 말한 그곳이 되어 가고 있었을 뿐입니다." class="block">저는 대한민국이 초대 대통령을 몰아낸 해에 오클라호마에서 태어났습니다. 19년 동안 이 페이지의 두 흐름은 서로 아무 상관이 없었습니다 — 다만 오클라호마의 한 소년이 선교사가 되겠다고 계속 말했고, 지구 반대편의 한 나라가 그가 말한 그곳이 되어 가고 있었을 뿐입니다.</span>
+    </p>
+  </div>
+
+  <div class="spine">
+    <div class="spine-head">
+      <div class="lbl left"><span data-en="Korea">Korea</span><span data-ko="대한민국">대한민국</span></div>
+      <div></div>
+      <div class="lbl right"><span data-en="Bill">Bill</span><span data-ko="빌">빌</span></div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="The April Revolution">The April Revolution</span><span data-ko="4·19 혁명">4·19 혁명</span></h4>
+        <p><span data-en="April 19, 1960 — students take to the streets against a rigged election. Police open fire. A week later Syngman Rhee resigns and leaves for Hawaii. The First Republic is over.">April 19, 1960 — students take to the streets against a rigged election. Police open fire. A week later Syngman Rhee resigns and leaves for Hawaii. The First Republic is over.</span><span data-ko="1960년 4월 19일 — 부정선거에 맞서 학생들이 거리로 나섰습니다. 경찰이 발포했습니다. 일주일 뒤 이승만은 하야하고 하와이로 떠났습니다. 제1공화국이 끝났습니다." class="block">1960년 4월 19일 — 부정선거에 맞서 학생들이 거리로 나섰습니다. 경찰이 발포했습니다. 일주일 뒤 이승만은 하야하고 하와이로 떠났습니다. 제1공화국이 끝났습니다.</span></p>
+      </div>
+      <div class="year"><span>1960</span></div>
+      <div class="cell right">
+        <h4><span data-en="Born in Oklahoma">Born in Oklahoma</span><span data-ko="오클라호마에서 태어나다">오클라호마에서 태어나다</span></h4>
+        <p><span data-en="November 8, 1960. My mother, Ellen Mary Jane Maxwell — everyone who loved her called her Mary — had married at eighteen, three years earlier. She grew up on Oklahoma red dirt: oil fields, small churches, the kind of life where nothing comes easy.">November 8, 1960. My mother, Ellen Mary Jane Maxwell — everyone who loved her called her Mary — had married at eighteen, three years earlier. She grew up on Oklahoma red dirt: oil fields, small churches, the kind of life where nothing comes easy.</span><span data-ko="1960년 11월 8일. 제 어머니 엘렌 메리 제인 맥스웰 — 사랑하는 이들은 모두 메리라고 불렀습니다 — 은 3년 전 열여덟에 결혼했습니다. 오클라호마의 붉은 흙 위에서 자랐습니다. 유전과 작은 교회들, 무엇 하나 쉽게 얻어지지 않는 삶이었습니다." class="block">1960년 11월 8일. 제 어머니 엘렌 메리 제인 맥스웰 — 사랑하는 이들은 모두 메리라고 불렀습니다 — 은 3년 전 열여덟에 결혼했습니다. 오클라호마의 붉은 흙 위에서 자랐습니다. 유전과 작은 교회들, 무엇 하나 쉽게 얻어지지 않는 삶이었습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="The generals arrive">The generals arrive</span><span data-ko="군인들이 오다">군인들이 오다</span></h4>
+        <p><span data-en="May 16, 1961 — Major General Park Chung-hee takes power in a coup. Military rule begins. In one form or another it will last until 1987 — almost exactly as long as it takes me to grow up and get there.">May 16, 1961 — Major General Park Chung-hee takes power in a coup. Military rule begins. In one form or another it will last until 1987 — almost exactly as long as it takes me to grow up and get there.</span><span data-ko="1961년 5월 16일 — 박정희 소장이 쿠데타로 권력을 잡습니다. 군정이 시작되었습니다. 형태를 바꿔 가며 1987년까지 이어지게 됩니다 — 제가 자라서 그곳에 닿기까지 걸린 시간과 거의 정확히 같습니다." class="block">1961년 5월 16일 — 박정희 소장이 쿠데타로 권력을 잡습니다. 군정이 시작되었습니다. 형태를 바꿔 가며 1987년까지 이어지게 됩니다 — 제가 자라서 그곳에 닿기까지 걸린 시간과 거의 정확히 같습니다.</span></p>
+      </div>
+      <div class="year"><span>1961</span></div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Five-year plans and a distant war">Five-year plans and a distant war</span><span data-ko="경제개발계획, 그리고 먼 전쟁">경제개발계획, 그리고 먼 전쟁</span></h4>
+        <p><span data-en="The first Five-Year Economic Development Plan begins in 1962. From 1964 Korea sends troops to Vietnam — 325,517 of them before it ends, with 5,099 killed.">The first Five-Year Economic Development Plan begins in 1962. From 1964 Korea sends troops to Vietnam — 325,517 of them before it ends, with 5,099 killed.</span><span data-ko="1962년 제1차 경제개발 5개년 계획이 시작됩니다. 1964년부터 한국은 베트남에 파병했습니다. 총 32만 5,517명이 파병되었고 5,099명이 전사했습니다." class="block">1962년 제1차 경제개발 5개년 계획이 시작됩니다. 1964년부터 한국은 베트남에 파병했습니다. 총 32만 5,517명이 파병되었고 5,099명이 전사했습니다.</span></p>
+      </div>
+      <div class="year"><span>1964</span></div>
+      <div class="cell right">
+        <h4><span data-en="The half apple">The half apple</span><span data-ko="반쪽 사과">반쪽 사과</span></h4>
+        <p><span data-en="My father came through the door after work with a lunch box, and inside there was always something left — half an apple, the last bite of a sandwich. He did it on purpose. My mother cut it into three. Then he came home less, and then he did not come home.">My father came through the door after work with a lunch box, and inside there was always something left — half an apple, the last bite of a sandwich. He did it on purpose. My mother cut it into three. Then he came home less, and then he did not come home.</span><span data-ko="아버지는 퇴근하고 도시락통을 들고 문을 들어섰고, 그 안에는 늘 무언가가 남아 있었습니다 — 반쪽 사과, 샌드위치의 마지막 한 입. 일부러 그러신 것이었습니다. 어머니는 그것을 셋으로 나누었습니다. 그러다 아버지는 점점 덜 돌아왔고, 끝내 돌아오지 않았습니다." class="block">아버지는 퇴근하고 도시락통을 들고 문을 들어섰고, 그 안에는 늘 무언가가 남아 있었습니다 — 반쪽 사과, 샌드위치의 마지막 한 입. 일부러 그러신 것이었습니다. 어머니는 그것을 셋으로 나누었습니다. 그러다 아버지는 점점 덜 돌아왔고, 끝내 돌아오지 않았습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Expressway, village movement, and a young man on fire">Expressway, village movement, and a young man on fire</span><span data-ko="고속도로, 새마을운동, 그리고 불꽃">고속도로, 새마을운동, 그리고 불꽃</span></h4>
+        <p><span data-en="1970 — the Gyeongbu Expressway opens and the Saemaul Undong begins. That November, a twenty-two-year-old garment worker named Jeon Tae-il sets himself alight in Seoul, calling out that workers are human beings too.">1970 — the Gyeongbu Expressway opens and the Saemaul Undong begins. That November, a twenty-two-year-old garment worker named Jeon Tae-il sets himself alight in Seoul, calling out that workers are human beings too.</span><span data-ko="1970년 — 경부고속도로가 개통되고 새마을운동이 시작됩니다. 그해 11월, 스물두 살의 봉제 노동자 전태일이 서울에서 스스로 몸에 불을 붙이며 노동자도 인간이라고 외쳤습니다." class="block">1970년 — 경부고속도로가 개통되고 새마을운동이 시작됩니다. 그해 11월, 스물두 살의 봉제 노동자 전태일이 서울에서 스스로 몸에 불을 붙이며 노동자도 인간이라고 외쳤습니다.</span></p>
+      </div>
+      <div class="year"><span>1970</span></div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="A million people at Yeouido">A million people at Yeouido</span><span data-ko="여의도의 백만 명">여의도의 백만 명</span></h4>
+        <p><span data-en="Billy Graham preached at Yeouido Plaza from May 30 to June 3, 1973. Over five days 3.2 million people came; on the final day the crowd passed 1.1 million — the largest live audience ever gathered for an evangelistic message. His interpreter was Dr. Billy Kim, a Korean trained in America who led Korea Youth for Christ and Far East Broadcasting in Korea. The year before, the Yushin Constitution had made Park president for life.">Billy Graham preached at Yeouido Plaza from May 30 to June 3, 1973. Over five days 3.2 million people came; on the final day the crowd passed 1.1 million — the largest live audience ever gathered for an evangelistic message. His interpreter was Dr. Billy Kim, a Korean trained in America who led Korea Youth for Christ and Far East Broadcasting in Korea. The year before, the Yushin Constitution had made Park president for life.</span><span data-ko="1973년 5월 30일부터 6월 3일까지 빌리 그레이엄이 여의도광장에서 집회를 열었습니다. 닷새 동안 320만 명이 모였고, 마지막 날에는 110만 명을 넘어 복음 전도 집회로는 사상 최대 인원이었습니다. 통역은 미국에서 공부한 한국인 김장환 목사였습니다. 그는 한국 YFC와 극동방송을 이끌던 사람입니다. 그 전해에 유신헌법이 박정희를 종신 대통령으로 만들었습니다." class="block">1973년 5월 30일부터 6월 3일까지 빌리 그레이엄이 여의도광장에서 집회를 열었습니다. 닷새 동안 320만 명이 모였고, 마지막 날에는 110만 명을 넘어 복음 전도 집회로는 사상 최대 인원이었습니다. 통역은 미국에서 공부한 한국인 김장환 목사였습니다. 그는 한국 YFC와 극동방송을 이끌던 사람입니다. 그 전해에 유신헌법이 박정희를 종신 대통령으로 만들었습니다.</span></p>
+      </div>
+      <div class="year"><span>1973</span></div>
+      <div class="cell right">
+        <h4><span data-en="Thirteen, at Lake Texoma">Thirteen, at Lake Texoma</span><span data-ko="열세 살, 텍소마 호수에서">열세 살, 텍소마 호수에서</span></h4>
+        <p><span data-en="A church member quietly paid my way to a youth camp on the Texas–Oklahoma border. I came back with an answer. Nine years later I would sleep in the Korea Youth for Christ office in Gwangju, and spend much of my life doing what Billy Kim was doing on that platform — standing beside someone, turning English into Korean.">A church member quietly paid my way to a youth camp on the Texas–Oklahoma border. I came back with an answer. Nine years later I would sleep in the Korea Youth for Christ office in Gwangju, and spend much of my life doing what Billy Kim was doing on that platform — standing beside someone, turning English into Korean.</span><span data-ko="교회의 한 성도가 조용히 비용을 대주어 텍사스와 오클라호마 경계의 청소년 수련회에 갈 수 있었습니다. 저는 답을 안고 돌아왔습니다. 9년 뒤 저는 광주의 한국 YFC 사무실에서 잠을 자게 되고, 그날 그 단상 위의 김장환 목사가 하던 일 — 누군가의 곁에 서서 영어를 한국어로 옮기는 일 — 을 평생의 많은 시간 동안 하게 됩니다." class="block">교회의 한 성도가 조용히 비용을 대주어 텍사스와 오클라호마 경계의 청소년 수련회에 갈 수 있었습니다. 저는 답을 안고 돌아왔습니다. 9년 뒤 저는 광주의 한국 YFC 사무실에서 잠을 자게 되고, 그날 그 단상 위의 김장환 목사가 하던 일 — 누군가의 곁에 서서 영어를 한국어로 옮기는 일 — 을 평생의 많은 시간 동안 하게 됩니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="The first Korean car">The first Korean car</span><span data-ko="첫 국산차">첫 국산차</span></h4>
+        <p><span data-en="Hyundai builds the Pony 1 from 1976 to 1981 — the first car designed in Korea, and the beginning of an export industry.">Hyundai builds the Pony 1 from 1976 to 1981 — the first car designed in Korea, and the beginning of an export industry.</span><span data-ko="현대는 1976년부터 1981년까지 포니1을 만들었습니다. 한국이 설계한 첫 자동차이자 수출 산업의 시작이었습니다." class="block">현대는 1976년부터 1981년까지 포니1을 만들었습니다. 한국이 설계한 첫 자동차이자 수출 산업의 시작이었습니다.</span></p>
+      </div>
+      <div class="year"><span>1975</span></div>
+      <div class="cell right">
+        <h4><span data-en="I stopped being Billy">I stopped being Billy</span><span data-ko="빌리를 그만두다">빌리를 그만두다</span></h4>
+        <p><span data-en="The summer I turned fifteen. Not officially, not with any announcement — new city, new church, new school, and when someone put out a hand I simply introduced myself differently.">The summer I turned fifteen. Not officially, not with any announcement — new city, new church, new school, and when someone put out a hand I simply introduced myself differently.</span><span data-ko="열다섯이 되던 여름이었습니다. 공식적으로도, 어떤 선언도 없이 — 새 도시, 새 교회, 새 학교에서 누군가 손을 내밀면 저는 그저 다르게 제 이름을 말하기 시작했습니다." class="block">열다섯이 되던 여름이었습니다. 공식적으로도, 어떤 선언도 없이 — 새 도시, 새 교회, 새 학교에서 누군가 손을 내밀면 저는 그저 다르게 제 이름을 말하기 시작했습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Two shots in eight weeks">Two shots in eight weeks</span><span data-ko="여덟 주 사이의 두 발">여덟 주 사이의 두 발</span></h4>
+        <p><span data-en="October 26, 1979 — Park Chung-hee is assassinated by his own intelligence chief after eighteen years in power. December 12 — Chun Doo-hwan seizes control of the army. The country has six months left before Gwangju.">October 26, 1979 — Park Chung-hee is assassinated by his own intelligence chief after eighteen years in power. December 12 — Chun Doo-hwan seizes control of the army. The country has six months left before Gwangju.</span><span data-ko="1979년 10월 26일 — 18년간 집권한 박정희가 자신의 정보부장에게 살해당합니다. 12월 12일 — 전두환이 군을 장악합니다. 광주까지 여섯 달이 남아 있었습니다." class="block">1979년 10월 26일 — 18년간 집권한 박정희가 자신의 정보부장에게 살해당합니다. 12월 12일 — 전두환이 군을 장악합니다. 광주까지 여섯 달이 남아 있었습니다.</span></p>
+      </div>
+      <div class="year"><span>1979</span></div>
+      <div class="cell right">
+        <h4><span data-en="Chattanooga, with seventy-five dollars">Chattanooga, with seventy-five dollars</span><span data-ko="75달러를 들고 채터누가로">75달러를 들고 채터누가로</span></h4>
+        <p><span data-en="Tennessee Temple University. I drove there in a Volkswagen Super Beetle with seventy-five dollars in my pocket, arriving a week before the dormitories opened hoping to find a job before more students arrived looking for jobs, willing to sleep in the car if it came to that.">Tennessee Temple University. I drove there in a Volkswagen Super Beetle with seventy-five dollars in my pocket, arriving a week before the dormitories opened hoping to find a job before more students arrived looking for jobs, willing to sleep in the car if it came to that.</span><span data-ko="테네시템플대학교. 폭스바겐 슈퍼비틀을 몰고 주머니에 75달러를 넣은 채, 다른 학생들이 몰려와 일자리를 찾기 전에 먼저 일을 구하려고 기숙사가 열리기 일주일 전에 도착했습니다. 필요하면 차에서 잘 각오였습니다." class="block">테네시템플대학교. 폭스바겐 슈퍼비틀을 몰고 주머니에 75달러를 넣은 채, 다른 학생들이 몰려와 일자리를 찾기 전에 먼저 일을 구하려고 기숙사가 열리기 일주일 전에 도착했습니다. 필요하면 차에서 잘 각오였습니다.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull">
+    <p><span data-en="&ldquo;I am going to be a missionary. I said it at thirteen. I said it at fourteen and fifteen and sixteen… The way you tell someone your name or where you are from.&rdquo;">&ldquo;I am going to be a missionary. I said it at thirteen. I said it at fourteen and fifteen and sixteen… The way you tell someone your name or where you are from.&rdquo;</span><span data-ko="&ldquo;나는 선교사가 될 것이다. 열세 살에 그렇게 말했다. 열넷, 열다섯, 열여섯에도 그렇게 말했다… 누군가에게 이름이나 고향을 말하듯이.&rdquo;" class="block">&ldquo;나는 선교사가 될 것이다. 열세 살에 그렇게 말했다. 열넷, 열다섯, 열여섯에도 그렇게 말했다… 누군가에게 이름이나 고향을 말하듯이.&rdquo;</span></p>
+    <div class="attrib"><span data-en="The Half Apple">The Half Apple</span><span data-ko="반쪽 사과">반쪽 사과</span></div>
+  </div>
+</section>
+
+<!-- ===== 20s ===== -->
+<section class="decade" id="d20">
+  <div class="decade-head">
+    <div class="decade-age"><span data-en="My Twenties">My Twenties</span><span data-ko="스무 살의 시절">스무 살의 시절</span></div>
+    <div class="decade-years">1980 &ndash; 1989</div>
+    <p class="decade-intro">
+      <span data-en="I landed in a country two years out from Gwangju's May, still under a general who had made himself president, still closed enough that its own citizens could not travel abroad. I was not put into a mission compound. I was put into a Korean family.">I landed in a country two years out from Gwangju's May, still under a general who had made himself president, still closed enough that its own citizens could not travel abroad. I was not put into a mission compound. I was put into a Korean family.</span>
+      <span data-ko="제가 도착한 나라는 광주의 5월로부터 2년이 지난, 스스로 대통령이 된 장군이 다스리던 대한민국이었습니다. 국민이 해외로 나갈 수조차 없을 만큼 닫혀 있었습니다. 저는 선교사 사택이 아니라 한국인 가정에 맡겨졌습니다." class="block">제가 도착한 나라는 광주의 5월로부터 2년이 지난, 스스로 대통령이 된 장군이 다스리던 대한민국이었습니다. 국민이 해외로 나갈 수조차 없을 만큼 닫혀 있었습니다. 저는 선교사 사택이 아니라 한국인 가정에 맡겨졌습니다.</span>
+    </p>
+  </div>
+
+  <div class="spine">
+    <div class="spine-head">
+      <div class="lbl left"><span data-en="Korea">Korea</span><span data-ko="대한민국">대한민국</span></div>
+      <div></div>
+      <div class="lbl right"><span data-en="Bill">Bill</span><span data-ko="빌">빌</span></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="A general makes himself president">A general makes himself president</span><span data-ko="장군, 스스로 대통령이 되다">장군, 스스로 대통령이 되다</span></h4>
+        <p><span data-en="December 1979 — Chun Doo-hwan seizes control of the military. On May 17, 1980 martial law is extended nationwide, and the next day paratroopers are sent into Gwangju. Citizens demanding democracy hold the city for nine days before the army retakes it. That August Chun is elected president by an electoral body he controlled. He was the only candidate. This is the Gwangju I would move to, two years later.">December 1979 — Chun Doo-hwan seizes control of the military. On May 17, 1980 martial law is extended nationwide, and the next day paratroopers are sent into Gwangju. Citizens demanding democracy hold the city for nine days before the army retakes it. That August Chun is elected president by an electoral body he controlled. He was the only candidate. This is the Gwangju I would move to, two years later.</span><span data-ko="1979년 12월 — 전두환이 군을 장악합니다. 1980년 5월 17일 비상계엄이 전국으로 확대되었고, 이튿날 공수부대가 광주에 투입되었습니다. 민주주의를 요구한 시민들은 아흐레 동안 도시를 지켰고, 군은 무력으로 다시 장악했습니다. 그해 8월 전두환은 자신이 장악한 선거 기구에서 대통령으로 선출되었습니다. 후보는 그 한 사람뿐이었습니다. 2년 뒤 제가 옮겨 가게 될 광주가 바로 그곳이었습니다." class="block">1979년 12월 — 전두환이 군을 장악합니다. 1980년 5월 17일 비상계엄이 전국으로 확대되었고, 이튿날 공수부대가 광주에 투입되었습니다. 민주주의를 요구한 시민들은 아흐레 동안 도시를 지켰고, 군은 무력으로 다시 장악했습니다. 그해 8월 전두환은 자신이 장악한 선거 기구에서 대통령으로 선출되었습니다. 후보는 그 한 사람뿐이었습니다. 2년 뒤 제가 옮겨 가게 될 광주가 바로 그곳이었습니다.</span></p>
+      </div>
+      <div class="year"><span>1980</span></div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left"></div>
+      <div class="year"><span>1980</span></div>
+      <div class="cell right">
+        <h4><span data-en="Joseph's father takes us to dinner">Joseph's father takes us to dinner</span><span data-ko="요셉의 아버지가 저녁을 사주시다">요셉의 아버지가 저녁을 사주시다</span></h4>
+        <p><span data-en="A Korean man visiting Chattanooga took his son Joseph and a few of us to a Korean restaurant. To me he was simply Joseph Kim's father. He was Dr. Billy Kim — the man who had stood beside Billy Graham at Yeouido in 1973 and turned his English into Korean for a million people. Later that year, in Gwangju, John Song asked him how one might get an American college student to come and serve as an intern with Youth for Christ. A letter of invitation reached me in Tennessee. I could not leave my newspaper delivery route until I finished school — so I stopped aiming at my grade point average and started aiming at graduating a year early.">A Korean man visiting Chattanooga took his son Joseph and a few of us to a Korean restaurant. To me he was simply Joseph Kim's father. He was Dr. Billy Kim — the man who had stood beside Billy Graham at Yeouido in 1973 and turned his English into Korean for a million people. Later that year, in Gwangju, John Song asked him how one might get an American college student to come and serve as an intern with Youth for Christ. A letter of invitation reached me in Tennessee. I could not leave my newspaper delivery route until I finished school — so I stopped aiming at my grade point average and started aiming at graduating a year early.</span><span data-ko="채터누가를 방문한 한 한국인이 아들 요셉과 저희 몇 명을 한국 식당에 데려가 주셨습니다. 저에게 그분은 그저 김요셉의 아버지였습니다. 그분이 바로 김장환 목사님이었습니다. 1973년 여의도에서 빌리 그레이엄 곁에 서서 그의 영어를 백만 명의 한국어로 옮긴 바로 그 사람이었습니다. 그해 후반 광주에서 존 송 선생님이 그분께 물었습니다. 미국 대학생 한 명을 YFC 인턴으로 데려오려면 어떻게 해야 하느냐고. 초청 편지가 테네시의 저에게 닿았습니다. 학교를 마치기 전에는 신문 배달 일을 그만둘 수 없었기에 — 저는 학점을 목표로 삼는 것을 그만두고 1년 일찍 졸업하는 것을 목표로 삼았습니다." class="block">채터누가를 방문한 한 한국인이 아들 요셉과 저희 몇 명을 한국 식당에 데려가 주셨습니다. 저에게 그분은 그저 김요셉의 아버지였습니다. 그분이 바로 김장환 목사님이었습니다. 1973년 여의도에서 빌리 그레이엄 곁에 서서 그의 영어를 백만 명의 한국어로 옮긴 바로 그 사람이었습니다. 그해 후반 광주에서 존 송 선생님이 그분께 물었습니다. 미국 대학생 한 명을 YFC 인턴으로 데려오려면 어떻게 해야 하느냐고. 초청 편지가 테네시의 저에게 닿았습니다. 학교를 마치기 전에는 신문 배달 일을 그만둘 수 없었기에 — 저는 학점을 목표로 삼는 것을 그만두고 1년 일찍 졸업하는 것을 목표로 삼았습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left"></div>
+      <div class="year"><span>1982</span></div>
+      <div class="cell right">
+        <h4><span data-en="Graduation, a year early">Graduation, a year early</span><span data-ko="1년 앞당긴 졸업">1년 앞당긴 졸업</span></h4>
+        <p><span data-en="May 1982 — Tennessee Temple University. I had come to Chattanooga with seventy-five dollars and left with a degree earned twelve months ahead of schedule, because a letter had arrived from a city I could not yet find on a map.">May 1982 — Tennessee Temple University. I had come to Chattanooga with seventy-five dollars and left with a degree earned twelve months ahead of schedule, because a letter had arrived from a city I could not yet find on a map.</span><span data-ko="1982년 5월 — 테네시템플대학교. 75달러를 들고 채터누가에 왔던 저는 예정보다 열두 달 앞당겨 학위를 받고 떠났습니다. 지도에서 아직 찾지도 못하던 한 도시로부터 편지가 왔기 때문이었습니다." class="block">1982년 5월 — 테네시템플대학교. 75달러를 들고 채터누가에 왔던 저는 예정보다 열두 달 앞당겨 학위를 받고 떠났습니다. 지도에서 아직 찾지도 못하던 한 도시로부터 편지가 왔기 때문이었습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="The curfew ends. The soldiers stay.">The curfew ends. The soldiers stay.</span><span data-ko="통금은 끝나고, 군은 남다">통금은 끝나고, 군은 남다</span></h4>
+        <p><span data-en="January 5, 1982 — the midnight-to-4 AM curfew ends after 36 years. It had been imposed by the US military government in September 1945 and never lifted by any Korean government since. It stayed in force in front-line and coastal districts. Seoul had won the 1988 Olympics that September and the 1986 Asian Games in November; the National Assembly voted the curfew away in December. Nothing else about the security state changed.">January 5, 1982 — the midnight-to-4 AM curfew ends after 36 years. It had been imposed by the US military government in September 1945 and never lifted by any Korean government since. It stayed in force in front-line and coastal districts. Seoul had won the 1988 Olympics that September and the 1986 Asian Games in November; the National Assembly voted the curfew away in December. Nothing else about the security state changed.</span><span data-ko="1982년 1월 5일 — 자정부터 새벽 4시까지의 통행금지가 36년 만에 끝났습니다. 1945년 9월 미군정이 시행한 뒤 어느 한국 정부도 풀지 않았던 조치였습니다. 접경지역과 해안 면 지역에는 그대로 남았습니다. 서울은 그해 9월 1988년 올림픽을, 11월에는 1986년 아시안게임을 유치했고, 국회는 12월에 통금 해제를 의결했습니다. 그 밖에 안보 체제는 달라진 것이 없었습니다." class="block">1982년 1월 5일 — 자정부터 새벽 4시까지의 통행금지가 36년 만에 끝났습니다. 1945년 9월 미군정이 시행한 뒤 어느 한국 정부도 풀지 않았던 조치였습니다. 접경지역과 해안 면 지역에는 그대로 남았습니다. 서울은 그해 9월 1988년 올림픽을, 11월에는 1986년 아시안게임을 유치했고, 국회는 12월에 통금 해제를 의결했습니다. 그 밖에 안보 체제는 달라진 것이 없었습니다.</span></p>
+      </div>
+      <div class="year"><span>1982</span></div>
+      <div class="cell right">
+        <h4><span data-en="Gimpo, June 1. Gwangju, June 2.">Gimpo, June 1. Gwangju, June 2.</span><span data-ko="6월 1일 김포, 6월 2일 광주">6월 1일 김포, 6월 2일 광주</span></h4>
+        <p><span data-en="Twenty-one years old, with nine hundred dollars, a cowboy hat on my head and boots on my feet with no plan beyond the calling — and no experience of living under a military government. Uniformed soldiers inside the airport and outside it. Military exercises — soldiers marching, tanks and trucks on the streets. Monthly civil defence drills: twenty minutes in the daytime, and sometimes at midnight.">Twenty-one years old, with nine hundred dollars, a cowboy hat on my head and boots on my feet with no plan beyond the calling — and no experience of living under a military government. Uniformed soldiers inside the airport and outside it. Military exercises — soldiers marching, tanks and trucks on the streets. Monthly civil defence drills: twenty minutes in the daytime, and sometimes at midnight.</span><span data-ko="스물한 살, 900달러와 머리에는 카우보이 모자, 발에는 부츠, 그리고 부르심 말고는 아무 계획도 없었습니다 — 군사정권 아래서 살아본 적도 없었습니다. 공항 안에도, 공항 밖에도 제복을 입은 군인들이 있었습니다. 군사훈련 — 행군하는 군인들, 거리의 탱크와 군용 트럭. 그리고 매달 있는 민방위 훈련: 낮에 20분, 그리고 때로는 자정에도." class="block">스물한 살, 900달러와 머리에는 카우보이 모자, 발에는 부츠, 그리고 부르심 말고는 아무 계획도 없었습니다 — 군사정권 아래서 살아본 적도 없었습니다. 공항 안에도, 공항 밖에도 제복을 입은 군인들이 있었습니다. 군사훈련 — 행군하는 군인들, 거리의 탱크와 군용 트럭. 그리고 매달 있는 민방위 훈련: 낮에 20분, 그리고 때로는 자정에도.</span></p>
+        <div class="vid"><iframe src="https://www.youtube.com/embed/MG0sG4_FO1o" title="Ordination and Sending Out Service" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="vid-cap"><span data-en="Watch: my ordination and sending out service — the day my church commissioned me to Korea.">Watch: my ordination and sending out service — the day my church commissioned me to Korea.</span><span data-ko="영상: 안수 및 파송 예배 — 본교회가 저를 한국으로 파송하던 날." class="block">영상: 안수 및 파송 예배 — 본교회가 저를 한국으로 파송하던 날.</span></div></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left"></div>
+      <div class="year"></div>
+      <div class="cell right">
+        <h4><span data-en="Straight into the deep end">Straight into the deep end</span><span data-ko="곧장 깊은 물로">곧장 깊은 물로</span></h4>
+        <p><span data-en="I could not speak Korean. I started out in a Korean apartment with a grandmother and her youngest son — neither of them spoke any English. It was the Nestea plunge: fall backward into the pool and hope. From there I moved into the Youth for Christ office and slept there on my own. Then I moved into John Song's home and became the seventh of a family of six — two daughters, one and three years younger than me, and two sons, seven and ten years younger.">I could not speak Korean. I started out in a Korean apartment with a grandmother and her youngest son — neither of them spoke any English. It was the Nestea plunge: fall backward into the pool and hope. From there I moved into the Youth for Christ office and slept there on my own. Then I moved into John Song's home and became the seventh of a family of six — two daughters, one and three years younger than me, and two sons, seven and ten years younger.</span><span data-ko="저는 한국어를 하지 못했습니다. 처음에는 할머니와 그분의 막내아들이 사는 한국 아파트에서 살기 시작했는데, 두 분 다 영어를 전혀 못하셨습니다. 그야말로 물에 빠진 생쥐 꼴이었습니다. 그다음에는 YFC 사무실로 옮겨 혼자 잠을 잤습니다. 그리고 존 송 선생님의 집으로 들어가 여섯 식구의 일곱 번째가 되었습니다 — 저보다 한 살, 세 살 어린 두 딸과 일곱 살, 열 살 어린 두 아들이 있었습니다." class="block">저는 한국어를 하지 못했습니다. 처음에는 할머니와 그분의 막내아들이 사는 한국 아파트에서 살기 시작했는데, 두 분 다 영어를 전혀 못하셨습니다. 그야말로 물에 빠진 생쥐 꼴이었습니다. 그다음에는 YFC 사무실로 옮겨 혼자 잠을 잤습니다. 그리고 존 송 선생님의 집으로 들어가 여섯 식구의 일곱 번째가 되었습니다 — 저보다 한 살, 세 살 어린 두 딸과 일곱 살, 열 살 어린 두 아들이 있었습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="A city that could not say what happened">A city that could not say what happened</span><span data-ko="말할 수 없던 도시">말할 수 없던 도시</span></h4>
+        <p><span data-en="Under Chun Doo-hwan, what the army had done in Gwangju was officially a riot stirred up by agitators. Saying otherwise in public could be prosecuted. The city knew what it had seen and kept it indoors.">Under Chun Doo-hwan, what the army had done in Gwangju was officially a riot stirred up by agitators. Saying otherwise in public could be prosecuted. The city knew what it had seen and kept it indoors.</span><span data-ko="전두환 정권 아래에서, 광주에서 군이 한 일은 공식적으로 불순 세력이 선동한 폭동이었습니다. 공개적으로 달리 말하면 처벌받을 수 있었습니다. 도시는 자신이 본 것을 알고 있었고, 그것을 집 안에 두었습니다." class="block">전두환 정권 아래에서, 광주에서 군이 한 일은 공식적으로 불순 세력이 선동한 폭동이었습니다. 공개적으로 달리 말하면 처벌받을 수 있었습니다. 도시는 자신이 본 것을 알고 있었고, 그것을 집 안에 두었습니다.</span></p>
+      </div>
+      <div class="year"></div>
+      <div class="cell right">
+        <h4><span data-en="What they told a foreigner">What they told a foreigner</span><span data-ko="외국인에게 들려준 이야기">외국인에게 들려준 이야기</span></h4>
+        <p><span data-en="Several people I met in Gwangju told me what they had lived through in May 1980. It was not legal to speak against the government, and it stretched them emotionally to say these things out loud. They told me anyway — I believe because I was a foreigner, and whatever else I was, I was not going to report them.">Several people I met in Gwangju told me what they had lived through in May 1980. It was not legal to speak against the government, and it stretched them emotionally to say these things out loud. They told me anyway — I believe because I was a foreigner, and whatever else I was, I was not going to report them.</span><span data-ko="광주에서 만난 몇몇 사람들이 1980년 5월에 자신들이 겪은 일을 저에게 들려주었습니다. 정부에 맞서는 말을 하는 것은 합법이 아니었고, 그 이야기를 소리 내어 하는 일은 그들에게 감정적으로 힘든 일이었습니다. 그런데도 그들은 저에게 말했습니다. 제가 외국인이었기 때문이라고 생각합니다. 제가 무엇이든 간에, 그들을 신고할 사람은 아니었기 때문입니다." class="block">광주에서 만난 몇몇 사람들이 1980년 5월에 자신들이 겪은 일을 저에게 들려주었습니다. 정부에 맞서는 말을 하는 것은 합법이 아니었고, 그 이야기를 소리 내어 하는 일은 그들에게 감정적으로 힘든 일이었습니다. 그런데도 그들은 저에게 말했습니다. 제가 외국인이었기 때문이라고 생각합니다. 제가 무엇이든 간에, 그들을 신고할 사람은 아니었기 때문입니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left"></div>
+      <div class="year"></div>
+      <div class="cell right">
+        <h4><span data-en="Three days to leave the country">Three days to leave the country</span><span data-ko="사흘 안에 출국하라">사흘 안에 출국하라</span></h4>
+        <p><span data-en="Three months in, I filled out a missionary visa application and described my missionary activities honestly. The description was the evidence: I had been illegally doing missionary work on a tourist visa. A registered letter from the Justice Department gave me three days to leave the country. Dr. Dick Nieusma, a dental missionary at the Gwangju Christian Hospital, contacted a missionary couple in Osaka asking if I could stay with them. I applied at the consulate in Osaka, and what I was told would take one week came back five weeks later with a missionary visa. It felt like a rejection. It was language school in disguise.">Three months in, I filled out a missionary visa application and described my missionary activities honestly. The description was the evidence: I had been illegally doing missionary work on a tourist visa. A registered letter from the Justice Department gave me three days to leave the country. Dr. Dick Nieusma, a dental missionary at the Gwangju Christian Hospital, contacted a missionary couple in Osaka asking if I could stay with them. I applied at the consulate in Osaka, and what I was told would take one week came back five weeks later with a missionary visa. It felt like a rejection. It was language school in disguise.</span><span data-ko="도착한 지 석 달, 선교사 비자 신청서에 제 선교 활동을 정직하게 적었습니다. 그 서술이 곧 증거였습니다. 저는 관광비자로 불법 선교 활동을 하고 있었던 것입니다. 법무부에서 등기우편이 왔습니다. 사흘 안에 출국하라는 통보였습니다. 광주기독병원의 치과 선교사 딕 니우스마 박사가 오사카의 한 선교사 부부에게 연락해 제가 머물 수 있는지 물어봐 주었습니다. 오사카 영사관에서 신청했고, 일주일이면 된다던 것이 다섯 주 만에 선교사 비자가 되어 돌아왔습니다. 거절처럼 느껴졌습니다. 사실은 위장한 어학연수였습니다." class="block">도착한 지 석 달, 선교사 비자 신청서에 제 선교 활동을 정직하게 적었습니다. 그 서술이 곧 증거였습니다. 저는 관광비자로 불법 선교 활동을 하고 있었던 것입니다. 법무부에서 등기우편이 왔습니다. 사흘 안에 출국하라는 통보였습니다. 광주기독병원의 치과 선교사 딕 니우스마 박사가 오사카의 한 선교사 부부에게 연락해 제가 머물 수 있는지 물어봐 주었습니다. 오사카 영사관에서 신청했고, 일주일이면 된다던 것이 다섯 주 만에 선교사 비자가 되어 돌아왔습니다. 거절처럼 느껴졌습니다. 사실은 위장한 어학연수였습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Professional baseball begins">Professional baseball begins</span><span data-ko="프로야구 출범">프로야구 출범</span></h4>
+        <p><span data-en="March 27, 1982 — the KBO opens with six clubs. The Haetae Tigers, founded that January, play at Mudeung Stadium in Gwangju.">March 27, 1982 — the KBO opens with six clubs. The Haetae Tigers, founded that January, play at Mudeung Stadium in Gwangju.</span><span data-ko="1982년 3월 27일 — 6개 구단으로 프로야구가 출범했습니다. 그해 1월 창단한 해태 타이거즈의 홈은 광주 무등경기장이었습니다." class="block">1982년 3월 27일 — 6개 구단으로 프로야구가 출범했습니다. 그해 1월 창단한 해태 타이거즈의 홈은 광주 무등경기장이었습니다.</span></p>
+      </div>
+      <div class="year"></div>
+      <div class="cell right">
+        <h4><span data-en="The home team of my new city">The home team of my new city</span><span data-ko="내가 살게 된 도시의 홈팀">내가 살게 된 도시의 홈팀</span></h4>
+        <p><span data-en="I arrived mid-season of the first year professional baseball existed in Korea, in the city whose team would offer healing to hurting citizens after the government crackdown of May 1980.">I arrived mid-season of the first year professional baseball existed in Korea, in the city whose team would offer healing to hurting citizens after the government crackdown of May 1980.</span><span data-ko="한국에 프로야구가 생긴 첫 해, 그 시즌 한가운데에 저는 도착했습니다. 그리고 1980년 5월의 진압 이후 상처 입은 시민들에게 위로가 되어 줄 팀의 도시에 살게 되었습니다." class="block">한국에 프로야구가 생긴 첫 해, 그 시즌 한가운데에 저는 도착했습니다. 그리고 1980년 5월의 진압 이후 상처 입은 시민들에게 위로가 되어 줄 팀의 도시에 살게 되었습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="A country still poor">A country still poor</span><span data-ko="아직 가난한 나라">아직 가난한 나라</span></h4>
+        <p><span data-en="Annual income per person stood at about $1,800. Hyundai had built the Pony 1 from 1976 to 1981, and the Pony 2 reached the market in 1982. Almost nobody drove: the whole country would not pass one million registered vehicles until May 1985, for a population of forty million. It reached two million in January 1988 and three million by June 1990.">Annual income per person stood at about $1,800. Hyundai had built the Pony 1 from 1976 to 1981, and the Pony 2 reached the market in 1982. Almost nobody drove: the whole country would not pass one million registered vehicles until May 1985, for a population of forty million. It reached two million in January 1988 and three million by June 1990.</span><span data-ko="1인당 연간 국민소득은 약 1,800달러였습니다. 현대는 1976년부터 1981년까지 포니1을 만들었고, 1982년에 포니2가 출시되었습니다. 차를 모는 사람은 거의 없었습니다. 전국 자동차 등록대수가 100만 대를 넘어선 것은 1985년 5월이었고, 그때 인구는 4천만 명이었습니다. 1988년 1월에 200만 대, 1990년 6월에 300만 대에 이르렀습니다." class="block">1인당 연간 국민소득은 약 1,800달러였습니다. 현대는 1976년부터 1981년까지 포니1을 만들었고, 1982년에 포니2가 출시되었습니다. 차를 모는 사람은 거의 없었습니다. 전국 자동차 등록대수가 100만 대를 넘어선 것은 1985년 5월이었고, 그때 인구는 4천만 명이었습니다. 1988년 1월에 200만 대, 1990년 6월에 300만 대에 이르렀습니다.</span></p>
+      </div>
+      <div class="year"></div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Education as the engine">Education as the engine</span><span data-ko="교육이라는 동력">교육이라는 동력</span></h4>
+        <p><span data-en="Koreans could not leave their own country freely. From January 1983 a tourist passport required you to be over 50 and to have kept two million won in a bank for a year — good for one trip. All limits ended on January 1, 1989.">Koreans could not leave their own country freely. From January 1983 a tourist passport required you to be over 50 and to have kept two million won in a bank for a year — good for one trip. All limits ended on January 1, 1989.</span><span data-ko="한국인은 자기 나라를 자유롭게 떠날 수 없었습니다. 1983년 1월부터 관광여권은 만 50세 이상이면서 200만 원을 1년간 예치한 사람에게만, 그것도 1회용으로 발급되었습니다. 모든 제한은 1989년 1월 1일에야 사라졌습니다." class="block">한국인은 자기 나라를 자유롭게 떠날 수 없었습니다. 1983년 1월부터 관광여권은 만 50세 이상이면서 200만 원을 1년간 예치한 사람에게만, 그것도 1회용으로 발급되었습니다. 모든 제한은 1989년 1월 1일에야 사라졌습니다.</span></p>
+      </div>
+      <div class="year"><span>1983</span></div>
+      <div class="cell right">
+        <h4><span data-en="Learning the language">Learning the language</span><span data-ko="언어를 배우다">언어를 배우다</span></h4>
+        <p><span data-en="Formal study of Korean had one location in the whole country. Studying at Yonsei University meant moving to Seoul. It was the beginning of the fluency that would let me preach, teach, and eventually interpret at the highest levels.">Formal study of Korean had one location in the whole country. Studying at Yonsei University meant moving to Seoul. It was the beginning of the fluency that would let me preach, teach, and eventually interpret at the highest levels.</span><span data-ko="한국어를 정식으로 배울 수 있는 곳은 전국에 단 한 군데뿐이었습니다. 연세대학교에서 공부한다는 것은 서울로 올라간다는 뜻이었습니다. 훗날 설교하고 가르치고, 마침내 최고 수준의 통역까지 할 수 있게 해준 언어의 시작이었습니다." class="block">한국어를 정식으로 배울 수 있는 곳은 전국에 단 한 군데뿐이었습니다. 연세대학교에서 공부한다는 것은 서울로 올라간다는 뜻이었습니다. 훗날 설교하고 가르치고, 마침내 최고 수준의 통역까지 할 수 있게 해준 언어의 시작이었습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="A hundred thousand orphans, and where they went">A hundred thousand orphans, and where they went</span><span data-ko="10만 명의 고아, 그리고 그 아이들이 간 곳">10만 명의 고아, 그리고 그 아이들이 간 곳</span></h4>
+        <p><span data-en="The Korean War left around 100,000 orphans. Overseas adoption began about 1953, and Holt International alone would place some 60,000 Korean children in American homes. 1984 was also the centenary of Protestant mission in Korea.">The Korean War left around 100,000 orphans. Overseas adoption began about 1953, and Holt International alone would place some 60,000 Korean children in American homes. 1984 was also the centenary of Protestant mission in Korea.</span><span data-ko="한국전쟁은 약 10만 명의 고아를 남겼습니다. 해외 입양은 1953년 무렵 시작되었고, 홀트아동복지회 한 기관만으로도 약 6만 명의 한국 아동이 미국 가정에 보내졌습니다. 1984년은 한국 개신교 선교 100주년이기도 했습니다." class="block">한국전쟁은 약 10만 명의 고아를 남겼습니다. 해외 입양은 1953년 무렵 시작되었고, 홀트아동복지회 한 기관만으로도 약 6만 명의 한국 아동이 미국 가정에 보내졌습니다. 1984년은 한국 개신교 선교 100주년이기도 했습니다.</span></p>
+      </div>
+      <div class="year"><span>1984</span></div>
+      <div class="cell right">
+        <h4><span data-en="Resident missionary at the orphanages">Resident missionary at the orphanages</span><span data-ko="고아원의 상주 선교사">고아원의 상주 선교사</span></h4>
+        <p><span data-en="Resident missionary at Hwarang Orphanage from 1983 to 1985 and Sungshin Orphanage from 1985 to 1987, both in Uijeongbu. Between 1984 and 1987 I escorted 23 orphans to the United States.">Resident missionary at Hwarang Orphanage from 1983 to 1985 and Sungshin Orphanage from 1985 to 1987, both in Uijeongbu. Between 1984 and 1987 I escorted 23 orphans to the United States.</span><span data-ko="1983년부터 1985년까지 화랑원, 1985년부터 1987년까지 성신원에서 상주 선교사로 지냈습니다. 두 곳 모두 의정부에 있었습니다. 1984년부터 1987년까지 23명의 아이들을 미국까지 동행했습니다." class="block">1983년부터 1985년까지 화랑원, 1985년부터 1987년까지 성신원에서 상주 선교사로 지냈습니다. 두 곳 모두 의정부에 있었습니다. 1984년부터 1987년까지 23명의 아이들을 미국까지 동행했습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="The curfew comes back">The curfew comes back</span><span data-ko="통금이 되돌아오다">통금이 되돌아오다</span></h4>
+        <p><span data-en="During the Ulchi military exercises of August 1985 and July 1986, the night curfew was reimposed across fifty cities nationwide — the full midnight-to-4 AM restriction, then lifted again when the exercise ended.">During the Ulchi military exercises of August 1985 and July 1986, the night curfew was reimposed across fifty cities nationwide — the full midnight-to-4 AM restriction, then lifted again when the exercise ended.</span><span data-ko="1985년 8월과 1986년 7월 을지훈련 기간에는 전국 50개 시 지역에 야간통행금지가 다시 시행되었습니다. 자정부터 새벽 4시까지의 전면 통제였고, 훈련이 끝나면 다시 풀렸습니다." class="block">1985년 8월과 1986년 7월 을지훈련 기간에는 전국 50개 시 지역에 야간통행금지가 다시 시행되었습니다. 자정부터 새벽 4시까지의 전면 통제였고, 훈련이 끝나면 다시 풀렸습니다.</span></p>
+      </div>
+      <div class="year"><span>1985</span></div>
+      <div class="cell right">
+        <h4><span data-en="In the house before midnight">In the house before midnight</span><span data-ko="자정 전에는 집 안에">자정 전에는 집 안에</span></h4>
+        <p><span data-en="I remember those military training periods. Inside before midnight, and not permitted out again until after four in the morning. The nation had officially ended its curfew before I ever arrived — but I still lived through it, during civil defence and military training exercises.">I remember those military training periods. Inside before midnight, and not permitted out again until after four in the morning. The nation had officially ended its curfew before I ever arrived — but I still lived through it, during civil defence and military training exercises.</span><span data-ko="그 군사훈련 기간을 기억합니다. 자정 전에는 집 안에 있어야 했고, 새벽 4시가 지나야 다시 나갈 수 있었습니다. 나라는 제가 오기도 전에 공식적으로 통금을 폐지했지만, 민방위 훈련과 군사훈련 기간에 저는 그것을 직접 겪었습니다." class="block">그 군사훈련 기간을 기억합니다. 자정 전에는 집 안에 있어야 했고, 새벽 4시가 지나야 다시 나갈 수 있었습니다. 나라는 제가 오기도 전에 공식적으로 통금을 폐지했지만, 민방위 훈련과 군사훈련 기간에 저는 그것을 직접 겪었습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="June 1987">June 1987</span><span data-ko="1987년 6월">1987년 6월</span></h4>
+        <p><span data-en="1,308,300 people took to the streets across the country. On June 29 the government conceded direct presidential elections. Korea's democracy dates from that month.">1,308,300 people took to the streets across the country. On June 29 the government conceded direct presidential elections. Korea's democracy dates from that month.</span><span data-ko="전국에서 130만 8,300명이 거리로 나왔습니다. 6월 29일, 정부는 대통령 직선제를 수용했습니다. 한국 민주주의는 그달로부터 시작됩니다." class="block">전국에서 130만 8,300명이 거리로 나왔습니다. 6월 29일, 정부는 대통령 직선제를 수용했습니다. 한국 민주주의는 그달로부터 시작됩니다.</span></p>
+      </div>
+      <div class="year"><span>1987</span></div>
+      <div class="cell right">
+        <h4><span data-en="Married on October 31">Married on October 31</span><span data-ko="10월 31일의 결혼">10월 31일의 결혼</span></h4>
+        <p><span data-en="A single missionary living at an orphanage, I had been asked a simple question by Dr. Dick Nieusma, a visiting American dental missionary: &ldquo;Have you ever thought about marrying your friend?&rdquo; Two weeks of prayer in the rice fields behind the orphanage led to a proposal. Four months after the June 29 Declaration, I married Ja-kyung &ldquo;Niki&rdquo; Lyu — Halloween in the West, but with no Halloween in Korea it was simply a beautiful Saturday afternoon. We married at the Women Evangelist Hall (여전도회관) in Yeonji-dong, opened that year — a fourteen-storey headquarters built by Korean churchwomen on the ground where American missionaries had run a girls' school from 1895 to 1975. Korea as the mission field had become the sender of missionaries, and I was an American marrying a Korean inside the proof of it.">A single missionary living at an orphanage, I had been asked a simple question by Dr. Dick Nieusma, a visiting American dental missionary: &ldquo;Have you ever thought about marrying your friend?&rdquo; Two weeks of prayer in the rice fields behind the orphanage led to a proposal. Four months after the June 29 Declaration, I married Ja-kyung &ldquo;Niki&rdquo; Lyu — Halloween in the West, but with no Halloween in Korea it was simply a beautiful Saturday afternoon. We married at the Women Evangelist Hall (여전도회관) in Yeonji-dong, opened that year — a fourteen-storey headquarters built by Korean churchwomen on the ground where American missionaries had run a girls' school from 1895 to 1975. Korea as the mission field had become the sender of missionaries, and I was an American marrying a Korean inside the proof of it.</span><span data-ko="고아원에서 지내던 독신 선교사였던 저는, 방문 중이던 미국 치과 선교사 딕 니우스마 박사로부터 단순한 질문을 받았습니다. &ldquo;친구와 결혼하는 것을 생각해 본 적 있나요?&rdquo; 고아원 뒤 논에서 2주간 기도한 끝에 청혼으로 이어졌습니다. 6·29 선언 넉 달 뒤, 저는 류자경(니키)과 결혼했습니다. 서구에서는 핼러윈이었지만 한국에는 핼러윈이 없었기에 그날은 그저 아름다운 토요일 오후였습니다. 결혼식은 그해 문을 연 연지동 여전도회관에서 했습니다. 한국 교회 여성들이 세운 지상 14층 건물로, 1895년부터 1975년까지 미국 선교사들이 여학교를 운영하던 바로 그 터에 서 있었습니다. 선교지였던 한국이 선교사를 보내는 나라가 된 것입니다. 저는 그 증거 안에서 한국인과 결혼한 미국인이었습니다." class="block">고아원에서 지내던 독신 선교사였던 저는, 방문 중이던 미국 치과 선교사 딕 니우스마 박사로부터 단순한 질문을 받았습니다. &ldquo;친구와 결혼하는 것을 생각해 본 적 있나요?&rdquo; 고아원 뒤 논에서 2주간 기도한 끝에 청혼으로 이어졌습니다. 6·29 선언 넉 달 뒤, 저는 류자경(니키)과 결혼했습니다. 서구에서는 핼러윈이었지만 한국에는 핼러윈이 없었기에 그날은 그저 아름다운 토요일 오후였습니다. 결혼식은 그해 문을 연 연지동 여전도회관에서 했습니다. 한국 교회 여성들이 세운 지상 14층 건물로, 1895년부터 1975년까지 미국 선교사들이 여학교를 운영하던 바로 그 터에 서 있었습니다. 선교지였던 한국이 선교사를 보내는 나라가 된 것입니다. 저는 그 증거 안에서 한국인과 결혼한 미국인이었습니다.</span></p>
+        <div class="vid"><iframe src="https://www.youtube.com/embed/HQ0CXXd4tX4" title="Bill and Niki Wedding 1987" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="vid-cap"><span data-en="Watch: wedding highlights — a beautiful Saturday afternoon in Korea.">Watch: wedding highlights — a beautiful Saturday afternoon in Korea.</span><span data-ko="영상: 결혼식 하이라이트 — 한국에서의 아름다운 토요일 오후." class="block">영상: 결혼식 하이라이트 — 한국에서의 아름다운 토요일 오후.</span></div></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Seoul hosts the Olympics">Seoul hosts the Olympics</span><span data-ko="서울올림픽">서울올림픽</span></h4>
+        <p><span data-en="September 1988. The following year, overseas travel was fully liberalized — Koreans could leave the country freely for the first time.">September 1988. The following year, overseas travel was fully liberalized — Koreans could leave the country freely for the first time.</span><span data-ko="1988년 9월. 이듬해 해외여행이 전면 자유화되어, 한국인이 처음으로 자유롭게 출국할 수 있게 되었습니다." class="block">1988년 9월. 이듬해 해외여행이 전면 자유화되어, 한국인이 처음으로 자유롭게 출국할 수 있게 되었습니다.</span></p>
+      </div>
+      <div class="year"><span>1988</span></div>
+      <div class="cell right">
+        <h4><span data-en="A voice at the medal ceremonies">A voice at the medal ceremonies</span><span data-ko="시상식의 목소리">시상식의 목소리</span></h4>
+        <p><span data-en="I translated for the medal ceremonies at the Gymnastics Stadium of the 1988 Seoul Summer Olympics. Regional Director for International CBMC Asia, 1988–89. And seven years as simultaneous interpreter at Young Nak Church every Sunday (1987–1993 and 1997–1998) and at the annual Korea National Prayer Breakfast, where I interpreted for five different Korean presidents between 1987 and 2006.">I translated for the medal ceremonies at the Gymnastics Stadium of the 1988 Seoul Summer Olympics. Regional Director for International CBMC Asia, 1988–89. And seven years as simultaneous interpreter at Young Nak Church every Sunday (1987–1993 and 1997–1998) and at the annual Korea National Prayer Breakfast, where I interpreted for five different Korean presidents between 1987 and 2006.</span><span data-ko="1988년 서울올림픽 체조경기장 시상식에서 통역을 맡았습니다. 1988–89년에는 국제 CBMC 아시아 지역 총무로 섬겼습니다. 그리고 영락교회에서 매 주일 7년간(1987–1993, 1997–1998) 동시통역을 했고, 해마다 열리는 국가조찬기도회에서는 1987년부터 2006년까지 다섯 분의 대통령을 위해 통역했습니다." class="block">1988년 서울올림픽 체조경기장 시상식에서 통역을 맡았습니다. 1988–89년에는 국제 CBMC 아시아 지역 총무로 섬겼습니다. 그리고 영락교회에서 매 주일 7년간(1987–1993, 1997–1998) 동시통역을 했고, 해마다 열리는 국가조찬기도회에서는 1987년부터 2006년까지 다섯 분의 대통령을 위해 통역했습니다.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull">
+    <p><span data-en="&ldquo;The country lifted its curfew five months before I arrived. I lived under it anyway.&rdquo;">&ldquo;The country lifted its curfew five months before I arrived. I lived under it anyway.&rdquo;</span><span data-ko="&ldquo;나라는 내가 도착하기 다섯 달 전에 통금을 풀었다. 그런데도 나는 그 아래에서 살았다.&rdquo;" class="block">&ldquo;나라는 내가 도착하기 다섯 달 전에 통금을 풀었다. 그런데도 나는 그 아래에서 살았다.&rdquo;</span></p>
+  </div>
+
+  <div class="booklink">
+    <p><span data-en="This page gives the outline in the right column. The full account — the half apple, the calling, the orphanage, the language, and everything underneath it — is in my autobiography, The Half Apple.">This page gives the outline in the right column. The full account — the half apple, the calling, the orphanage, the language, and everything underneath it — is in my autobiography, The Half Apple.</span><span data-ko="이 페이지의 오른쪽 열은 뼈대만 담고 있습니다. 반쪽 사과, 부르심, 고아원, 언어, 그리고 그 아래 흐르던 모든 것 — 온전한 이야기는 자서전 『반쪽 사과』에 있습니다." class="block">이 페이지의 오른쪽 열은 뼈대만 담고 있습니다. 반쪽 사과, 부르심, 고아원, 언어, 그리고 그 아래 흐르던 모든 것 — 온전한 이야기는 자서전 『반쪽 사과』에 있습니다.</span></p>
+    <a href="halfapple.html" class="btn-gold"><span data-en="The Half Apple">The Half Apple</span><span data-ko="반쪽 사과">반쪽 사과</span></a>
+  </div>
+</section>
+
+<!-- ===== 30s ===== -->
+<section class="decade" id="d30">
+  <div class="decade-head">
+    <div class="decade-age"><span data-en="My Thirties">My Thirties</span><span data-ko="서른의 시절">서른의 시절</span></div>
+    <div class="decade-years">1990 &ndash; 1999</div>
+    <p class="decade-intro">
+      <span data-en="Korea grew wealthy, joined the world's institutions, and then very nearly lost it all in a single winter. My own decade ran from a seminary classroom in Dallas back to a university lectern in Seoul.">Korea grew wealthy, joined the world's institutions, and then very nearly lost it all in a single winter. My own decade ran from a seminary classroom in Dallas back to a university lectern in Seoul.</span>
+      <span data-ko="대한민국은 부유해졌고 세계의 기구들에 들어갔으며, 그리고 한 번의 겨울에 거의 모든 것을 잃을 뻔했습니다. 저의 10년은 댈러스의 신학교 강의실에서 서울의 대학 강단으로 이어졌습니다." class="block">대한민국은 부유해졌고 세계의 기구들에 들어갔으며, 그리고 한 번의 겨울에 거의 모든 것을 잃을 뻔했습니다. 저의 10년은 댈러스의 신학교 강의실에서 서울의 대학 강단으로 이어졌습니다.</span>
+    </p>
+  </div>
+
+  <div class="spine">
+    <div class="spine-head">
+      <div class="lbl left"><span data-en="Korea">Korea</span><span data-ko="대한민국">대한민국</span></div>
+      <div></div>
+      <div class="lbl right"><span data-en="Bill">Bill</span><span data-ko="빌">빌</span></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Both Koreas join the UN">Both Koreas join the UN</span><span data-ko="남북한 유엔 동시 가입">남북한 유엔 동시 가입</span></h4>
+        <p><span data-en="1991. The following year, a joint declaration on the denuclearization of the peninsula. A brief season of hope.">1991. The following year, a joint declaration on the denuclearization of the peninsula. A brief season of hope.</span><span data-ko="1991년. 이듬해에는 한반도 비핵화 공동선언이 있었습니다. 짧았던 희망의 계절이었습니다." class="block">1991년. 이듬해에는 한반도 비핵화 공동선언이 있었습니다. 짧았던 희망의 계절이었습니다.</span></p>
+      </div>
+      <div class="year"><span>1991</span></div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Seoul opens to Moscow and Beijing">Seoul opens to Moscow and Beijing</span><span data-ko="모스크바와 베이징으로 열리다">모스크바와 베이징으로 열리다</span></h4>
+        <p><span data-en="Diplomatic relations with the Soviet Union in September 1990, and with China in August 1992. After forty years of Cold War isolation, the country my daughters were born into was no longer walled off from half the world.">Diplomatic relations with the Soviet Union in September 1990, and with China in August 1992. After forty years of Cold War isolation, the country my daughters were born into was no longer walled off from half the world.</span><span data-ko="1990년 9월 소련과, 1992년 8월 중국과 수교했습니다. 40년의 냉전 고립 끝에, 제 딸들이 태어난 나라는 더 이상 세계의 절반과 단절된 곳이 아니었습니다." class="block">1990년 9월 소련과, 1992년 8월 중국과 수교했습니다. 40년의 냉전 고립 끝에, 제 딸들이 태어난 나라는 더 이상 세계의 절반과 단절된 곳이 아니었습니다.</span></p>
+      </div>
+      <div class="year"><span>1990</span></div>
+      <div class="cell right">
+        <h4><span data-en="Sarah, and then Anna">Sarah, and then Anna</span><span data-ko="사라, 그리고 안나">사라, 그리고 안나</span></h4>
+        <p><span data-en="Sarah was born in 1990, named after my grandmother. Anna was born in 1992. Twenty-five months apart. Land was purchased an hour from Seoul and a country house was built for our family. Two Korean-American daughters, both born in Uijeongbu to a father who had arrived eight years earlier unable to even ask directions.">Sarah was born in 1990, named after my grandmother. Anna was born in 1992. Twenty-five months apart. Land was purchased an hour from Seoul and a country house was built for our family. Two Korean-American daughters, both born in Uijeongbu to a father who had arrived eight years earlier unable to even ask directions.</span><span data-ko="1990년 사라가 태어났습니다. 제 할머니의 이름을 물려받았습니다. 1992년에는 안나가 태어났습니다. 스물다섯 달 터울이었습니다. 서울에서 한 시간 거리에 땅을 사서 가족이 살 시골집을 지었습니다. 여덟 해 전 길 하나 물을 줄도 모르고 도착한 아버지에게서, 두 딸 모두 의정부에서 태어난 한국계 미국인이었습니다." class="block">1990년 사라가 태어났습니다. 제 할머니의 이름을 물려받았습니다. 1992년에는 안나가 태어났습니다. 스물다섯 달 터울이었습니다. 서울에서 한 시간 거리에 땅을 사서 가족이 살 시골집을 지었습니다. 여덟 해 전 길 하나 물을 줄도 모르고 도착한 아버지에게서, 두 딸 모두 의정부에서 태어난 한국계 미국인이었습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Every account must carry a name">Every account must carry a name</span><span data-ko="모든 계좌에 이름을 달다">모든 계좌에 이름을 달다</span></h4>
+        <p><span data-en="Kim Young-sam takes office in February, the first civilian president in over thirty years, elected freely — a third-generation Christian and a ruling elder at Chunghyeon Presbyterian Church in Seoul. On August 12, by emergency decree effective at eight that same evening, every bank account in the country must carry its owner's real name. Until then money could sit in the banking system belonging to nobody — which is what had made slush funds, bribes and hidden wealth possible. Two months to comply. Within two years the concealed funds of two former presidents were traceable, and both were convicted.">Kim Young-sam takes office in February, the first civilian president in over thirty years, elected freely — a third-generation Christian and a ruling elder at Chunghyeon Presbyterian Church in Seoul. On August 12, by emergency decree effective at eight that same evening, every bank account in the country must carry its owner's real name. Until then money could sit in the banking system belonging to nobody — which is what had made slush funds, bribes and hidden wealth possible. Two months to comply. Within two years the concealed funds of two former presidents were traceable, and both were convicted.</span><span data-ko="2월, 30여 년 만에 자유선거로 선출된 첫 문민 대통령 김영삼이 취임합니다. 3대째 신앙을 이어온 집안에서 자란 서울 충현교회 장로였습니다. 8월 12일, 대통령 긴급명령으로 그날 저녁 8시를 기해 모든 금융계좌가 실명을 달게 되었습니다. 그전까지 돈은 주인 없이 금융권에 놓여 있을 수 있었고, 그것이 비자금과 뇌물과 숨은 재산을 가능하게 했습니다. 전환 기간은 두 달이었습니다. 2년 안에 두 전직 대통령의 감춰진 자금이 추적되었고, 두 사람 모두 유죄 판결을 받았습니다." class="block">2월, 30여 년 만에 자유선거로 선출된 첫 문민 대통령 김영삼이 취임합니다. 3대째 신앙을 이어온 집안에서 자란 서울 충현교회 장로였습니다. 8월 12일, 대통령 긴급명령으로 그날 저녁 8시를 기해 모든 금융계좌가 실명을 달게 되었습니다. 그전까지 돈은 주인 없이 금융권에 놓여 있을 수 있었고, 그것이 비자금과 뇌물과 숨은 재산을 가능하게 했습니다. 전환 기간은 두 달이었습니다. 2년 안에 두 전직 대통령의 감춰진 자금이 추적되었고, 두 사람 모두 유죄 판결을 받았습니다.</span></p>
+      </div>
+      <div class="year"><span>1993</span></div>
+      <div class="cell right">
+        <h4><span data-en="Back to USA">Back to USA</span><span data-ko="미국으로 돌아가다">미국으로 돌아가다</span></h4>
+        <p><span data-en="Seminary at Dallas Theological Seminary, 1993–95, finishing with an M.A. Recognized in 1994 with the Student Missions Fellowship Service Award.">Seminary at Dallas Theological Seminary, 1993–95, finishing with an M.A. Recognized in 1994 with the Student Missions Fellowship Service Award.</span><span data-ko="1993–95년 댈러스 신학교에서 공부하고 문학석사 학위를 받았습니다. 1994년에는 학생선교회 봉사상을 받았습니다." class="block">1993–95년 댈러스 신학교에서 공부하고 문학석사 학위를 받았습니다. 1994년에는 학생선교회 봉사상을 받았습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="The year things fell down">The year things fell down</span><span data-ko="무너지던 해">무너지던 해</span></h4>
+        <p><span data-en="Kim Il-sung died that July. In October the Seongsu Bridge dropped into the Han River. The following June a department store collapsed in Seoul. A country that had built very fast was learning what it had built.">Kim Il-sung died that July. In October the Seongsu Bridge dropped into the Han River. The following June a department store collapsed in Seoul. A country that had built very fast was learning what it had built.</span><span data-ko="그해 7월 김일성이 사망했습니다. 10월에는 성수대교가 한강으로 내려앉았습니다. 이듬해 6월에는 서울에서 백화점이 무너졌습니다. 아주 빠르게 지어 올린 나라가 자신이 지은 것의 실체를 배우고 있었습니다." class="block">그해 7월 김일성이 사망했습니다. 10월에는 성수대교가 한강으로 내려앉았습니다. 이듬해 6월에는 서울에서 백화점이 무너졌습니다. 아주 빠르게 지어 올린 나라가 자신이 지은 것의 실체를 배우고 있었습니다.</span></p>
+      </div>
+      <div class="year"><span>1994</span></div>
+      <div class="cell right">
+        <h4><span data-en="The gap">The gap</span><span data-ko="공백">공백</span></h4>
+        <p><span data-en="November 25, the night after Thanksgiving. As an English pastor in a Korean church gymnasium in Dallas, a stage being built to look like a television screen, a stack of black construction paper. I was the tallest. It was my time to go up the ladder — and then there is nothing. Nobody saw me fall. Phil Kim, a college student home for the holiday, found me and called 911. The ambulance drove thirty minutes to find a neurologist on a holiday weekend. The next thing I remember is a hospital room, my wife's face, my daughters.">November 25, the night after Thanksgiving. As an English pastor in a Korean church gymnasium in Dallas, a stage being built to look like a television screen, a stack of black construction paper. I was the tallest. It was my time to go up the ladder — and then there is nothing. Nobody saw me fall. Phil Kim, a college student home for the holiday, found me and called 911. The ambulance drove thirty minutes to find a neurologist on a holiday weekend. The next thing I remember is a hospital room, my wife's face, my daughters.</span><span data-ko="11월 25일, 추수감사절 다음 날 밤이었습니다. 댈러스의 한인교회에서 영어권 목사로 섬기던 때였습니다. 교회 체육관, 텔레비전 화면처럼 보이게 만들던 무대, 검은 도화지 더미. 제가 가장 키가 컸고, 사다리에 올라갈 차례는 저였습니다 — 그리고 그다음은 아무것도 없습니다. 아무도 제가 떨어지는 것을 보지 못했습니다. 연휴에 집에 와 있던 대학생 필 김이 저를 발견하고 911에 신고했습니다. 구급차는 연휴에 신경과 의사가 있는 병원을 찾아 30분을 달렸습니다. 제가 기억하는 다음 장면은 병실, 아내의 얼굴, 그리고 두 딸입니다." class="block">11월 25일, 추수감사절 다음 날 밤이었습니다. 댈러스의 한인교회에서 영어권 목사로 섬기던 때였습니다. 교회 체육관, 텔레비전 화면처럼 보이게 만들던 무대, 검은 도화지 더미. 제가 가장 키가 컸고, 사다리에 올라갈 차례는 저였습니다 — 그리고 그다음은 아무것도 없습니다. 아무도 제가 떨어지는 것을 보지 못했습니다. 연휴에 집에 와 있던 대학생 필 김이 저를 발견하고 911에 신고했습니다. 구급차는 연휴에 신경과 의사가 있는 병원을 찾아 30분을 달렸습니다. 제가 기억하는 다음 장면은 병실, 아내의 얼굴, 그리고 두 딸입니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left"></div>
+      <div class="year"><span>1995</span></div>
+      <div class="cell right">
+        <h4><span data-en="New wiring">New wiring</span><span data-ko="새로운 회로">새로운 회로</span></h4>
+        <p><span data-en="The insurance company decided I was normal and stopped paying for rehabilitation. Normal, not restored. The damage was to the analytical side — the side I had lived in my whole life. What was left was the emotional side that I had underused. I cried at everything: advertisements, songs, children playing. It was so disorienting and embarrassing, and it made me a different kind of husband, father and minister. The accident had brought a new call to be a missionary pastor.">The insurance company decided I was normal and stopped paying for rehabilitation. Normal, not restored. The damage was to the analytical side — the side I had lived in my whole life. What was left was the emotional side that I had underused. I cried at everything: advertisements, songs, children playing. It was so disorienting and embarrassing, and it made me a different kind of husband, father and minister. The accident had brought a new call to be a missionary pastor.</span><span data-ko="보험사는 제가 &lsquo;정상&rsquo;이라고 판정하고 재활 치료비 지급을 중단했습니다. 회복이 아니라 정상이었습니다. 손상된 곳은 분석하는 쪽 — 제가 평생을 살아온 쪽이었습니다. 남은 것은 제가 거의 쓰지 않던 감정의 영역이었습니다. 저는 모든 것에 울었습니다. 광고에도, 노래에도, 노는 아이들을 보면서도. 무척 당황스러웠고 부끄러웠습니다. 그리고 그것이 저를 다른 종류의 남편, 아버지, 목회자로 만들었습니다. 그 사고는 선교사 목회자로 살라는 새로운 부르심을 가져왔습니다." class="block">보험사는 제가 &lsquo;정상&rsquo;이라고 판정하고 재활 치료비 지급을 중단했습니다. 회복이 아니라 정상이었습니다. 손상된 곳은 분석하는 쪽 — 제가 평생을 살아온 쪽이었습니다. 남은 것은 제가 거의 쓰지 않던 감정의 영역이었습니다. 저는 모든 것에 울었습니다. 광고에도, 노래에도, 노는 아이들을 보면서도. 무척 당황스러웠고 부끄러웠습니다. 그리고 그것이 저를 다른 종류의 남편, 아버지, 목회자로 만들었습니다. 그 사고는 선교사 목회자로 살라는 새로운 부르심을 가져왔습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Into the rich countries' club">Into the rich countries' club</span><span data-ko="선진국 클럽으로">선진국 클럽으로</span></h4>
+        <p><span data-en="WTO membership in 1995, OECD accession in 1996. Income per person passed $12,000 — from $1,800 when I landed.">WTO membership in 1995, OECD accession in 1996. Income per person passed $12,000 — from $1,800 when I landed.</span><span data-ko="1995년 WTO, 1996년 OECD 가입. 1인당 국민소득은 1만 2천 달러를 넘었습니다 — 제가 도착했을 때는 1,800달러였습니다." class="block">1995년 WTO, 1996년 OECD 가입. 1인당 국민소득은 1만 2천 달러를 넘었습니다 — 제가 도착했을 때는 1,800달러였습니다.</span></p>
+      </div>
+      <div class="year"><span>1996</span></div>
+      <div class="cell right">
+        <h4><span data-en="Teaching at Hanyang">Teaching at Hanyang</span><span data-ko="한양대 강단">한양대 강단</span></h4>
+        <p><span data-en="Associate Professor at Hanyang University, College of Education, teaching ESL from 1996 to 2002.">Associate Professor at Hanyang University, College of Education, teaching ESL from 1996 to 2002.</span><span data-ko="1996년부터 2002년까지 한양대학교 사범대학 부교수로 영어(ESL)를 가르쳤습니다." class="block">1996년부터 2002년까지 한양대학교 사범대학 부교수로 영어(ESL)를 가르쳤습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="The IMF crisis">The IMF crisis</span><span data-ko="외환위기">외환위기</span></h4>
+        <p><span data-en="1997. The currency collapsed, companies failed, and a country that had climbed for thirty-five years was restructured almost overnight. Koreans still call it simply &ldquo;the IMF.&rdquo;">1997. The currency collapsed, companies failed, and a country that had climbed for thirty-five years was restructured almost overnight. Koreans still call it simply &ldquo;the IMF.&rdquo;</span><span data-ko="1997년. 통화는 무너졌고 기업들이 쓰러졌으며, 35년을 올라온 나라가 하룻밤 사이에 구조조정되었습니다. 한국인들은 지금도 그저 &lsquo;아이엠에프&rsquo;라고 부릅니다." class="block">1997년. 통화는 무너졌고 기업들이 쓰러졌으며, 35년을 올라온 나라가 하룻밤 사이에 구조조정되었습니다. 한국인들은 지금도 그저 &lsquo;아이엠에프&rsquo;라고 부릅니다.</span></p>
+      </div>
+      <div class="year"><span>1997</span></div>
+      <div class="cell right">
+        <h4><span data-en="Translating at Youngnak">Translating at Youngnak</span><span data-ko="영락교회에서 통역하다">영락교회에서 통역하다</span></h4>
+        <p><span data-en="The house we had built was too far from Seoul for the girls' school, and then the financial crisis arrived and Korea faced bankruptcy. That same year I began translating again at Youngnak Church, and shared a dream with the senior pastor: that two languages could worship at the same church, not as guests in each other's spaces but as members of the same church family. The International Worship in English (IWE) grew out of that conversation.">The house we had built was too far from Seoul for the girls' school, and then the financial crisis arrived and Korea faced bankruptcy. That same year I began translating again at Youngnak Church, and shared a dream with the senior pastor: that two languages could worship at the same church, not as guests in each other's spaces but as members of the same church family. The International Worship in English (IWE) grew out of that conversation.</span><span data-ko="우리가 지은 집은 아이들 학교에서 너무 멀었고, 곧이어 외환위기가 닥쳐 나라가 부도 위기에 몰렸습니다. 같은 해 저는 영락교회에서 다시 통역을 시작했고, 담임목사님께 한 가지 꿈을 나누었습니다. 두 언어가 같은 교회에서, 서로의 자리에 손님으로가 아니라 한 교회 가족으로 함께 예배할 수 있다는 꿈이었습니다. 국제영어예배(IWE)는 그 대화에서 자라났습니다." class="block">우리가 지은 집은 아이들 학교에서 너무 멀었고, 곧이어 외환위기가 닥쳐 나라가 부도 위기에 몰렸습니다. 같은 해 저는 영락교회에서 다시 통역을 시작했고, 담임목사님께 한 가지 꿈을 나누었습니다. 두 언어가 같은 교회에서, 서로의 자리에 손님으로가 아니라 한 교회 가족으로 함께 예배할 수 있다는 꿈이었습니다. 국제영어예배(IWE)는 그 대화에서 자라났습니다.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull">
+    <p><span data-en="&ldquo;The deportation that felt like rejection had been language school in disguise. The orphanages that felt like detours had been family formation. The ladder accident that felt like an ending had been a rewiring.&rdquo;">&ldquo;The deportation that felt like rejection had been language school in disguise. The orphanages that felt like detours had been family formation. The ladder accident that felt like an ending had been a rewiring.&rdquo;</span><span data-ko="&ldquo;거절처럼 느껴졌던 추방은 위장한 어학연수였다. 돌아가는 길처럼 느껴졌던 고아원은 가정을 이루는 과정이었다. 끝처럼 느껴졌던 사다리 사고는 회로를 새로 놓는 일이었다.&rdquo;" class="block">&ldquo;거절처럼 느껴졌던 추방은 위장한 어학연수였다. 돌아가는 길처럼 느껴졌던 고아원은 가정을 이루는 과정이었다. 끝처럼 느껴졌던 사다리 사고는 회로를 새로 놓는 일이었다.&rdquo;</span></p>
+    <div class="attrib"><span data-en="The Half Apple">The Half Apple</span><span data-ko="반쪽 사과">반쪽 사과</span></div>
+  </div>
+</section>
+
+<!-- ===== 40s ===== -->
+<section class="decade" id="d40">
+  <div class="decade-head">
+    <div class="decade-age"><span data-en="My Forties">My Forties</span><span data-ko="마흔의 시절">마흔의 시절</span></div>
+    <div class="decade-years">2000 &ndash; 2009</div>
+    <p class="decade-intro">
+      <span data-en="Korea recovered, hosted a World Cup, and swung between summit handshakes and naval gunfire. I spent the decade building a church within a church for people who did not speak Korean.">Korea recovered, hosted a World Cup, and swung between summit handshakes and naval gunfire. I spent the decade building a church within a church for people who did not speak Korean.</span>
+      <span data-ko="대한민국은 회복했고 월드컵을 열었으며, 정상회담의 악수와 서해의 총성 사이를 오갔습니다. 저는 그 10년을 한국어를 못하는 이들을 위한 교회 안의 교회를 세우며 보냈습니다." class="block">대한민국은 회복했고 월드컵을 열었으며, 정상회담의 악수와 서해의 총성 사이를 오갔습니다. 저는 그 10년을 한국어를 못하는 이들을 위한 교회 안의 교회를 세우며 보냈습니다.</span>
+    </p>
+  </div>
+
+  <div class="spine">
+    <div class="spine-head">
+      <div class="lbl left"><span data-en="Korea">Korea</span><span data-ko="대한민국">대한민국</span></div>
+      <div></div>
+      <div class="lbl right"><span data-en="Bill">Bill</span><span data-ko="빌">빌</span></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="The first summit">The first summit</span><span data-ko="첫 남북정상회담">첫 남북정상회담</span></h4>
+        <p><span data-en="June 2000 — the first meeting between the leaders of North and South, and the June 15 Joint Declaration.">June 2000 — the first meeting between the leaders of North and South, and the June 15 Joint Declaration.</span><span data-ko="2000년 6월 — 남북 정상이 처음으로 만났고, 6·15 남북공동선언이 발표되었습니다." class="block">2000년 6월 — 남북 정상이 처음으로 만났고, 6·15 남북공동선언이 발표되었습니다.</span></p>
+      </div>
+      <div class="year"><span>2000</span></div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="World Cup, and the West Sea">World Cup, and the West Sea</span><span data-ko="월드컵, 그리고 서해">월드컵, 그리고 서해</span></h4>
+        <p><span data-en="2002 — Korea reached the semi-finals and the whole country turned red. In the same month, the Second Battle of Yeonpyeong killed six sailors.">2002 — Korea reached the semi-finals and the whole country turned red. In the same month, the Second Battle of Yeonpyeong killed six sailors.</span><span data-ko="2002년 — 한국은 4강에 올랐고 온 나라가 붉게 물들었습니다. 같은 달, 제2연평해전으로 여섯 명의 장병이 전사했습니다." class="block">2002년 — 한국은 4강에 올랐고 온 나라가 붉게 물들었습니다. 같은 달, 제2연평해전으로 여섯 명의 장병이 전사했습니다.</span></p>
+      </div>
+      <div class="year"><span>2002</span></div>
+      <div class="cell right">
+        <h4><span data-en="Leaving the lectern">Leaving the lectern</span><span data-ko="강단을 떠나며">강단을 떠나며</span></h4>
+        <p><span data-en="Six years of teaching at Hanyang came to an end, and full-time ministry at Youngnak became what being a missionary pastor was all about. Sarah and Anna started attending Seoul Foreign School in 7th and 5th grade.">Six years of teaching at Hanyang came to an end, and full-time ministry at Youngnak became what being a missionary pastor was all about. Sarah and Anna started attending Seoul Foreign School in 7th and 5th grade.</span><span data-ko="한양대에서의 6년이 끝나고, 영락교회 전임 사역이 선교사 목회자로 산다는 것의 전부가 되었습니다. 사라와 안나는 서울외국인학교 7학년과 5학년으로 입학했습니다." class="block">한양대에서의 6년이 끝나고, 영락교회 전임 사역이 선교사 목회자로 산다는 것의 전부가 되었습니다. 사라와 안나는 서울외국인학교 7학년과 5학년으로 입학했습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="A city of ten million">A city of ten million</span><span data-ko="천만의 도시">천만의 도시</span></h4>
+        <p><span data-en="Seoul in the mid-2000s had become one of the world's great cities — and had begun to think of itself as one.">Seoul in the mid-2000s had become one of the world's great cities — and had begun to think of itself as one.</span><span data-ko="2000년대 중반의 서울은 세계적인 도시가 되어 있었고, 스스로도 그렇게 여기기 시작했습니다." class="block">2000년대 중반의 서울은 세계적인 도시가 되어 있었고, 스스로도 그렇게 여기기 시작했습니다.</span></p>
+      </div>
+      <div class="year"><span>2005</span></div>
+      <div class="cell right">
+        <h4><span data-en="Honorary Citizen of Seoul">Honorary Citizen of Seoul</span><span data-ko="서울 명예시민">서울 명예시민</span></h4>
+        <p><span data-en="Awarded Honorary Citizenship of Seoul by Mayor Lee Myung-bak — twenty-three years after arriving unable to speak a word of the language.">Awarded Honorary Citizenship of Seoul by Mayor Lee Myung-bak — twenty-three years after arriving unable to speak a word of the language.</span><span data-ko="이명박 서울시장으로부터 서울 명예시민증을 받았습니다 — 한국어를 한마디도 못한 채 도착한 지 23년 만이었습니다." class="block">이명박 서울시장으로부터 서울 명예시민증을 받았습니다 — 한국어를 한마디도 못한 채 도착한 지 23년 만이었습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="The nuclear turn">The nuclear turn</span><span data-ko="핵으로 가는 길">핵으로 가는 길</span></h4>
+        <p><span data-en="North Korea's first nuclear test in 2006. A second summit and the October 4 Declaration in 2007. In 2008 a South Korean tourist was shot dead at Mount Kumgang, and the exchanges froze.">North Korea's first nuclear test in 2006. A second summit and the October 4 Declaration in 2007. In 2008 a South Korean tourist was shot dead at Mount Kumgang, and the exchanges froze.</span><span data-ko="2006년 북한의 1차 핵실험. 2007년 두 번째 정상회담과 10·4 선언. 2008년 금강산에서 남측 관광객이 피격 사망하면서 교류는 얼어붙었습니다." class="block">2006년 북한의 1차 핵실험. 2007년 두 번째 정상회담과 10·4 선언. 2008년 금강산에서 남측 관광객이 피격 사망하면서 교류는 얼어붙었습니다.</span></p>
+      </div>
+      <div class="year"><span>2007</span></div>
+      <div class="cell right">
+        <h4><span data-en="Seoul Foreign School">Seoul Foreign School</span><span data-ko="서울외국인학교">서울외국인학교</span></h4>
+        <p><span data-en="Elected to the Board of Trustees, serving as Secretary — the beginning of fourteen years of volunteer service: eight years on the board, then six as chair of the SFS Foundation.">Elected to the Board of Trustees, serving as Secretary — the beginning of fourteen years of volunteer service: eight years on the board, then six as chair of the SFS Foundation.</span><span data-ko="이사회 이사 및 서기로 선출되었습니다 — 14년 자원봉사의 시작이었습니다. 이사로 8년, 이어서 SFS 재단 이사장으로 6년을 섬겼습니다." class="block">이사회 이사 및 서기로 선출되었습니다 — 14년 자원봉사의 시작이었습니다. 이사로 8년, 이어서 SFS 재단 이사장으로 6년을 섬겼습니다.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 50s ===== -->
+<section class="decade" id="d50">
+  <div class="decade-head">
+    <div class="decade-age"><span data-en="My Fifties">My Fifties</span><span data-ko="쉰의 시절">쉰의 시절</span></div>
+    <div class="decade-years">2010 &ndash; 2019</div>
+    <p class="decade-intro">
+      <span data-en="The decade Korea stopped being my mission field and became my country. It was also the decade I went furthest away in order to come back better prepared.">The decade Korea stopped being my mission field and became my country. It was also the decade I went furthest away in order to come back better prepared.</span>
+      <span data-ko="한국이 저의 선교지가 아니라 저의 나라가 된 10년입니다. 동시에 더 잘 준비되어 돌아오기 위해 가장 멀리 떠났던 10년이기도 합니다." class="block">한국이 저의 선교지가 아니라 저의 나라가 된 10년입니다. 동시에 더 잘 준비되어 돌아오기 위해 가장 멀리 떠났던 10년이기도 합니다.</span>
+    </p>
+  </div>
+
+  <div class="spine">
+    <div class="spine-head">
+      <div class="lbl left"><span data-en="Korea">Korea</span><span data-ko="대한민국">대한민국</span></div>
+      <div></div>
+      <div class="lbl right"><span data-en="Bill">Bill</span><span data-ko="빌">빌</span></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Cheonan and Yeonpyeong">Cheonan and Yeonpyeong</span><span data-ko="천안함과 연평도">천안함과 연평도</span></h4>
+        <p><span data-en="2010 — the corvette Cheonan sank with 46 lost, and Yeonpyeong Island was shelled in November. The worst year on the peninsula in decades.">2010 — the corvette Cheonan sank with 46 lost, and Yeonpyeong Island was shelled in November. The worst year on the peninsula in decades.</span><span data-ko="2010년 — 천안함이 침몰해 46명이 희생되었고, 11월에는 연평도가 포격당했습니다. 수십 년 만에 가장 참혹한 해였습니다." class="block">2010년 — 천안함이 침몰해 46명이 희생되었고, 11월에는 연평도가 포격당했습니다. 수십 년 만에 가장 참혹한 해였습니다.</span></p>
+      </div>
+      <div class="year"><span>2010</span></div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left"></div>
+      <div class="year"><span>2012</span></div>
+      <div class="cell right">
+        <h4><span data-en="Korean citizenship">Korean citizenship</span><span data-ko="한국 국적 취득">한국 국적 취득</span></h4>
+        <p><span data-en="Thirty years after arriving, I became a citizen of the Republic of Korea while remaining an American. Korea was no longer where I served. It was where I was from.">Thirty years after arriving, I became a citizen of the Republic of Korea while remaining an American. Korea was no longer where I served. It was where I was from.</span><span data-ko="도착한 지 30년 만에, 미국 국적을 유지한 채 대한민국 국민이 되었습니다. 한국은 더 이상 제가 섬기는 곳이 아니라, 제가 속한 곳이었습니다." class="block">도착한 지 30년 만에, 미국 국적을 유지한 채 대한민국 국민이 되었습니다. 한국은 더 이상 제가 섬기는 곳이 아니라, 제가 속한 곳이었습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left"></div>
+      <div class="year"><span>2013</span></div>
+      <div class="cell right">
+        <h4><span data-en="Chaplaincy at MD Anderson">Chaplaincy at MD Anderson</span><span data-ko="MD 앤더슨 원목 사역">MD 앤더슨 원목 사역</span></h4>
+        <p><span data-en="Clinical Pastoral Education — four units in twelve months — at MD Anderson Cancer Center in Houston, ministry in the hardest of places. Attending and sometimes preaching in Korean on Sundays at Calvary Korean Baptist Church.">Clinical Pastoral Education — four units in twelve months — at MD Anderson Cancer Center in Houston, ministry in the hardest of places. Attending and sometimes preaching in Korean on Sundays at Calvary Korean Baptist Church.</span><span data-ko="휴스턴 MD 앤더슨 암센터에서 임상목회교육(CPE) 4단위를 12개월에 이수했습니다 — 가장 힘든 자리에서의 사역이었습니다. 주일에는 갈보리 한인침례교회에 출석하며 때때로 한국어로 설교했습니다." class="block">휴스턴 MD 앤더슨 암센터에서 임상목회교육(CPE) 4단위를 12개월에 이수했습니다 — 가장 힘든 자리에서의 사역이었습니다. 주일에는 갈보리 한인침례교회에 출석하며 때때로 한국어로 설교했습니다.</span></p>
+        <div class="vid"><iframe src="https://www.youtube.com/embed/MbxLJfAAZZU" title="Korean Sermon Houston" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="vid-cap"><span data-en="Watch: preaching in Korean at Calvary Korean Baptist Church, Houston.">Watch: preaching in Korean at Calvary Korean Baptist Church, Houston.</span><span data-ko="영상: 휴스턴 갈보리 한인침례교회에서의 한국어 설교." class="block">영상: 휴스턴 갈보리 한인침례교회에서의 한국어 설교.</span></div></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Kaesong closes">Kaesong closes</span><span data-ko="개성공단 폐쇄">개성공단 폐쇄</span></h4>
+        <p><span data-en="The joint industrial complex, the last working link between North and South, was shut down in 2016.">The joint industrial complex, the last working link between North and South, was shut down in 2016.</span><span data-ko="남북을 잇던 마지막 실질적 통로였던 개성공단이 2016년 문을 닫았습니다." class="block">남북을 잇던 마지막 실질적 통로였던 개성공단이 2016년 문을 닫았습니다.</span></p>
+      </div>
+      <div class="year"><span>2015</span></div>
+      <div class="cell right">
+        <h4><span data-en="Doctor of Ministry">Doctor of Ministry</span><span data-ko="목회학 박사">목회학 박사</span></h4>
+        <p><span data-en="D.Min. from Talbot School of Theology, Biola University. Lead Pastor at Somang Church's English Worship Service (EWS), 2015–2017, then at Sinchon Church International Community (SCIC), 2017–2025.">D.Min. from Talbot School of Theology, Biola University. Lead Pastor at Somang Church's English Worship Service (EWS), 2015–2017, then at Sinchon Church International Community (SCIC), 2017–2025.</span><span data-ko="바이올라대학교 탈봇신학교에서 목회학 박사학위를 받았습니다. 2015–2017년 소망교회 영어예배(EWS) 담임목사, 2017년부터 2025년까지는 신촌교회 국제공동체(SCIC)에서 섬겼습니다." class="block">바이올라대학교 탈봇신학교에서 목회학 박사학위를 받았습니다. 2015–2017년 소망교회 영어예배(EWS) 담임목사, 2017년부터 2025년까지는 신촌교회 국제공동체(SCIC)에서 섬겼습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Panmunjom">Panmunjom</span><span data-ko="판문점">판문점</span></h4>
+        <p><span data-en="April 2018 — the two leaders stepped across the line together. By the Hanoi summit of 2019 the opening had closed again.">April 2018 — the two leaders stepped across the line together. By the Hanoi summit of 2019 the opening had closed again.</span><span data-ko="2018년 4월 — 두 정상이 함께 군사분계선을 넘었습니다. 2019년 하노이 회담에 이르러 그 문은 다시 닫혔습니다." class="block">2018년 4월 — 두 정상이 함께 군사분계선을 넘었습니다. 2019년 하노이 회담에 이르러 그 문은 다시 닫혔습니다.</span></p>
+      </div>
+      <div class="year"><span>2019</span></div>
+      <div class="cell right">
+        <h4><span data-en="The Foundation">The Foundation</span><span data-ko="재단 설립">재단 설립</span></h4>
+        <p><span data-en="CrossCulture Community Foundation registered as a 501(c)(3) in Texas — thirty-seven years of ministry given a formal shape.">CrossCulture Community Foundation registered as a 501(c)(3) in Texas — thirty-seven years of ministry given a formal shape.</span><span data-ko="크로스컬처 커뮤니티 파운데이션이 텍사스주 501(c)(3) 재단으로 등록되었습니다 — 37년 사역이 공식적인 틀을 갖춘 것입니다." class="block">크로스컬처 커뮤니티 파운데이션이 텍사스주 501(c)(3) 재단으로 등록되었습니다 — 37년 사역이 공식적인 틀을 갖춘 것입니다.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 60s ===== -->
+<section class="decade" id="d60">
+  <div class="decade-head">
+    <div class="decade-age"><span data-en="My Sixties">My Sixties</span><span data-ko="예순의 시절">예순의 시절</span></div>
+    <div class="decade-years">2020 &ndash; <span data-en="present">present</span><span data-ko="현재">현재</span></div>
+    <p class="decade-intro">
+      <span data-en="A pandemic, and then something I never expected to see in the Korea I had watched become a democracy: martial law declared again, at midnight, in December.">A pandemic, and then something I never expected to see in the Korea I had watched become a democracy: martial law declared again, at midnight, in December.</span>
+      <span data-ko="팬데믹, 그리고 민주화되어 가는 것을 지켜본 이 나라에서 다시 보리라 예상하지 못했던 일 — 12월의 한밤중에 선포된 계엄." class="block">팬데믹, 그리고 민주화되어 가는 것을 지켜본 이 나라에서 다시 보리라 예상하지 못했던 일 — 12월의 한밤중에 선포된 계엄.</span>
+    </p>
+  </div>
+
+  <div class="spine">
+    <div class="spine-head">
+      <div class="lbl left"><span data-en="Korea">Korea</span><span data-ko="대한민국">대한민국</span></div>
+      <div></div>
+      <div class="lbl right"><span data-en="Bill">Bill</span><span data-ko="빌">빌</span></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="Pandemic">Pandemic</span><span data-ko="팬데믹">팬데믹</span></h4>
+        <p><span data-en="Korea's response drew the world's attention: QR check-in everywhere, and tracing that could reconstruct where you had been. From November 2021 a vaccine pass was required to enter bars and gyms, extended in December to restaurants, cafes, cinemas, libraries and study rooms. Vaccination was never made law, but without the pass there was almost nowhere left to go. The courts struck the system down piece by piece, and it was dropped nationwide on March 1, 2022. That October, 159 people died in a crowd crush in Itaewon.">Korea's response drew the world's attention: QR check-in everywhere, and tracing that could reconstruct where you had been. From November 2021 a vaccine pass was required to enter bars and gyms, extended in December to restaurants, cafes, cinemas, libraries and study rooms. Vaccination was never made law, but without the pass there was almost nowhere left to go. The courts struck the system down piece by piece, and it was dropped nationwide on March 1, 2022. That October, 159 people died in a crowd crush in Itaewon.</span><span data-ko="한국의 방역은 세계의 주목을 받았습니다. 어디서나 QR 체크인을 했고, 동선이 재구성될 수 있었습니다. 2021년 11월부터는 유흥시설과 실내체육시설에 방역패스가 필요했고, 12월에는 식당, 카페, 영화관, 도서관, 독서실까지 확대되었습니다. 접종이 법으로 강제된 적은 없지만, 패스가 없으면 갈 수 있는 곳이 거의 남지 않았습니다. 법원이 하나씩 효력을 정지시켰고, 2022년 3월 1일 전국적으로 중단되었습니다. 그해 10월, 이태원 참사로 159명이 목숨을 잃었습니다." class="block">한국의 방역은 세계의 주목을 받았습니다. 어디서나 QR 체크인을 했고, 동선이 재구성될 수 있었습니다. 2021년 11월부터는 유흥시설과 실내체육시설에 방역패스가 필요했고, 12월에는 식당, 카페, 영화관, 도서관, 독서실까지 확대되었습니다. 접종이 법으로 강제된 적은 없지만, 패스가 없으면 갈 수 있는 곳이 거의 남지 않았습니다. 법원이 하나씩 효력을 정지시켰고, 2022년 3월 1일 전국적으로 중단되었습니다. 그해 10월, 이태원 참사로 159명이 목숨을 잃었습니다.</span></p>
+      </div>
+      <div class="year"><span>2020</span></div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="row">
+      <div class="cell left"></div>
+      <div class="year"><span>2023</span></div>
+      <div class="cell right">
+        <h4><span data-en="Two is too many">Two is too many</span><span data-ko="둘도 많다">둘도 많다</span></h4>
+        <p><span data-en="When I arrived in 1982 the government was running a campaign, and the slogan was simple: two is too many. Families were urged to have one child, at most two. It worked. By 2023 the birth rate had fallen to 0.7, among the lowest on earth, and the government that once said two is too many now cannot find the people it needs. I went to a contemporary history museum in Seoul in 2023 and found an exhibit about that campaign. The tone was not pride. It was regret.">When I arrived in 1982 the government was running a campaign, and the slogan was simple: two is too many. Families were urged to have one child, at most two. It worked. By 2023 the birth rate had fallen to 0.7, among the lowest on earth, and the government that once said two is too many now cannot find the people it needs. I went to a contemporary history museum in Seoul in 2023 and found an exhibit about that campaign. The tone was not pride. It was regret.</span><span data-ko="1982년 제가 도착했을 때 정부는 한 가지 캠페인을 벌이고 있었습니다. 구호는 간단했습니다 — 둘도 많다. 가정마다 하나, 많아야 둘을 낳으라는 것이었습니다. 그리고 그대로 되었습니다. 2023년 출산율은 0.7까지 떨어져 세계 최저 수준이 되었고, 한때 둘도 많다고 했던 정부는 이제 필요한 사람을 찾지 못하고 있습니다. 2023년 저는 서울의 한 현대사 박물관에서 그 캠페인에 관한 전시를 보았습니다. 어조는 자랑이 아니었습니다. 후회였습니다." class="block">1982년 제가 도착했을 때 정부는 한 가지 캠페인을 벌이고 있었습니다. 구호는 간단했습니다 — 둘도 많다. 가정마다 하나, 많아야 둘을 낳으라는 것이었습니다. 그리고 그대로 되었습니다. 2023년 출산율은 0.7까지 떨어져 세계 최저 수준이 되었고, 한때 둘도 많다고 했던 정부는 이제 필요한 사람을 찾지 못하고 있습니다. 2023년 저는 서울의 한 현대사 박물관에서 그 캠페인에 관한 전시를 보았습니다. 어조는 자랑이 아니었습니다. 후회였습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left">
+        <h4><span data-en="Martial law, and six hours">Martial law, and six hours</span><span data-ko="계엄, 그리고 여섯 시간">계엄, 그리고 여섯 시간</span></h4>
+        <p><span data-en="December 3, 2024 — martial law was declared. 190 lawmakers forced their way into the National Assembly and voted it down. It was lifted within six hours. On December 14 the president was impeached, 204 to 85, and removed by the Constitutional Court on April 4, 2025.">December 3, 2024 — martial law was declared. 190 lawmakers forced their way into the National Assembly and voted it down. It was lifted within six hours. On December 14 the president was impeached, 204 to 85, and removed by the Constitutional Court on April 4, 2025.</span><span data-ko="2024년 12월 3일 — 계엄이 선포되었습니다. 190명의 국회의원이 국회로 들어가 이를 부결시켰고, 여섯 시간 만에 해제되었습니다. 12월 14일 대통령은 204대 85로 탄핵소추되었고, 2025년 4월 4일 헌법재판소가 파면을 결정했습니다." class="block">2024년 12월 3일 — 계엄이 선포되었습니다. 190명의 국회의원이 국회로 들어가 이를 부결시켰고, 여섯 시간 만에 해제되었습니다. 12월 14일 대통령은 204대 85로 탄핵소추되었고, 2025년 4월 4일 헌법재판소가 파면을 결정했습니다.</span></p>
+      </div>
+      <div class="year"><span>2024</span></div>
+      <div class="cell right">
+        <h4><span data-en="Forty-two years on">Forty-two years on</span><span data-ko="42년 뒤">42년 뒤</span></h4>
+        <p><span data-en="I came to a country under military government and watched it become a democracy. That December I watched the word return — and watched the country refuse it before morning. The difference between 1980 and 2024 is the whole story of the decades on this page.">I came to a country under military government and watched it become a democracy. That December I watched the word return — and watched the country refuse it before morning. The difference between 1980 and 2024 is the whole story of the decades on this page.</span><span data-ko="저는 군사정권 아래 있던 나라에 와서 그 나라가 민주주의가 되는 것을 지켜보았습니다. 그해 12월, 저는 그 단어가 되돌아오는 것을 보았고 — 날이 밝기도 전에 나라가 그것을 거부하는 것을 보았습니다. 1980년과 2024년의 차이가 이 페이지에 담긴 모든 세월의 이야기입니다." class="block">저는 군사정권 아래 있던 나라에 와서 그 나라가 민주주의가 되는 것을 지켜보았습니다. 그해 12월, 저는 그 단어가 되돌아오는 것을 보았고 — 날이 밝기도 전에 나라가 그것을 거부하는 것을 보았습니다. 1980년과 2024년의 차이가 이 페이지에 담긴 모든 세월의 이야기입니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell left">
+        <h4><span data-en="A new president">A new president</span><span data-ko="새 대통령">새 대통령</span></h4>
+        <p><span data-en="Lee Jae-myung was elected on June 3, 2025 and sworn in the following morning. In the local elections of June 2026, turnout reached 61 percent.">Lee Jae-myung was elected on June 3, 2025 and sworn in the following morning. In the local elections of June 2026, turnout reached 61 percent.</span><span data-ko="2025년 6월 3일 이재명 대통령이 당선되어 이튿날 아침 취임했습니다. 2026년 6월 지방선거의 투표율은 61%에 이르렀습니다." class="block">2025년 6월 3일 이재명 대통령이 당선되어 이튿날 아침 취임했습니다. 2026년 6월 지방선거의 투표율은 61%에 이르렀습니다.</span></p>
+      </div>
+      <div class="year"><span>2025</span></div>
+      <div class="cell right">
+        <h4><span data-en="Sixty-five, and a full-time missionary again">Sixty-five, and a full-time missionary again</span><span data-ko="예순다섯, 다시 전임 선교사로">예순다섯, 다시 전임 선교사로</span></h4>
+        <p><span data-en="I turned 65 in November and completed a planned transition out of Sinchon Church International Community (SCIC) after eight years as pastor. That same year I won two national senior citizen doubles tennis titles and was promoted to the Gold League.">I turned 65 in November and completed a planned transition out of Sinchon Church International Community (SCIC) after eight years as pastor. That same year I won two national senior citizen doubles tennis titles and was promoted to the Gold League.</span><span data-ko="11월에 예순다섯이 되었고, 8년간 담임으로 섬긴 신촌교회 국제공동체(SCIC)에서의 사역을 계획대로 마무리했습니다. 같은 해 전국 시니어 복식 테니스 대회에서 두 개의 우승을 하며 골드리그로 승급했습니다." class="block">11월에 예순다섯이 되었고, 8년간 담임으로 섬긴 신촌교회 국제공동체(SCIC)에서의 사역을 계획대로 마무리했습니다. 같은 해 전국 시니어 복식 테니스 대회에서 두 개의 우승을 하며 골드리그로 승급했습니다.</span></p>
+      </div>
+    </div>
+
+    <div class="row converge">
+      <div class="cell left"></div>
+      <div class="year"><span>2026</span></div>
+      <div class="cell right">
+        <h4><span data-en="CrossCulture Community, and the book">CrossCulture Community, and the book</span><span data-ko="크로스컬처 커뮤니티, 그리고 책">크로스컬처 커뮤니티, 그리고 책</span></h4>
+        <p><span data-en="CrossCulture Community (크로스컬처 커뮤니티) was established in Seoul in March. The Half Apple was finished and released in April. And the Museum of the Bible Korea — a virtual museum now, a physical one in Seoul one day — became the work ahead.">CrossCulture Community (크로스컬처 커뮤니티) was established in Seoul in March. The Half Apple was finished and released in April. And the Museum of the Bible Korea — a virtual museum now, a physical one in Seoul one day — became the work ahead.</span><span data-ko="3월에 크로스컬처 커뮤니티가 서울에 설립되었습니다. 4월에는 『반쪽 사과』를 완성해 출간했습니다. 그리고 성경박물관 코리아 — 지금은 가상 박물관이지만 언젠가 서울에 세워질 박물관 — 가 앞으로의 일이 되었습니다." class="block">3월에 크로스컬처 커뮤니티가 서울에 설립되었습니다. 4월에는 『반쪽 사과』를 완성해 출간했습니다. 그리고 성경박물관 코리아 — 지금은 가상 박물관이지만 언젠가 서울에 세워질 박물관 — 가 앞으로의 일이 되었습니다.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull">
+    <p><span data-en="&ldquo;I arrived in a Korea that feared too many people. I am writing these words in a Korea that fears too few.&rdquo;">&ldquo;I arrived in a Korea that feared too many people. I am writing these words in a Korea that fears too few.&rdquo;</span><span data-ko="&ldquo;나는 사람이 너무 많을까 두려워하던 대한민국에 도착했다. 그리고 지금, 사람이 너무 적을까 두려워하는 대한민국에서 이 글을 쓰고 있다.&rdquo;" class="block">&ldquo;나는 사람이 너무 많을까 두려워하던 대한민국에 도착했다. 그리고 지금, 사람이 너무 적을까 두려워하는 대한민국에서 이 글을 쓰고 있다.&rdquo;</span></p>
+    <div class="attrib"><span data-en="The Half Apple">The Half Apple</span><span data-ko="반쪽 사과">반쪽 사과</span></div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="closing-inner">
+    <div class="eyebrow"><span data-en="Still here">Still here</span><span data-ko="여전히 이곳에">여전히 이곳에</span></div>
+    <h2><span data-en="Who am I, and where does Korea end?">Who am I, and where does Korea end?</span><span data-ko="나는 누구이고, 대한민국의 경계는 어디까지인가?">나는 누구이고, 대한민국의 경계는 어디까지인가?</span></h2>
+    <p><span data-en="The National Museum of Korean Contemporary History ends its permanent exhibition on that question. I have spent forty-four years inside the answer without ever settling it.">The National Museum of Korean Contemporary History ends its permanent exhibition on that question. I have spent forty-four years inside the answer without ever settling it.</span><span data-ko="대한민국역사박물관은 상설전시를 이 질문으로 마칩니다. 저는 44년을 그 답 안에서 살았지만 아직 답을 내리지 못했습니다." class="block">대한민국역사박물관은 상설전시를 이 질문으로 마칩니다. 저는 44년을 그 답 안에서 살았지만 아직 답을 내리지 못했습니다.</span></p>
+    <p><span data-en="I look like a boy from Oklahoma. I hold two passports. I arrived unable to say good morning, and I have preached, taught, and interpreted in this language for most of my adult life. I came as a guest of one family of six, and became the seventh.">I look like a boy from Oklahoma. I hold two passports. I arrived unable to say good morning, and I have preached, taught, and interpreted in this language for most of my adult life. I came as a guest of one family of six, and became the seventh.</span><span data-ko="저는 오클라호마 소년처럼 보입니다. 두 개의 여권을 가지고 있습니다. 아침 인사조차 못한 채 도착했지만, 성인의 삶 대부분을 이 언어로 설교하고 가르치고 통역하며 살았습니다. 여섯 식구의 손님으로 와서 일곱 번째 식구가 되었습니다." class="block">저는 오클라호마 소년처럼 보입니다. 두 개의 여권을 가지고 있습니다. 아침 인사조차 못한 채 도착했지만, 성인의 삶 대부분을 이 언어로 설교하고 가르치고 통역하며 살았습니다. 여섯 식구의 손님으로 와서 일곱 번째 식구가 되었습니다.</span></p>
+  </div>
+</section>
+
+<footer>
+  <div>&copy; 2026 Bill R. Majors &middot; CrossCulture Community Foundation</div>
+  <div><a href="https://www.billmajors.com">billmajors.com</a> &middot; <a href="https://www.crossculture-community.com">crossculture-community.com</a></div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('ko', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  }
+</script>
+
+</body>
+</html>
