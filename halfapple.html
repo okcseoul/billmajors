@@ -810,11 +810,42 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     else if (!menu.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
   });
+  function shouldSkipLangParam(href) {
+    if (!href || href.charAt(0) === '#') return true;
+    if (/^https?:\/\//i.test(href) || /^(mailto|tel|sms):/i.test(href)) return true;
+    var pathPart = href.split(/[?#]/)[0];
+    if (/\.[a-z0-9]{2,5}$/i.test(pathPart) && !/\.html?$/i.test(pathPart)) return true;
+    return false;
+  }
+  function withLangParam(href, lang) {
+    if (shouldSkipLangParam(href)) return href;
+    var hashIdx = href.indexOf('#');
+    var base = hashIdx === -1 ? href : href.slice(0, hashIdx);
+    var hash = hashIdx === -1 ? '' : href.slice(hashIdx);
+    var qIdx = base.indexOf('?');
+    var path = qIdx === -1 ? base : base.slice(0, qIdx);
+    var qs = qIdx === -1 ? '' : base.slice(qIdx + 1);
+    var params = new URLSearchParams(qs);
+    params.set('lang', lang);
+    return path + '?' + params.toString() + hash;
+  }
+  function updateNavLangLinks(lang) {
+    var links = document.querySelectorAll('nav a[href], #mobile-menu a[href]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].setAttribute('href', withLangParam(links[i].getAttribute('href'), lang));
+    }
+  }
+  function getInitialLang() {
+    var v = new URLSearchParams(window.location.search).get('lang');
+    return (v === 'ko' || v === 'en') ? v : 'en';
+  }
   function setLang(lang) {
     document.body.classList.toggle('ko', lang === 'ko');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    updateNavLangLinks(lang);
   }
+  setLang(getInitialLang());
 </script>
 
 </body>

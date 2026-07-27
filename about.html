@@ -164,7 +164,7 @@
       <button class="lang-btn active" id="btn-en">EN</button>
       <button class="lang-btn" id="btn-ko">한국어</button>
     </div>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -299,6 +299,36 @@ That young man was Bill Ray Majors — and what he was waiting for, without know
 (function() {
   var lang = 'en';
 
+  function shouldSkipLangParam(href) {
+    if (!href || href.charAt(0) === '#') return true;
+    if (/^https?:\/\//i.test(href) || /^(mailto|tel|sms):/i.test(href)) return true;
+    var pathPart = href.split(/[?#]/)[0];
+    if (/\.[a-z0-9]{2,5}$/i.test(pathPart) && !/\.html?$/i.test(pathPart)) return true;
+    return false;
+  }
+  function withLangParam(href, l) {
+    if (shouldSkipLangParam(href)) return href;
+    var hashIdx = href.indexOf('#');
+    var base = hashIdx === -1 ? href : href.slice(0, hashIdx);
+    var hash = hashIdx === -1 ? '' : href.slice(hashIdx);
+    var qIdx = base.indexOf('?');
+    var path = qIdx === -1 ? base : base.slice(0, qIdx);
+    var qs = qIdx === -1 ? '' : base.slice(qIdx + 1);
+    var params = new URLSearchParams(qs);
+    params.set('lang', l);
+    return path + '?' + params.toString() + hash;
+  }
+  function updateNavLangLinks(l) {
+    var links = document.querySelectorAll('nav a[href], #mobile-menu a[href]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].setAttribute('href', withLangParam(links[i].getAttribute('href'), l));
+    }
+  }
+  function getInitialLang() {
+    var v = new URLSearchParams(window.location.search).get('lang');
+    return (v === 'ko' || v === 'en') ? v : 'en';
+  }
+
   function applyLang(l) {
     lang = l;
     sessionStorage.setItem('ccf_lang', l);
@@ -318,19 +348,7 @@ That young man was Bill Ray Majors — and what he was waiting for, without know
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = v;
       else el.innerHTML = v;
     }
-    // Update all internal nav links to carry language
-    var links = document.querySelectorAll('nav a[href]');
-    for (var j = 0; j < links.length; j++) {
-      var href = links[j].getAttribute('href');
-      if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#')) continue;
-      // Remove existing lang param
-      href = href.replace(/[?&]lang=[a-z]+/, '');
-      // Add new lang param if Korean
-      if (l === 'ko') {
-        href = href + (href.indexOf('?') >= 0 ? '&' : '?') + 'lang=ko';
-      }
-      links[j].setAttribute('href', href);
-    }
+    updateNavLangLinks(l);
   }
 
   window.setLang = applyLang;
@@ -355,9 +373,7 @@ That young man was Bill Ray Majors — and what he was waiting for, without know
 
   document.addEventListener('DOMContentLoaded', function() {
     // Read language from URL param or sessionStorage
-    var params = new URLSearchParams(window.location.search);
-    var savedLang = params.get('lang') || sessionStorage.getItem('ccf_lang') || 'en';
-    applyLang(savedLang);
+    applyLang(getInitialLang());
 
     var btnEn = document.getElementById('btn-en');
     var btnKo = document.getElementById('btn-ko');
@@ -386,13 +402,15 @@ That young man was Bill Ray Majors — and what he was waiting for, without know
 function toggleMenu() {
   var menu = document.getElementById('mobile-menu');
   var btn = document.getElementById('hamburger');
-  menu.classList.toggle('open');
+  var isOpen = menu.classList.toggle('open');
   btn.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 function closeMenu() {
   document.getElementById('mobile-menu').classList.remove('open');
   var btn = document.getElementById('hamburger');
   btn.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
   if (window.getComputedStyle(btn).display !== 'none') btn.focus();
 }
 document.addEventListener('keydown', function(e) {
@@ -406,6 +424,7 @@ document.addEventListener('click', function(e) {
   if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
     menu.classList.remove('open');
     btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
   }
 });
 </script>

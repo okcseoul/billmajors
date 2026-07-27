@@ -264,7 +264,7 @@
       <button class="lang-btn active" id="btn-en" data-lang="en">ENG</button>
       <button class="lang-btn" id="btn-ko" data-lang="ko">한국어</button>
     </div>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -547,6 +547,36 @@
 (function() {
   var lang = 'en';
 
+  function shouldSkipLangParam(href) {
+    if (!href || href.charAt(0) === '#') return true;
+    if (/^https?:\/\//i.test(href) || /^(mailto|tel|sms):/i.test(href)) return true;
+    var pathPart = href.split(/[?#]/)[0];
+    if (/\.[a-z0-9]{2,5}$/i.test(pathPart) && !/\.html?$/i.test(pathPart)) return true;
+    return false;
+  }
+  function withLangParam(href, l) {
+    if (shouldSkipLangParam(href)) return href;
+    var hashIdx = href.indexOf('#');
+    var base = hashIdx === -1 ? href : href.slice(0, hashIdx);
+    var hash = hashIdx === -1 ? '' : href.slice(hashIdx);
+    var qIdx = base.indexOf('?');
+    var path = qIdx === -1 ? base : base.slice(0, qIdx);
+    var qs = qIdx === -1 ? '' : base.slice(qIdx + 1);
+    var params = new URLSearchParams(qs);
+    params.set('lang', l);
+    return path + '?' + params.toString() + hash;
+  }
+  function updateNavLangLinks(l) {
+    var links = document.querySelectorAll('nav a[href], #mobile-menu a[href]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].setAttribute('href', withLangParam(links[i].getAttribute('href'), l));
+    }
+  }
+  function getInitialLang() {
+    var v = new URLSearchParams(window.location.search).get('lang');
+    return (v === 'ko' || v === 'en') ? v : 'en';
+  }
+
   function applyLang(l) {
     lang = l;
     document.body.className = l === 'ko' ? 'ko' : '';
@@ -575,6 +605,7 @@
     // Re-render story/voice cards after language change
     if (typeof renderStory === 'function') renderStory();
     if (typeof renderVoices === 'function') renderVoices();
+    updateNavLangLinks(l);
   }
 
   window.setLang = applyLang;
@@ -596,6 +627,7 @@
   };
 
   document.addEventListener('DOMContentLoaded', function() {
+    applyLang(getInitialLang());
     var btnEn = document.getElementById('btn-en');
     var btnKo = document.getElementById('btn-ko');
     if (btnEn) btnEn.addEventListener('click', function(e) { e.preventDefault(); applyLang('en'); });
@@ -835,12 +867,15 @@ document.addEventListener('click', function(e) {
 function toggleMenu() {
   var m = document.getElementById('mobile-menu');
   var b = document.getElementById('hamburger');
-  m.classList.toggle('open'); b.classList.toggle('open');
+  var isOpen = m.classList.toggle('open');
+  b.classList.toggle('open');
+  b.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 function closeMenu() {
   document.getElementById('mobile-menu').classList.remove('open');
   var b = document.getElementById('hamburger');
   b.classList.remove('open');
+  b.setAttribute('aria-expanded', 'false');
   if (window.getComputedStyle(b).display !== 'none') b.focus();
 }
 document.addEventListener('keydown', function(e) {
@@ -853,6 +888,7 @@ document.addEventListener('click', function(e) {
   var b = document.getElementById('hamburger');
   if (m && b && !m.contains(e.target) && !b.contains(e.target)) {
     m.classList.remove('open'); b.classList.remove('open');
+    b.setAttribute('aria-expanded', 'false');
   }
 });</script>
 </body>
