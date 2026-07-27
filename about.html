@@ -252,7 +252,7 @@ That young man was Bill Ray Majors — and what he was waiting for, without know
     <div>
       <h3>Bill &amp; Niki</h3>
       <p data-en="Bill Ray Majors, D.Min. has served as a missionary and pastor in Seoul, Korea since 1982. He holds a Doctor of Ministry from Biola University, a Master of Arts from Dallas Theological Seminary, and completed Clinical Pastoral Education at MD Anderson Cancer Center in Houston. He is a dual citizen of the United States and Republic of Korea, and was awarded Honorary Citizenship of Seoul by Mayor Lee Myung-bak in 2005. From 2005 to 2012 and again from 2015 to 2018, he served as English Worship Preacher for the Soongshil University English Chapel, preaching multiple times each semester while concurrently serving as Lead Pastor of International Worship in English (IWE) at Young Nak Presbyterian Church." data-ko="매죠스빌리래이 목사(D.Min.)는 1982년부터 서울에서 선교사이자 목사로 사역해 왔습니다. 바이올라대학교에서 신학박사, 댈러스 신학교에서 석사를 취득했으며, 휴스턴 MD 앤더슨 암센터에서 임상목회교육(CPE)을 이수했습니다. 미국과 대한민국 이중국적자이며, 2005년 이명박 서울시장으로부터 서울 명예시민으로 선정되었습니다. 2005년부터 2012년까지, 그리고 2015년부터 2018년까지 숭실대학교 영어 채플에서 영어 예배 설교자로 섬기며 매 학기 여러 차례 설교했습니다. 이 기간 영락교회 국제영어예배(IWE) 담임목사로도 동시에 섬겼습니다.">Bill Ray Majors, D.Min. has served as a missionary and pastor in Seoul, Korea since 1982. He holds a Doctor of Ministry from Biola University, a Master of Arts from Dallas Theological Seminary, and completed Clinical Pastoral Education at MD Anderson Cancer Center in Houston. He is a dual citizen of the United States and Republic of Korea, and was awarded Honorary Citizenship of Seoul by Mayor Lee Myung-bak in 2005. From 2005 to 2012 and again from 2015 to 2018, he served as English Worship Preacher for the Soongshil University English Chapel, preaching multiple times each semester while concurrently serving as Lead Pastor of International Worship in English (IWE) at Young Nak Presbyterian Church.</p>
-      <p data-en="Niki (Ja-kyung Lyu) serves alongside Bill as Treasurer of 크로스컬처 커뮤니티 (CrossCulture Community), the Unincorporated Non-Profit Association registered in Seoul, Korea." data-ko="유자경(니키) 사모는 크로스컬처 커뮤니티 파운데이션의 회계담당으로, 한국 법인의 공동 임원으로서 빌 목사와 함께 사역하고 있습니다.">Niki (Ja-kyung Lyu) serves alongside Bill as Treasurer of 크로스컬처 커뮤니티 (CrossCulture Community), the Unincorporated Non-Profit Association registered in Seoul, Korea.</p>
+      <p data-en="Niki (Ja-kyung Lyu) serves alongside Bill as Treasurer of 크로스컬처 커뮤니티 (CrossCulture Community), the Unincorporated Non-Profit Association registered in Seoul, Korea." data-ko="유자경(니키) 사모는 서울에 등록된 비법인단체 크로스컬처 커뮤니티의 재무를 맡아 빌 목사와 함께 섬기고 있습니다.">Niki (Ja-kyung Lyu) serves alongside Bill as Treasurer of 크로스컬처 커뮤니티 (CrossCulture Community), the Unincorporated Non-Profit Association registered in Seoul, Korea.</p>
     </div>
   </div>
 
@@ -331,7 +331,6 @@ That young man was Bill Ray Majors — and what he was waiting for, without know
 
   function applyLang(l) {
     lang = l;
-    sessionStorage.setItem('ccf_lang', l);
     document.body.classList.remove('ko');
     if (l === 'ko') document.body.classList.add('ko');
     var btnEn = document.getElementById('btn-en');
@@ -372,7 +371,6 @@ That young man was Bill Ray Majors — and what he was waiting for, without know
   };
 
   document.addEventListener('DOMContentLoaded', function() {
-    // Read language from URL param or sessionStorage
     applyLang(getInitialLang());
 
     var btnEn = document.getElementById('btn-en');

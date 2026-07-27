@@ -6,10 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chuseok at the Orphanage — Photos from The Half Apple</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root { --navy: #0A3C8F; --gold: #C28615; --gold-light: #e0a832; --cream: #FAF7F2; --dark: #1a1a1a; --mid: #555; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body.ko { font-family: 'Noto Sans KR', sans-serif; }
+    [data-ko] { display: none; }
+    body.ko [data-en] { display: none; }
+    body.ko [data-ko] { display: inline; }
+    body.ko [data-ko].block { display: block; }
+    .lang-toggle { display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px; border: 1px solid rgba(255,255,255,0.2); }
+    .lang-btn { padding: 4px 10px; border-radius: 16px; border: none; background: transparent; font-size: 0.68rem; font-weight: 500; cursor: pointer; color: rgba(255,255,255,0.6); font-family: inherit; -webkit-appearance: none; transition: all 0.2s; }
+    .lang-btn.active { background: var(--gold); color: #1a1a1a; }
     body { background: var(--cream); color: var(--dark); font-family: 'Jost', sans-serif; font-weight: 300; min-height: 100vh; }
     .topbar { background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem; }
     .topbar a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.1em; transition: color 0.2s; }
@@ -40,34 +48,89 @@
 </head>
 <body>
 <nav class="topbar">
-  <a href="../../book-photos.html">← All Photos</a>
-  <span class="book-title">The Half Apple</span>
-  <a href="https://billmajors.com">billmajors.com</a>
+  <a href="../../book-photos.html"><span data-en="&larr; All Photos">&larr; All Photos</span><span data-ko="&larr; 모든 사진">&larr; 모든 사진</span></a>
+  <span class="book-title"><span data-en="The Half Apple">The Half Apple</span><span data-ko="반쪽 사과">반쪽 사과</span></span>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="https://billmajors.com">billmajors.com</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">ENG</button>
+      <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+    </div>
+  </div>
 </nav>
 <div class="photo-page">
   <div class="photo-frame">
-    <img src="../images/hanbok-christmas.jpg" alt="Bill in Korean hanbok at Hwarang Children's Home during Chuseok 1985">
+    <img src="../images/hanbok-christmas.jpg" alt="Bill in Korean hanbok at Hwarang Children's Home during Chuseok 1985" data-alt-en="Bill in Korean hanbok at Hwarang Children's Home during Chuseok 1985" data-alt-ko="1985년 추석, 화랑 어린이집에서 한복을 입은 빌">
   </div>
   <div class="meta">
-    <span class="meta-date">Chuseok 1985</span>
+    <span class="meta-date"><span data-en="Chuseok 1985">Chuseok 1985</span><span data-ko="1985년 추석">1985년 추석</span></span>
     <span class="meta-dot"></span>
-    <span class="meta-date">Hwarang Children's Home, Korea</span>
+    <span class="meta-date"><span data-en="Hwarang Children's Home, Korea">Hwarang Children's Home, Korea</span><span data-ko="화랑 어린이집, 한국">화랑 어린이집, 한국</span></span>
   </div>
-  <h1>Chuseok at the Orphanage</h1>
+  <h1><span data-en="Chuseok at the Orphanage">Chuseok at the Orphanage</span><span data-ko="보육원에서 맞은 추석">보육원에서 맞은 추석</span></h1>
   <div class="gold-rule"></div>
-  <div class="story"><p>Bill in a traditional Korean <em>hanbok</em> — green jacket, white trousers — at <strong>Hwarang Children's Home</strong> during <strong>Chuseok</strong>, 1985.</p><p>Chuseok is the Korean harvest holiday — the lunar calendar's equivalent of Thanksgiving, one of the most important family gatherings of the year. A time when Koreans return home, honor ancestors, share food, and give thanks.</p><p>Bill put on the hanbok to observe the occasion. He was at an orphanage full of children without families, on the holiday most defined by family, dressed in their traditional clothes.</p><p>The grin says he knows exactly how he looks. What it doesn't quite show is what it meant to be there — fully present, fully participating, belonging to a country that had become his own.</p></div>
+  <div class="story"><div data-en="<p>Bill in a traditional Korean <em>hanbok</em> — green jacket, white trousers — at <strong>Hwarang Children's Home</strong> during <strong>Chuseok</strong>, 1985.</p><p>Chuseok is the Korean harvest holiday — the lunar calendar's equivalent of Thanksgiving, one of the most important family gatherings of the year. A time when Koreans return home, honor ancestors, share food, and give thanks.</p><p>Bill put on the hanbok to observe the occasion. He was at an orphanage full of children without families, on the holiday most defined by family, dressed in their traditional clothes.</p><p>The grin says he knows exactly how he looks. What it doesn't quite show is what it meant to be there — fully present, fully participating, belonging to a country that had become his own.</p>" class="block"><p>Bill in a traditional Korean <em>hanbok</em> — green jacket, white trousers — at <strong>Hwarang Children's Home</strong> during <strong>Chuseok</strong>, 1985.</p><p>Chuseok is the Korean harvest holiday — the lunar calendar's equivalent of Thanksgiving, one of the most important family gatherings of the year. A time when Koreans return home, honor ancestors, share food, and give thanks.</p><p>Bill put on the hanbok to observe the occasion. He was at an orphanage full of children without families, on the holiday most defined by family, dressed in their traditional clothes.</p><p>The grin says he knows exactly how he looks. What it doesn't quite show is what it meant to be there — fully present, fully participating, belonging to a country that had become his own.</p></div><div data-ko="<p>1985년 <strong>추석</strong>, <strong>화랑 어린이집</strong>에서 전통 <em>한복</em>을 입은 빌 — 녹색 저고리, 흰 바지 차림입니다.</p><p>추석은 한국의 추수 명절 — 음력의 추수감사절에 해당하며, 한 해 중 가장 중요한 가족 모임 가운데 하나입니다. 한국인들이 고향을 찾고, 조상을 기리고, 음식을 나누고, 감사를 드리는 때입니다.</p><p>빌은 그날을 기념하기 위해 한복을 입었습니다. 그는 가족 없는 아이들로 가득한 보육원에서, 가족을 가장 중요하게 여기는 명절에, 그들의 전통 옷을 입고 있었습니다.</p><p>그 미소는 자신이 어떻게 보이는지 정확히 알고 있음을 말해줍니다. 그것이 완전히 담지 못하는 것은, 그 자리에 있다는 것의 의미입니다 — 온전히 함께하고, 온전히 참여하며, 이제는 자신의 것이 된 나라에 속해 있다는 것.</p>" class="block"><p>1985년 <strong>추석</strong>, <strong>화랑 어린이집</strong>에서 전통 <em>한복</em>을 입은 빌 — 녹색 저고리, 흰 바지 차림입니다.</p><p>추석은 한국의 추수 명절 — 음력의 추수감사절에 해당하며, 한 해 중 가장 중요한 가족 모임 가운데 하나입니다. 한국인들이 고향을 찾고, 조상을 기리고, 음식을 나누고, 감사를 드리는 때입니다.</p><p>빌은 그날을 기념하기 위해 한복을 입었습니다. 그는 가족 없는 아이들로 가득한 보육원에서, 가족을 가장 중요하게 여기는 명절에, 그들의 전통 옷을 입고 있었습니다.</p><p>그 미소는 자신이 어떻게 보이는지 정확히 알고 있음을 말해줍니다. 그것이 완전히 담지 못하는 것은, 그 자리에 있다는 것의 의미입니다 — 온전히 함께하고, 온전히 참여하며, 이제는 자신의 것이 된 나라에 속해 있다는 것.</p></div></div>
   <div class="photo-nav">
-    <a href="first-birthday-korea.html">← Previous</a>
-    <a href="../../book-photos.html" class="all-link">View all photos</a>
-    <a href="rice-paddy.html">Next →</a>
+    <a href="first-birthday-korea.html"><span data-en="&larr; Previous">&larr; Previous</span><span data-ko="&larr; 이전">&larr; 이전</span></a>
+    <a href="../../book-photos.html" class="all-link"><span data-en="View all photos">View all photos</span><span data-ko="모든 사진 보기">모든 사진 보기</span></a>
+    <a href="rice-paddy.html"><span data-en="Next &rarr;">Next &rarr;</span><span data-ko="다음 &rarr;">다음 &rarr;</span></a>
   </div>
   <div class="book-cta">
     <div>
-      <strong>The Half Apple</strong>
-      <p>Finding a Father in God When Mine Walked Away — the memoir by Bill R. Majors.</p>
+      <strong><span data-en="The Half Apple">The Half Apple</span><span data-ko="반쪽 사과">반쪽 사과</span></strong>
+      <p><span data-en="Finding a Father in God When Mine Walked Away — the memoir by Bill R. Majors.">Finding a Father in God When Mine Walked Away — the memoir by Bill R. Majors.</span><span data-ko="아버지가 떠난 자리에서 하나님 아버지를 만나다 — 빌 R. 메이저스의 회고록.">아버지가 떠난 자리에서 하나님 아버지를 만나다 — 빌 R. 메이저스의 회고록.</span></p>
     </div>
-    <a href="https://billmajors.com">Learn more</a>
+    <a href="https://billmajors.com"><span data-en="Learn more">Learn more</span><span data-ko="더 알아보기">더 알아보기</span></a>
   </div>
 </div>
+<script>
+  function shouldSkipLangParam(href) {
+    if (!href || href.charAt(0) === '#') return true;
+    if (/^https?:\/\//i.test(href) || /^(mailto|tel|sms):/i.test(href)) return true;
+    var pathPart = href.split(/[?#]/)[0];
+    if (/\.[a-z0-9]{2,5}$/i.test(pathPart) && !/\.html?$/i.test(pathPart)) return true;
+    return false;
+  }
+  function withLangParam(href, lang) {
+    if (shouldSkipLangParam(href)) return href;
+    var hashIdx = href.indexOf('#');
+    var base = hashIdx === -1 ? href : href.slice(0, hashIdx);
+    var hash = hashIdx === -1 ? '' : href.slice(hashIdx);
+    var qIdx = base.indexOf('?');
+    var path = qIdx === -1 ? base : base.slice(0, qIdx);
+    var qs = qIdx === -1 ? '' : base.slice(qIdx + 1);
+    var params = new URLSearchParams(qs);
+    params.set('lang', lang);
+    return path + '?' + params.toString() + hash;
+  }
+  function updateNavLangLinks(lang) {
+    var links = document.querySelectorAll('nav a[href], .photo-nav a[href], .book-cta a[href]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].setAttribute('href', withLangParam(links[i].getAttribute('href'), lang));
+    }
+  }
+  function getInitialLang() {
+    var v = new URLSearchParams(window.location.search).get('lang');
+    return (v === 'ko' || v === 'en') ? v : 'en';
+  }
+  function applyAttrLang(attr, lang) {
+    var els = document.querySelectorAll('[data-' + attr + '-en]');
+    for (var i = 0; i < els.length; i++) {
+      var v = els[i].getAttribute('data-' + attr + '-' + lang);
+      if (v !== null) els[i].setAttribute(attr, v);
+    }
+  }
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.body.classList.toggle('ko', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    applyAttrLang('alt', lang);
+    applyAttrLang('aria-label', lang);
+    applyAttrLang('title', lang);
+    updateNavLangLinks(lang);
+  }
+  setLang(getInitialLang());
+</script>
 </body>
 </html>

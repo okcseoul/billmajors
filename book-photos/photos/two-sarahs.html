@@ -6,10 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Two Sarahs — Photos from The Half Apple</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root { --navy: #0A3C8F; --gold: #C28615; --gold-light: #e0a832; --cream: #FAF7F2; --dark: #1a1a1a; --mid: #555; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body.ko { font-family: 'Noto Sans KR', sans-serif; }
+    [data-ko] { display: none; }
+    body.ko [data-en] { display: none; }
+    body.ko [data-ko] { display: inline; }
+    body.ko [data-ko].block { display: block; }
+    .lang-toggle { display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px; border: 1px solid rgba(255,255,255,0.2); }
+    .lang-btn { padding: 4px 10px; border-radius: 16px; border: none; background: transparent; font-size: 0.68rem; font-weight: 500; cursor: pointer; color: rgba(255,255,255,0.6); font-family: inherit; -webkit-appearance: none; transition: all 0.2s; }
+    .lang-btn.active { background: var(--gold); color: #1a1a1a; }
     body { background: var(--cream); color: var(--dark); font-family: 'Jost', sans-serif; font-weight: 300; min-height: 100vh; }
     .topbar { background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem; }
     .topbar a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.1em; transition: color 0.2s; }
@@ -40,34 +48,89 @@
 </head>
 <body>
 <nav class="topbar">
-  <a href="../../book-photos.html">← All Photos</a>
-  <span class="book-title">The Half Apple</span>
-  <a href="https://billmajors.com">billmajors.com</a>
+  <a href="../../book-photos.html"><span data-en="&larr; All Photos">&larr; All Photos</span><span data-ko="&larr; 모든 사진">&larr; 모든 사진</span></a>
+  <span class="book-title"><span data-en="The Half Apple">The Half Apple</span><span data-ko="반쪽 사과">반쪽 사과</span></span>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="https://billmajors.com">billmajors.com</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">ENG</button>
+      <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+    </div>
+  </div>
 </nav>
 <div class="photo-page">
   <div class="photo-frame">
-    <img src="../images/two-sarahs.jpg" alt="Grandmother Sarah Majors holding baby Sarah, Bill holding Anna, Jakyung beside him">
+    <img src="../images/two-sarahs.jpg" alt="Grandmother Sarah Majors holding baby Sarah, Bill holding Anna, Jakyung beside him" data-alt-en="Grandmother Sarah Majors holding baby Sarah, Bill holding Anna, Jakyung beside him" data-alt-ko="아기 사라를 안은 할머니 사라 메이저스, 안나를 안은 빌, 그 곁의 자경">
   </div>
   <div class="meta">
-    <span class="meta-date">Early 1990s</span>
+    <span class="meta-date"><span data-en="Early 1990s">Early 1990s</span><span data-ko="1990년대 초">1990년대 초</span></span>
     <span class="meta-dot"></span>
-    <span class="meta-date">Oklahoma</span>
+    <span class="meta-date"><span data-en="Oklahoma">Oklahoma</span><span data-ko="오클라호마">오클라호마</span></span>
   </div>
-  <h1>The Two Sarahs</h1>
+  <h1><span data-en="The Two Sarahs">The Two Sarahs</span><span data-ko="두 명의 사라">두 명의 사라</span></h1>
   <div class="gold-rule"></div>
-  <div class="story"><p>Grandmother <strong>Sarah Majors</strong> holds her namesake — infant <strong>Sarah</strong>, born March 5, 1990. Bill holds <strong>Anna</strong>. <strong>Jakyung</strong> is beside him.</p><p>Bill named his first daughter after this woman — a grandmother who showed grace and love in everything she said and did, and who meant more to his growing-up years than he could easily put into words.</p><p>Here they are in the same frame. The name passed from one generation to the next, and now the two Sarahs have been in the same room.</p></div>
+  <div class="story"><div data-en="<p>Grandmother <strong>Sarah Majors</strong> holds her namesake — infant <strong>Sarah</strong>, born March 5, 1990. Bill holds <strong>Anna</strong>. <strong>Jakyung</strong> is beside him.</p><p>Bill named his first daughter after this woman — a grandmother who showed grace and love in everything she said and did, and who meant more to his growing-up years than he could easily put into words.</p><p>Here they are in the same frame. The name passed from one generation to the next, and now the two Sarahs have been in the same room.</p>" class="block"><p>Grandmother <strong>Sarah Majors</strong> holds her namesake — infant <strong>Sarah</strong>, born March 5, 1990. Bill holds <strong>Anna</strong>. <strong>Jakyung</strong> is beside him.</p><p>Bill named his first daughter after this woman — a grandmother who showed grace and love in everything she said and did, and who meant more to his growing-up years than he could easily put into words.</p><p>Here they are in the same frame. The name passed from one generation to the next, and now the two Sarahs have been in the same room.</p></div><div data-ko="<p>할머니 <strong>사라 메이저스</strong>가 자신의 이름을 물려받은 아기 <strong>사라</strong>(1990년 3월 5일생)를 안고 있습니다. 빌은 <strong>안나</strong>를 안고 있습니다. <strong>자경</strong>이 그의 곁에 있습니다.</p><p>빌은 첫딸의 이름을 이 여성의 이름을 따서 지었습니다 — 말과 행동 모든 것에서 은혜와 사랑을 보여주었고, 그의 성장기에 말로 다 담을 수 없을 만큼 큰 의미였던 할머니입니다.</p><p>여기, 두 사람이 한 프레임 안에 있습니다. 이름이 한 세대에서 다음 세대로 전해졌고, 이제 두 사라가 한자리에 함께했습니다.</p>" class="block"><p>할머니 <strong>사라 메이저스</strong>가 자신의 이름을 물려받은 아기 <strong>사라</strong>(1990년 3월 5일생)를 안고 있습니다. 빌은 <strong>안나</strong>를 안고 있습니다. <strong>자경</strong>이 그의 곁에 있습니다.</p><p>빌은 첫딸의 이름을 이 여성의 이름을 따서 지었습니다 — 말과 행동 모든 것에서 은혜와 사랑을 보여주었고, 그의 성장기에 말로 다 담을 수 없을 만큼 큰 의미였던 할머니입니다.</p><p>여기, 두 사람이 한 프레임 안에 있습니다. 이름이 한 세대에서 다음 세대로 전해졌고, 이제 두 사라가 한자리에 함께했습니다.</p></div></div>
   <div class="photo-nav">
-    <a href="sarah-anna-garden.html">← Previous</a>
-    <a href="../../book-photos.html" class="all-link">View all photos</a>
-    <a href="family-portrait.html">Next →</a>
+    <a href="sarah-anna-garden.html"><span data-en="&larr; Previous">&larr; Previous</span><span data-ko="&larr; 이전">&larr; 이전</span></a>
+    <a href="../../book-photos.html" class="all-link"><span data-en="View all photos">View all photos</span><span data-ko="모든 사진 보기">모든 사진 보기</span></a>
+    <a href="family-portrait.html"><span data-en="Next &rarr;">Next &rarr;</span><span data-ko="다음 &rarr;">다음 &rarr;</span></a>
   </div>
   <div class="book-cta">
     <div>
-      <strong>The Half Apple</strong>
-      <p>Finding a Father in God When Mine Walked Away — the memoir by Bill R. Majors.</p>
+      <strong><span data-en="The Half Apple">The Half Apple</span><span data-ko="반쪽 사과">반쪽 사과</span></strong>
+      <p><span data-en="Finding a Father in God When Mine Walked Away — the memoir by Bill R. Majors.">Finding a Father in God When Mine Walked Away — the memoir by Bill R. Majors.</span><span data-ko="아버지가 떠난 자리에서 하나님 아버지를 만나다 — 빌 R. 메이저스의 회고록.">아버지가 떠난 자리에서 하나님 아버지를 만나다 — 빌 R. 메이저스의 회고록.</span></p>
     </div>
-    <a href="https://billmajors.com">Learn more</a>
+    <a href="https://billmajors.com"><span data-en="Learn more">Learn more</span><span data-ko="더 알아보기">더 알아보기</span></a>
   </div>
 </div>
+<script>
+  function shouldSkipLangParam(href) {
+    if (!href || href.charAt(0) === '#') return true;
+    if (/^https?:\/\//i.test(href) || /^(mailto|tel|sms):/i.test(href)) return true;
+    var pathPart = href.split(/[?#]/)[0];
+    if (/\.[a-z0-9]{2,5}$/i.test(pathPart) && !/\.html?$/i.test(pathPart)) return true;
+    return false;
+  }
+  function withLangParam(href, lang) {
+    if (shouldSkipLangParam(href)) return href;
+    var hashIdx = href.indexOf('#');
+    var base = hashIdx === -1 ? href : href.slice(0, hashIdx);
+    var hash = hashIdx === -1 ? '' : href.slice(hashIdx);
+    var qIdx = base.indexOf('?');
+    var path = qIdx === -1 ? base : base.slice(0, qIdx);
+    var qs = qIdx === -1 ? '' : base.slice(qIdx + 1);
+    var params = new URLSearchParams(qs);
+    params.set('lang', lang);
+    return path + '?' + params.toString() + hash;
+  }
+  function updateNavLangLinks(lang) {
+    var links = document.querySelectorAll('nav a[href], .photo-nav a[href], .book-cta a[href]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].setAttribute('href', withLangParam(links[i].getAttribute('href'), lang));
+    }
+  }
+  function getInitialLang() {
+    var v = new URLSearchParams(window.location.search).get('lang');
+    return (v === 'ko' || v === 'en') ? v : 'en';
+  }
+  function applyAttrLang(attr, lang) {
+    var els = document.querySelectorAll('[data-' + attr + '-en]');
+    for (var i = 0; i < els.length; i++) {
+      var v = els[i].getAttribute('data-' + attr + '-' + lang);
+      if (v !== null) els[i].setAttribute(attr, v);
+    }
+  }
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.body.classList.toggle('ko', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    applyAttrLang('alt', lang);
+    applyAttrLang('aria-label', lang);
+    applyAttrLang('title', lang);
+    updateNavLangLinks(lang);
+  }
+  setLang(getInitialLang());
+</script>
 </body>
 </html>
