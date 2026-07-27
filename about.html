@@ -137,6 +137,10 @@
   .mobile-menu .mobile-ccf { color: var(--cream); background: var(--earth-dark); margin: 12px 24px 0; border-radius: 2px; text-align: center; border-bottom: none; }
   .mobile-menu .mobile-ccf:hover { background: var(--gold); color: var(--ink); }
   @media (max-width: 900px) { .hamburger { display: flex; } }
+  .about-subnav { position: sticky; top: 68px; z-index: 90; display: flex; gap: 10px; flex-wrap: wrap; padding: 12px 48px; background: rgba(253,250,245,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(139,111,71,0.15); }
+  .about-subnav a { font-size: 0.74rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--charcoal-soft); text-decoration: none; border: 1px solid rgba(139,111,71,0.3); padding: 6px 14px; border-radius: 2px; transition: all 0.2s; white-space: nowrap; }
+  .about-subnav a:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+  @media (max-width: 900px) { .about-subnav { padding: 10px 16px; top: 58px; gap: 7px; } }
 
   #about-ccf, #about-today, #about-museum, #about-give {
     scroll-margin-top: 90px;
@@ -146,12 +150,13 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo"><img src="https://crossculture-ccf.pages.dev/logo.png" alt="CrossCulture Community"></a>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="CrossCulture Community"></a>
   <ul>
-    <li><a href="index.html" data-en="Home" data-ko="홈">Home</a></li>
-    <li><a href="#about-ccf" data-en="CrossCulture" data-ko="크로스컬처">CrossCulture</a></li>
-    <li><a href="#about-today" data-en="Today" data-ko="현재">Today</a></li>
-    <li><a href="#about-museum" data-en="Museum" data-ko="박물관">Museum</a></li>
+    <li><a href="about.html" aria-current="page" data-en="About" data-ko="소개">About</a></li>
+    <li><a href="decades.html" data-en="The Same Years" data-ko="같은 세월">The Same Years</a></li>
+    <li><a href="halfapple.html" data-en="The Book" data-ko="책">The Book</a></li>
+    <li><a href="index.html#blog" data-en="Stories" data-ko="이야기">Stories</a></li>
+    <li><a href="index.html#contact" data-en="Contact" data-ko="연락처">Contact</a></li>
     <li><a href="#about-give" class="nav-give" data-en="Give Now" data-ko="후원하기">Give Now</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:16px;">
@@ -167,10 +172,23 @@
 <!-- MOBILE MENU -->
 <div id="mobile-menu" class="mobile-menu">
   <a href="index.html" onclick="closeMenu()" data-en="Home" data-ko="홈">Home</a>
-  <a href="#about-ccf" onclick="closeMenu()" data-en="CrossCulture" data-ko="크로스컬처">CrossCulture</a>
-  <a href="#about-today" onclick="closeMenu()" data-en="Today" data-ko="현재">Today</a>
-  <a href="#about-museum" onclick="closeMenu()" data-en="Museum" data-ko="박물관">Museum</a>
+  <a href="about.html" onclick="closeMenu()" aria-current="page" data-en="About" data-ko="소개">About</a>
+  <a href="decades.html" onclick="closeMenu()" data-en="The Same Years" data-ko="같은 세월">The Same Years</a>
+  <a href="halfapple.html" onclick="closeMenu()" data-en="The Book" data-ko="책">The Book</a>
+  <a href="index.html#blog" onclick="closeMenu()" data-en="Stories" data-ko="이야기">Stories</a>
+  <a href="index.html#contact" onclick="closeMenu()" data-en="Contact" data-ko="연락처">Contact</a>
+  <a href="#about-ccf" onclick="closeMenu()" data-en="— CrossCulture (this page)" data-ko="— 크로스컬처 (이 페이지)">— CrossCulture (this page)</a>
+  <a href="#about-today" onclick="closeMenu()" data-en="— Today (this page)" data-ko="— 현재 (이 페이지)">— Today (this page)</a>
+  <a href="#about-museum" onclick="closeMenu()" data-en="— Museum (this page)" data-ko="— 박물관 (이 페이지)">— Museum (this page)</a>
+  <a href="#about-give" onclick="closeMenu()" data-en="— Give Now (this page)" data-ko="— 후원하기 (이 페이지)">— Give Now (this page)</a>
   <a href="https://www.crossculture-community.com" target="_blank" onclick="closeMenu()" class="mobile-ccf" data-en="CrossCulture Community" data-ko="크로스컬처 커뮤니티">CrossCulture Community</a>
+</div>
+
+<div class="about-subnav">
+  <a href="#about-ccf" data-en="CrossCulture" data-ko="크로스컬처">CrossCulture</a>
+  <a href="#about-today" data-en="Today" data-ko="현재">Today</a>
+  <a href="#about-museum" data-en="Museum" data-ko="박물관">Museum</a>
+  <a href="#about-give" data-en="Give Now" data-ko="후원하기">Give Now</a>
 </div>
 
 <div class="hero-about">
@@ -373,8 +391,15 @@ function toggleMenu() {
 }
 function closeMenu() {
   document.getElementById('mobile-menu').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
+  var btn = document.getElementById('hamburger');
+  btn.classList.remove('open');
+  if (window.getComputedStyle(btn).display !== 'none') btn.focus();
 }
+document.addEventListener('keydown', function(e) {
+  if ((e.key === 'Escape' || e.key === 'Esc') && document.getElementById('mobile-menu').classList.contains('open')) {
+    closeMenu();
+  }
+});
 document.addEventListener('click', function(e) {
   var menu = document.getElementById('mobile-menu');
   var btn = document.getElementById('hamburger');

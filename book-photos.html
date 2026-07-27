@@ -25,7 +25,26 @@
       --mid: #555;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--cream); color: var(--dark); font-family: 'Jost', sans-serif; font-weight: 300; }
+    body { background: var(--cream); color: var(--dark); font-family: 'Jost', sans-serif; font-weight: 300; padding-top: 62px; }
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 12px 32px; background: rgba(250,247,242,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(194,134,21,0.18); gap: 16px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; white-space: nowrap; }
+    .nav-logo img { height: 30px; width: auto; display: block; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links a { font-size: 0.76rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dark); text-decoration: none; white-space: nowrap; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-ccf { background: var(--navy); color: #fff !important; padding: 8px 16px; border-radius: 2px; }
+    .nav-ccf:hover { background: var(--gold); color: var(--dark) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 1px; }
+    .mobile-menu { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 78%; max-width: 300px; background: var(--cream); z-index: 200; padding: 70px 26px 26px; flex-direction: column; gap: 4px; box-shadow: -8px 0 30px rgba(0,0,0,0.18); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 0.95rem; color: var(--dark); text-decoration: none; padding: 12px 0; border-bottom: 1px solid rgba(194,134,21,0.2); }
+    .mobile-menu a.mobile-ccf { color: var(--navy); font-weight: 500; border-bottom: none; margin-top: 10px; }
+    .mobile-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 1.7rem; line-height: 1; cursor: pointer; color: var(--mid); }
+    .menu-backdrop { display: none; position: fixed; inset: 0; background: rgba(26,26,26,0.45); z-index: 199; }
+    .menu-backdrop.open { display: block; }
+    @media (max-width: 900px) { .nav-links { display: none; } .hamburger { display: flex; } }
     header { background: var(--navy); padding: 3rem 2rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
     header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 30% 50%, rgba(194,134,21,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(194,134,21,0.08) 0%, transparent 60%); }
     header .eyebrow { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.75rem; position: relative; }
@@ -56,6 +75,31 @@
   </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="CrossCulture Community">Bill <span>Majors</span></a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="decades.html">The Same Years</a>
+    <a href="halfapple.html">The Book</a>
+    <a href="index.html#blog">Stories</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://www.crossculture-community.com" target="_blank" rel="noopener" class="nav-ccf">CrossCulture Community</a>
+  </div>
+  <button class="hamburger" onclick="openMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="menu-backdrop" id="menu-backdrop" onclick="closeMenu()"></div>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site menu">
+  <button class="mobile-close" onclick="closeMenu()" aria-label="Close menu">&times;</button>
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="decades.html" onclick="closeMenu()">The Same Years</a>
+  <a href="halfapple.html" onclick="closeMenu()">The Book</a>
+  <a href="index.html#blog" onclick="closeMenu()">Stories</a>
+  <a href="index.html#contact" onclick="closeMenu()">Contact</a>
+  <a href="https://www.crossculture-community.com" target="_blank" rel="noopener" onclick="closeMenu()" class="mobile-ccf">CrossCulture Community</a>
+</div>
 
 <header>
   <p class="eyebrow">The Half Apple — Visual Archive</p>
@@ -134,6 +178,34 @@
   <p class="album-note">"This album will grow. As the journey continues, so do the photographs."</p>
   <p><a href="https://billmajors.com">billmajors.com</a> &nbsp;·&nbsp; Photos from <em>The Half Apple</em> by Bill R. Majors</p>
 </footer>
+
+<script>
+  function openMenu() {
+    document.getElementById('mobile-menu').classList.add('open');
+    document.getElementById('menu-backdrop').classList.add('open');
+    document.querySelector('.hamburger').setAttribute('aria-expanded', 'true');
+    document.querySelector('.mobile-close').focus();
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('menu-backdrop').classList.remove('open');
+    var h = document.querySelector('.hamburger');
+    h.setAttribute('aria-expanded', 'false');
+    if (window.getComputedStyle(h).display !== 'none') h.focus();
+  }
+  document.addEventListener('keydown', function (e) {
+    var menu = document.getElementById('mobile-menu');
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape' || e.key === 'Esc') { closeMenu(); return; }
+    if (e.key !== 'Tab') return;
+    var items = menu.querySelectorAll('button, a[href]');
+    if (!items.length) return;
+    var first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    else if (!menu.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+  });
+</script>
 
 </body>
 </html>

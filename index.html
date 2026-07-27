@@ -254,7 +254,7 @@
   <ul>
     <li><a href="about.html" data-en="About" data-ko="소개">About</a></li>
     <li><a href="decades.html" data-en="The Same Years" data-ko="같은 세월">The Same Years</a></li>
-    <li><a href="#book" data-en="The Book" data-ko="책">The Book</a></li>
+    <li><a href="halfapple.html" data-en="The Book" data-ko="책">The Book</a></li>
     <li><a href="#blog" data-en="Stories" data-ko="이야기">Stories</a></li>
     <li><a href="#contact" data-en="Contact" data-ko="연락처">Contact</a></li>
     <li><a href="https://www.crossculture-community.com" target="_blank" class="nav-ccf" data-en="CrossCulture Community" data-ko="크로스컬처 커뮤니티">CrossCulture Community</a></li>
@@ -273,7 +273,7 @@
 <div id="mobile-menu" class="mobile-menu">
   <a href="about.html" onclick="closeMenu()" data-en="About" data-ko="소개">About</a>
   <a href="decades.html" onclick="closeMenu()" data-en="The Same Years" data-ko="같은 세월">The Same Years</a>
-  <a href="#book" onclick="closeMenu()" data-en="The Book" data-ko="책">The Book</a>
+  <a href="halfapple.html" onclick="closeMenu()" data-en="The Book" data-ko="책">The Book</a>
   <a href="#blog" onclick="closeMenu()" data-en="Stories" data-ko="이야기">Stories</a>
   <a href="#contact" onclick="closeMenu()" data-en="Contact" data-ko="연락처">Contact</a>
   <a href="namecard.html" onclick="closeMenu()" data-en="Name Card" data-ko="명함">Name Card</a>
@@ -839,8 +839,15 @@ function toggleMenu() {
 }
 function closeMenu() {
   document.getElementById('mobile-menu').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
+  var b = document.getElementById('hamburger');
+  b.classList.remove('open');
+  if (window.getComputedStyle(b).display !== 'none') b.focus();
 }
+document.addEventListener('keydown', function(e) {
+  if ((e.key === 'Escape' || e.key === 'Esc') && document.getElementById('mobile-menu').classList.contains('open')) {
+    closeMenu();
+  }
+});
 document.addEventListener('click', function(e) {
   var m = document.getElementById('mobile-menu');
   var b = document.getElementById('hamburger');
