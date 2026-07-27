@@ -77,6 +77,7 @@
     color: rgba(245,241,234,0.7);
     text-decoration: none;
     transition: color 0.2s;
+    white-space: nowrap;
   }
   .nav-links a:hover { color: var(--gold); }
   .lang-toggle { display: flex; border: 1px solid rgba(245,241,234,0.2); border-radius: 2px; overflow: hidden; }
@@ -91,8 +92,23 @@
     padding: 6px 12px;
     cursor: pointer;
     transition: all 0.2s;
+    white-space: nowrap;
   }
   .lang-btn.active { background: var(--gold); color: var(--ink); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo img { height: 34px; width: auto; display: block; }
+  .nav-ccf { background: var(--navy); color: var(--cream) !important; padding: 9px 18px; border-radius: 2px; }
+  .nav-ccf:hover { background: var(--gold); color: var(--ink) !important; }
+  .nav-links a[aria-current="page"], .mobile-menu a[aria-current="page"] { color: var(--gold); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 1px; }
+  .mobile-menu { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 78%; max-width: 300px; background: var(--warm-white); z-index: 200; padding: 76px 26px 26px; flex-direction: column; gap: 4px; box-shadow: -8px 0 30px rgba(0,0,0,0.14); }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 13px 0; border-bottom: 1px solid rgba(194,134,21,0.18); }
+  .mobile-menu a.mobile-ccf { color: var(--navy); font-weight: 500; border-bottom: none; margin-top: 10px; }
+  .mobile-close { position: absolute; top: 18px; right: 22px; background: none; border: none; font-size: 1.7rem; line-height: 1; cursor: pointer; color: var(--charcoal-soft); }
+  .menu-backdrop { display: none; position: fixed; inset: 0; background: rgba(13,13,11,0.45); z-index: 199; }
+  .menu-backdrop.open { display: block; }
 
   /* HERO */
   .hero {
@@ -522,6 +538,8 @@
   @media (max-width: 900px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-logo img { height: 28px; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 100px 24px 48px; order: 2; }
     .hero-right { padding: 100px 24px 0; order: 1; }
@@ -542,18 +560,35 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">Bill <span>Majors</span></a>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="CrossCulture Community">Bill <span>Majors</span></a>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="index.html#book" data-en="The Book" data-ko="책">The Book</a>
-      <a href="index.html" data-en="Home" data-ko="홈">Home</a>
+      <a href="about.html"><span data-en="About">About</span><span data-ko="소개">소개</span></a>
+      <a href="decades.html"><span data-en="The Same Years">The Same Years</span><span data-ko="같은 세월">같은 세월</span></a>
+      <a href="halfapple.html" aria-current="page"><span data-en="The Book">The Book</span><span data-ko="책">책</span></a>
+      <a href="index.html#blog"><span data-en="Stories">Stories</span><span data-ko="이야기">이야기</span></a>
+      <a href="index.html#contact"><span data-en="Contact">Contact</span><span data-ko="연락처">연락처</span></a>
+      <a href="https://www.crossculture-community.com" target="_blank" rel="noopener" class="nav-ccf"><span data-en="CrossCulture Community">CrossCulture Community</span><span data-ko="크로스컬처 커뮤니티">크로스컬처 커뮤니티</span></a>
     </div>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-en" onclick="setLang('en')">ENG</button>
       <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
     </div>
+    <button class="hamburger" onclick="openMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
+
+<div class="menu-backdrop" id="menu-backdrop" onclick="closeMenu()"></div>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site menu">
+  <button class="mobile-close" onclick="closeMenu()" aria-label="Close menu">&times;</button>
+  <a href="index.html" onclick="closeMenu()"><span data-en="Home">Home</span><span data-ko="홈">홈</span></a>
+  <a href="about.html" onclick="closeMenu()"><span data-en="About">About</span><span data-ko="소개">소개</span></a>
+  <a href="decades.html" onclick="closeMenu()"><span data-en="The Same Years">The Same Years</span><span data-ko="같은 세월">같은 세월</span></a>
+  <a href="halfapple.html" onclick="closeMenu()" aria-current="page"><span data-en="The Book">The Book</span><span data-ko="책">책</span></a>
+  <a href="index.html#blog" onclick="closeMenu()"><span data-en="Stories">Stories</span><span data-ko="이야기">이야기</span></a>
+  <a href="index.html#contact" onclick="closeMenu()"><span data-en="Contact">Contact</span><span data-ko="연락처">연락처</span></a>
+  <a href="https://www.crossculture-community.com" target="_blank" rel="noopener" onclick="closeMenu()" class="mobile-ccf"><span data-en="CrossCulture Community">CrossCulture Community</span><span data-ko="크로스컬처 커뮤니티">크로스컬처 커뮤니티</span></a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -750,6 +785,31 @@
 </footer>
 
 <script>
+  function openMenu() {
+    document.getElementById('mobile-menu').classList.add('open');
+    document.getElementById('menu-backdrop').classList.add('open');
+    document.querySelector('.hamburger').setAttribute('aria-expanded', 'true');
+    document.querySelector('.mobile-close').focus();
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('menu-backdrop').classList.remove('open');
+    var h = document.querySelector('.hamburger');
+    h.setAttribute('aria-expanded', 'false');
+    if (window.getComputedStyle(h).display !== 'none') h.focus();
+  }
+  document.addEventListener('keydown', function (e) {
+    var menu = document.getElementById('mobile-menu');
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape' || e.key === 'Esc') { closeMenu(); return; }
+    if (e.key !== 'Tab') return;
+    var items = menu.querySelectorAll('button, a[href]');
+    if (!items.length) return;
+    var first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    else if (!menu.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+  });
   function setLang(lang) {
     document.body.classList.toggle('ko', lang === 'ko');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');

@@ -40,6 +40,21 @@
   .lang-toggle { display: flex; align-items: center; gap: 4px; background: rgba(194,134,21,0.12); border-radius: 20px; padding: 4px; border: 1px solid rgba(194,134,21,0.25); }
   .lang-btn { padding: 6px 13px; border-radius: 16px; border: none; background: transparent; font-size: 0.78rem; font-weight: 500; cursor: pointer; color: var(--charcoal-soft); font-family: inherit; -webkit-appearance: none; transition: all 0.2s; }
   .lang-btn.active { background: var(--gold); color: var(--ink); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo img { height: 34px; width: auto; display: block; }
+  .nav-ccf { background: var(--navy); color: var(--cream) !important; padding: 9px 18px; border-radius: 2px; }
+  .nav-ccf:hover { background: var(--gold); color: var(--ink) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 1px; }
+  .mobile-menu { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 78%; max-width: 300px; background: var(--warm-white); z-index: 200; padding: 76px 26px 26px; flex-direction: column; gap: 4px; box-shadow: -8px 0 30px rgba(0,0,0,0.14); }
+  .mobile-menu.open { display: flex; }
+  .menu-backdrop { display: none; position: fixed; inset: 0; background: rgba(13,13,11,0.45); z-index: 199; }
+  .menu-backdrop.open { display: block; }
+  .nav-links a[aria-current="page"] { color: var(--gold); }
+  .mobile-menu a[aria-current="page"] { color: var(--gold); }
+  .mobile-menu a { font-size: 0.95rem; color: var(--charcoal); text-decoration: none; padding: 13px 0; border-bottom: 1px solid rgba(194,134,21,0.18); }
+  .mobile-menu a.mobile-ccf { color: var(--navy); font-weight: 500; border-bottom: none; margin-top: 10px; }
+  .mobile-close { position: absolute; top: 18px; right: 22px; background: none; border: none; font-size: 1.7rem; line-height: 1; cursor: pointer; color: var(--charcoal-soft); }
 
   /* ===== HERO ===== */
   .hero { padding: 160px 80px 70px; background: var(--cream); border-bottom: 1px solid rgba(194,134,21,0.18); }
@@ -120,6 +135,8 @@
   @media (max-width: 900px) {
     nav { padding: 12px 16px; }
     .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-logo img { height: 28px; }
     .hero { padding: 120px 24px 50px; }
     .decade-nav { padding: 12px 16px; top: 56px; gap: 7px; }
     .decade-nav a { padding: 6px 11px; font-size: 0.7rem; }
@@ -147,18 +164,35 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">Bill <span>Majors</span></a>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="CrossCulture Community">Bill <span>Majors</span></a>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="index.html" data-en="Home">Home</a><a href="index.html" data-ko="홈">홈</a>
-      <a href="halfapple.html" data-en="The Half Apple">The Half Apple</a><a href="halfapple.html" data-ko="반쪽 사과">반쪽 사과</a>
+      <a href="about.html"><span data-en="About">About</span><span data-ko="소개">소개</span></a>
+      <a href="decades.html" aria-current="page"><span data-en="The Same Years">The Same Years</span><span data-ko="같은 세월">같은 세월</span></a>
+      <a href="index.html#book"><span data-en="The Book">The Book</span><span data-ko="책">책</span></a>
+      <a href="index.html#blog"><span data-en="Stories">Stories</span><span data-ko="이야기">이야기</span></a>
+      <a href="index.html#contact"><span data-en="Contact">Contact</span><span data-ko="연락처">연락처</span></a>
+      <a href="https://www.crossculture-community.com" target="_blank" rel="noopener" class="nav-ccf"><span data-en="CrossCulture Community">CrossCulture Community</span><span data-ko="크로스컬처 커뮤니티">크로스컬처 커뮤니티</span></a>
     </div>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-en" onclick="setLang('en')">ENG</button>
       <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
     </div>
+    <button class="hamburger" onclick="openMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
+
+<div class="menu-backdrop" id="menu-backdrop" onclick="closeMenu()"></div>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site menu">
+  <button class="mobile-close" onclick="closeMenu()" aria-label="Close">&times;</button>
+  <a href="index.html" onclick="closeMenu()"><span data-en="Home">Home</span><span data-ko="홈">홈</span></a>
+  <a href="about.html" onclick="closeMenu()"><span data-en="About">About</span><span data-ko="소개">소개</span></a>
+  <a href="decades.html" onclick="closeMenu()" aria-current="page"><span data-en="The Same Years">The Same Years</span><span data-ko="같은 세월">같은 세월</span></a>
+  <a href="halfapple.html" onclick="closeMenu()"><span data-en="The Half Apple">The Half Apple</span><span data-ko="반쪽 사과">반쪽 사과</span></a>
+  <a href="index.html#blog" onclick="closeMenu()"><span data-en="Stories">Stories</span><span data-ko="이야기">이야기</span></a>
+  <a href="index.html#contact" onclick="closeMenu()"><span data-en="Contact">Contact</span><span data-ko="연락처">연락처</span></a>
+  <a href="https://www.crossculture-community.com" target="_blank" rel="noopener" onclick="closeMenu()" class="mobile-ccf"><span data-en="CrossCulture Community">CrossCulture Community</span><span data-ko="크로스컬처 커뮤니티">크로스컬처 커뮤니티</span></a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -346,7 +380,7 @@
       <div class="cell right">
         <h4><span data-en="Gimpo, June 1. Gwangju, June 2.">Gimpo, June 1. Gwangju, June 2.</span><span data-ko="6월 1일 김포, 6월 2일 광주">6월 1일 김포, 6월 2일 광주</span></h4>
         <p><span data-en="Twenty-one years old, with nine hundred dollars, a cowboy hat on my head and boots on my feet with no plan beyond the calling — and no experience of living under a military government. Uniformed soldiers inside the airport and outside it. Military exercises — soldiers marching, tanks and trucks on the streets. Monthly civil defence drills: twenty minutes in the daytime, and sometimes at midnight.">Twenty-one years old, with nine hundred dollars, a cowboy hat on my head and boots on my feet with no plan beyond the calling — and no experience of living under a military government. Uniformed soldiers inside the airport and outside it. Military exercises — soldiers marching, tanks and trucks on the streets. Monthly civil defence drills: twenty minutes in the daytime, and sometimes at midnight.</span><span data-ko="스물한 살, 900달러와 머리에는 카우보이 모자, 발에는 부츠, 그리고 부르심 말고는 아무 계획도 없었습니다 — 군사정권 아래서 살아본 적도 없었습니다. 공항 안에도, 공항 밖에도 제복을 입은 군인들이 있었습니다. 군사훈련 — 행군하는 군인들, 거리의 탱크와 군용 트럭. 그리고 매달 있는 민방위 훈련: 낮에 20분, 그리고 때로는 자정에도." class="block">스물한 살, 900달러와 머리에는 카우보이 모자, 발에는 부츠, 그리고 부르심 말고는 아무 계획도 없었습니다 — 군사정권 아래서 살아본 적도 없었습니다. 공항 안에도, 공항 밖에도 제복을 입은 군인들이 있었습니다. 군사훈련 — 행군하는 군인들, 거리의 탱크와 군용 트럭. 그리고 매달 있는 민방위 훈련: 낮에 20분, 그리고 때로는 자정에도.</span></p>
-        <div class="vid"><iframe src="https://www.youtube.com/embed/MG0sG4_FO1o" title="Ordination and Sending Out Service" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="vid"><iframe width="100%" height="141" src="https://www.youtube.com/embed/MG0sG4_FO1o" title="Ordination and Sending Out Service" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;border-radius:3px;"></iframe>
         <div class="vid-cap"><span data-en="Watch: my ordination and sending out service — the day my church commissioned me to Korea.">Watch: my ordination and sending out service — the day my church commissioned me to Korea.</span><span data-ko="영상: 안수 및 파송 예배 — 본교회가 저를 한국으로 파송하던 날." class="block">영상: 안수 및 파송 예배 — 본교회가 저를 한국으로 파송하던 날.</span></div></div>
       </div>
     </div>
@@ -447,7 +481,7 @@
       <div class="cell right">
         <h4><span data-en="Married on October 31">Married on October 31</span><span data-ko="10월 31일의 결혼">10월 31일의 결혼</span></h4>
         <p><span data-en="A single missionary living at an orphanage, I had been asked a simple question by Dr. Dick Nieusma, a visiting American dental missionary: &ldquo;Have you ever thought about marrying your friend?&rdquo; Two weeks of prayer in the rice fields behind the orphanage led to a proposal. Four months after the June 29 Declaration, I married Ja-kyung &ldquo;Niki&rdquo; Lyu — Halloween in the West, but with no Halloween in Korea it was simply a beautiful Saturday afternoon. We married at the Women Evangelist Hall (여전도회관) in Yeonji-dong, opened that year — a fourteen-storey headquarters built by Korean churchwomen on the ground where American missionaries had run a girls' school from 1895 to 1975. Korea as the mission field had become the sender of missionaries, and I was an American marrying a Korean inside the proof of it.">A single missionary living at an orphanage, I had been asked a simple question by Dr. Dick Nieusma, a visiting American dental missionary: &ldquo;Have you ever thought about marrying your friend?&rdquo; Two weeks of prayer in the rice fields behind the orphanage led to a proposal. Four months after the June 29 Declaration, I married Ja-kyung &ldquo;Niki&rdquo; Lyu — Halloween in the West, but with no Halloween in Korea it was simply a beautiful Saturday afternoon. We married at the Women Evangelist Hall (여전도회관) in Yeonji-dong, opened that year — a fourteen-storey headquarters built by Korean churchwomen on the ground where American missionaries had run a girls' school from 1895 to 1975. Korea as the mission field had become the sender of missionaries, and I was an American marrying a Korean inside the proof of it.</span><span data-ko="고아원에서 지내던 독신 선교사였던 저는, 방문 중이던 미국 치과 선교사 딕 니우스마 박사로부터 단순한 질문을 받았습니다. &ldquo;친구와 결혼하는 것을 생각해 본 적 있나요?&rdquo; 고아원 뒤 논에서 2주간 기도한 끝에 청혼으로 이어졌습니다. 6·29 선언 넉 달 뒤, 저는 류자경(니키)과 결혼했습니다. 서구에서는 핼러윈이었지만 한국에는 핼러윈이 없었기에 그날은 그저 아름다운 토요일 오후였습니다. 결혼식은 그해 문을 연 연지동 여전도회관에서 했습니다. 한국 교회 여성들이 세운 지상 14층 건물로, 1895년부터 1975년까지 미국 선교사들이 여학교를 운영하던 바로 그 터에 서 있었습니다. 선교지였던 한국이 선교사를 보내는 나라가 된 것입니다. 저는 그 증거 안에서 한국인과 결혼한 미국인이었습니다." class="block">고아원에서 지내던 독신 선교사였던 저는, 방문 중이던 미국 치과 선교사 딕 니우스마 박사로부터 단순한 질문을 받았습니다. &ldquo;친구와 결혼하는 것을 생각해 본 적 있나요?&rdquo; 고아원 뒤 논에서 2주간 기도한 끝에 청혼으로 이어졌습니다. 6·29 선언 넉 달 뒤, 저는 류자경(니키)과 결혼했습니다. 서구에서는 핼러윈이었지만 한국에는 핼러윈이 없었기에 그날은 그저 아름다운 토요일 오후였습니다. 결혼식은 그해 문을 연 연지동 여전도회관에서 했습니다. 한국 교회 여성들이 세운 지상 14층 건물로, 1895년부터 1975년까지 미국 선교사들이 여학교를 운영하던 바로 그 터에 서 있었습니다. 선교지였던 한국이 선교사를 보내는 나라가 된 것입니다. 저는 그 증거 안에서 한국인과 결혼한 미국인이었습니다.</span></p>
-        <div class="vid"><iframe src="https://www.youtube.com/embed/HQ0CXXd4tX4" title="Bill and Niki Wedding 1987" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="vid"><iframe width="100%" height="141" src="https://www.youtube.com/embed/HQ0CXXd4tX4" title="Bill and Niki Wedding 1987" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;border-radius:3px;"></iframe>
         <div class="vid-cap"><span data-en="Watch: wedding highlights — a beautiful Saturday afternoon in Korea.">Watch: wedding highlights — a beautiful Saturday afternoon in Korea.</span><span data-ko="영상: 결혼식 하이라이트 — 한국에서의 아름다운 토요일 오후." class="block">영상: 결혼식 하이라이트 — 한국에서의 아름다운 토요일 오후.</span></div></div>
       </div>
     </div>
@@ -685,7 +719,7 @@
       <div class="cell right">
         <h4><span data-en="Chaplaincy at MD Anderson">Chaplaincy at MD Anderson</span><span data-ko="MD 앤더슨 원목 사역">MD 앤더슨 원목 사역</span></h4>
         <p><span data-en="Clinical Pastoral Education — four units in twelve months — at MD Anderson Cancer Center in Houston, ministry in the hardest of places. Attending and sometimes preaching in Korean on Sundays at Calvary Korean Baptist Church.">Clinical Pastoral Education — four units in twelve months — at MD Anderson Cancer Center in Houston, ministry in the hardest of places. Attending and sometimes preaching in Korean on Sundays at Calvary Korean Baptist Church.</span><span data-ko="휴스턴 MD 앤더슨 암센터에서 임상목회교육(CPE) 4단위를 12개월에 이수했습니다 — 가장 힘든 자리에서의 사역이었습니다. 주일에는 갈보리 한인침례교회에 출석하며 때때로 한국어로 설교했습니다." class="block">휴스턴 MD 앤더슨 암센터에서 임상목회교육(CPE) 4단위를 12개월에 이수했습니다 — 가장 힘든 자리에서의 사역이었습니다. 주일에는 갈보리 한인침례교회에 출석하며 때때로 한국어로 설교했습니다.</span></p>
-        <div class="vid"><iframe src="https://www.youtube.com/embed/MbxLJfAAZZU" title="Korean Sermon Houston" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="vid"><iframe width="100%" height="141" src="https://www.youtube.com/embed/MbxLJfAAZZU" title="Korean Sermon Houston" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;border-radius:3px;"></iframe>
         <div class="vid-cap"><span data-en="Watch: preaching in Korean at Calvary Korean Baptist Church, Houston.">Watch: preaching in Korean at Calvary Korean Baptist Church, Houston.</span><span data-ko="영상: 휴스턴 갈보리 한인침례교회에서의 한국어 설교." class="block">영상: 휴스턴 갈보리 한인침례교회에서의 한국어 설교.</span></div></div>
       </div>
     </div>
@@ -808,6 +842,32 @@
 </footer>
 
 <script>
+  function openMenu() {
+    document.getElementById('mobile-menu').classList.add('open');
+    document.getElementById('menu-backdrop').classList.add('open');
+    var h = document.querySelector('.hamburger');
+    h.setAttribute('aria-expanded', 'true');
+    document.querySelector('.mobile-close').focus();
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('menu-backdrop').classList.remove('open');
+    var h = document.querySelector('.hamburger');
+    h.setAttribute('aria-expanded', 'false');
+    if (window.getComputedStyle(h).display !== 'none') h.focus();
+  }
+  document.addEventListener('keydown', function (e) {
+    var menu = document.getElementById('mobile-menu');
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape' || e.key === 'Esc') { closeMenu(); return; }
+    if (e.key !== 'Tab') return;
+    var items = menu.querySelectorAll('button, a[href]');
+    if (!items.length) return;
+    var first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    else if (!menu.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+  });
   function setLang(lang) {
     document.body.classList.toggle('ko', lang === 'ko');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
