@@ -3,7 +3,7 @@
 
 Personal legacy website for Rev. Dr. Bill R. Majors (billmajors.com)
 
-Missionary in Seoul, Korea since June 2, 1982.
+Missionary in Seoul, Korea since June 1, 1982.
 Honorary Citizen of Seoul (2005).
 Korean Citizen — dual citizenship since 2012.
 
